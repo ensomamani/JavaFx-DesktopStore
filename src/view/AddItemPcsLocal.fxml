@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import de.jensd.fx.glyphs.fontawesome.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<JFXButton contentDisplay="BOTTOM" prefHeight="61.0" prefWidth="51.0" styleClass="btn-pc-local" stylesheets="@../styles/AddItemPcsLocal.css" text="PC00" textFill="WHITE" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AddItemPcsLocalController">
+   <font>
+      <Font name="Roboto Bold" size="16.0" />
+   </font>
+   <graphic>
+      <FontAwesomeIcon fill="WHITE" glyphName="DESKTOP" size="45" styleClass="icon-desktop-btn-local" />
+   </graphic>
+</JFXButton>

@@ -1,0 +1,862 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.media.*?>
+<?import javafx.scene.shape.*?>
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.image.*?>
+<?import de.jensd.fx.glyphs.fontawesome.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="650.0" prefWidth="1024.0" stylesheets="@../styles/PcsLocal.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PcsLocalController">
+   <children>
+      <BorderPane prefHeight="650.0" prefWidth="1024.0">
+         <top>
+            <GridPane fx:id="gridPaneMainMenu" prefHeight="35.0" style="-fx: 0;" styleClass="grid-ventana-principal" BorderPane.alignment="CENTER">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <HBox alignment="CENTER_LEFT">
+                     <children>
+                        <Label styleClass="lbl-text" text="Ventana principal " textFill="#535353">
+                           <font>
+                              <Font name="Roboto Light" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label styleClass="lbl-text" text="administrador" textFill="#ff9933">
+                           <font>
+                              <Font name="Roboto Light" size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
+                     <children>
+                        <JFXButton fx:id="btnMinimize" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" minHeight="-Infinity" onMouseClicked="#btnMinimizeClicked" prefHeight="20.0" prefWidth="25.0">
+                           <graphic>
+                              <FontAwesomeIcon fill="#666666" glyphName="MINUS" size="12" />
+                           </graphic>
+                           <padding>
+                              <Insets top="10.0" />
+                           </padding>
+                           <styleClass>
+                              <String fx:value="btn-menu-header-top" />
+                              <String fx:value="btn-radius-bottom-left" />
+                           </styleClass>
+                        </JFXButton>
+                        <JFXButton fx:id="btnClose" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" minHeight="-Infinity" onMouseClicked="#btnCloseClicked" prefHeight="20.0" prefWidth="50.0">
+                           <graphic>
+                              <FontAwesomeIcon fill="#666666" glyphName="CLOSE" size="16" />
+                           </graphic>
+                           <styleClass>
+                              <String fx:value="btn-menu-header-top" />
+                              <String fx:value="btn-radius-bottom-right" />
+                           </styleClass>
+                        </JFXButton>
+                     </children>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets left="10.0" right="5.0" />
+               </padding>
+            </GridPane>
+         </top>
+         <left>
+            <VBox alignment="TOP_CENTER" prefHeight="619.0" prefWidth="252.0" styleClass="vbox-siderbar" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fitHeight="150.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/icons8_online_store_150px.png" />
+                     </image>
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                  </ImageView>
+                  <Label fx:id="lblMainName" text="NOBI TIENDA" textFill="#ff9933">
+                     <font>
+                        <Font name="Roboto" size="30.0" />
+                     </font>
+                  </Label>
+                  <JFXButton fx:id="btnPcsLocal" alignment="BASELINE_LEFT" onMouseClicked="#btnPcsLocalClicked" prefHeight="41.0" prefWidth="252.0" styleClass="btn-submenu-sidebar" text="PCs Local" textFill="#cccccc">
+                     <graphic>
+                        <FontAwesomeIcon fill="#cccccc" glyphName="DESKTOP" styleClass="icon-submenu-sidebar" wrappingWidth="35.0" />
+                     </graphic>
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                     <padding>
+                        <Insets left="20.0" />
+                     </padding>
+                     <font>
+                        <Font name="Roboto Bold" size="16.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></JFXButton>
+                  <JFXButton fx:id="btnAgregarProducto" alignment="BASELINE_LEFT" onMouseClicked="#btnAgregarProdClicked" prefHeight="41.0" prefWidth="252.0" styleClass="btn-submenu-sidebar" text="Agregar producto" textFill="#cccccc">
+                     <font>
+                        <Font name="Roboto Bold" size="16.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIcon fill="#cccccc" glyphName="PLUS" styleClass="icon-submenu-sidebar" wrappingWidth="35.0" />
+                     </graphic>
+                     <padding>
+                        <Insets left="20.0" />
+                     </padding>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <JFXButton fx:id="btnRegistrarProveedor" alignment="BASELINE_LEFT" onMouseClicked="#btnRegistrarProvClicked" prefHeight="41.0" prefWidth="252.0" styleClass="btn-submenu-sidebar" text="Registrar Proveedor" textFill="#cccccc">
+                     <font>
+                        <Font name="Roboto Bold" size="16.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIcon fill="#cccccc" glyphName="TRUCK" styleClass="icon-submenu-sidebar" wrappingWidth="35.0" />
+                     </graphic>
+                     <padding>
+                        <Insets left="20.0" />
+                     </padding>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <JFXButton fx:id="btnConsultarVentas" alignment="BASELINE_LEFT" onMouseClicked="#btnConsultarVenClicked" prefHeight="41.0" prefWidth="252.0" styleClass="btn-submenu-sidebar" text="Consultar Ventas" textFill="#cccccc">
+                     <font>
+                        <Font name="Roboto Bold" size="16.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIcon fill="#cccccc" glyphName="CLIPBOARD" styleClass="icon-submenu-sidebar" wrappingWidth="35.0" />
+                     </graphic>
+                     <padding>
+                        <Insets left="20.0" />
+                     </padding>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <JFXButton fx:id="btnConsultarVentas1" alignment="BASELINE_LEFT" onMouseClicked="#btnConsultarVenClicked" prefHeight="41.0" prefWidth="252.0" styleClass="btn-submenu-sidebar" text="Consultar Ventas" textFill="#cccccc">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <font>
+                        <Font name="Roboto Bold" size="16.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIcon fill="#cccccc" glyphName="CLIPBOARD" styleClass="icon-submenu-sidebar" wrappingWidth="35.0" />
+                     </graphic>
+                     <padding>
+                        <Insets left="20.0" />
+                     </padding>
+                  </JFXButton>
+                  <Button mnemonicParsing="false" prefHeight="41.0" prefWidth="252.0" styleClass="btn-submenu-sidebar" text="Button">
+                     <effect>
+                        <InnerShadow color="#61391080" height="1.0" offsetY="-3.0" radius="0.0" width="0.0" />
+                     </effect>
+                  </Button>
+               </children>
+               <BorderPane.margin>
+                  <Insets top="5.0" />
+               </BorderPane.margin>
+            </VBox>
+         </left>
+         <center>
+            <StackPane prefHeight="594.0" prefWidth="772.0">
+               <children>
+                  <AnchorPane fx:id="AgregarProducto" style="-fx-background-color: #fff;">
+                     <children>
+                        <HBox prefHeight="20.0" prefWidth="772.0">
+                           <children>
+                              <Label text="Agregar Producto" textFill="#535353">
+                                 <font>
+                                    <Font name="Roboto Light" size="30.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets bottom="10.0" left="10.0" top="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <GridPane hgap="5.0" layoutY="58.0" prefHeight="168.0" prefWidth="714.0" vgap="5.0">
+                           <children>
+                              <Label text="Codigo producto:">
+                                 <font>
+                                    <Font name="Roboto Light" size="14.0" />
+                                 </font>
+                              </Label>
+                              <HBox GridPane.columnIndex="1">
+                                 <children>
+                                    <TextField editable="false" minHeight="-Infinity" prefHeight="25.0" prefWidth="241.0" styleClass="txt-proveedor" text="codpro000001" GridPane.columnIndex="1">
+                                       <font>
+                                          <Font name="Roboto" size="14.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets left="5.0" right="10.0" />
+                                       </padding>
+                                    </TextField>
+                                    <FontAwesomeIcon fill="#3366ff" glyphName="CHECK" size="16" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
+                                       <GridPane.margin>
+                                          <Insets right="5.0" />
+                                       </GridPane.margin>
+                                       <HBox.margin>
+                                          <Insets left="5.0" />
+                                       </HBox.margin>
+                                    </FontAwesomeIcon>
+                                 </children>
+                              </HBox>
+                              <Label text="Tipo producto:" GridPane.columnIndex="2">
+                                 <font>
+                                    <Font name="Roboto Light" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Categoria producto:" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font name="Roboto Light" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Nombre producto:" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font name="Roboto Light" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Proveedor:" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                 <font>
+                                    <Font name="Roboto Light" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Precio unitario:" GridPane.rowIndex="2">
+                                 <font>
+                                    <Font name="Roboto Light" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Fecha de ingreso:" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                                 <font>
+                                    <Font name="Roboto Light" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Hora de ingreso:" GridPane.rowIndex="4">
+                                 <font>
+                                    <Font name="Roboto Light" size="14.0" />
+                                 </font>
+                              </Label>
+                              <HBox GridPane.columnIndex="3">
+                                 <children>
+                                    <ComboBox prefHeight="25.0" prefWidth="185.0" promptText="Seleccionar..." />
+                                    <FontAwesomeIcon fill="#cccccc" glyphName="CHECK" size="16" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
+                                       <GridPane.margin>
+                                          <Insets right="5.0" />
+                                       </GridPane.margin>
+                                       <HBox.margin>
+                                          <Insets left="5.0" />
+                                       </HBox.margin>
+                                    </FontAwesomeIcon>
+                                 </children>
+                              </HBox>
+                              <HBox GridPane.columnIndex="3" GridPane.rowIndex="1">
+                                 <children>
+                                    <ComboBox prefHeight="25.0" prefWidth="185.0" promptText="Seleccionar..." />
+                                    <FontAwesomeIcon fill="#cccccc" glyphName="CHECK" size="16" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
+                                       <GridPane.margin>
+                                          <Insets right="5.0" />
+                                       </GridPane.margin>
+                                       <HBox.margin>
+                                          <Insets left="5.0" />
+                                       </HBox.margin>
+                                    </FontAwesomeIcon>
+                                 </children>
+                              </HBox>
+                              <HBox GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <children>
+                                    <TextField minHeight="-Infinity" prefHeight="25.0" prefWidth="380.0" styleClass="txt-proveedor" GridPane.columnIndex="1">
+                                       <font>
+                                          <Font name="Roboto" size="14.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets left="5.0" right="10.0" />
+                                       </padding>
+                                    </TextField>
+                                    <FontAwesomeIcon fill="#cccccc" glyphName="CHECK" size="16" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
+                                       <GridPane.margin>
+                                          <Insets right="5.0" />
+                                       </GridPane.margin>
+                                       <HBox.margin>
+                                          <Insets left="5.0" />
+                                       </HBox.margin>
+                                    </FontAwesomeIcon>
+                                 </children>
+                              </HBox>
+                              <HBox GridPane.columnIndex="3" GridPane.rowIndex="2">
+                                 <children>
+                                    <ComboBox prefHeight="25.0" prefWidth="185.0" promptText="Seleccionar..." />
+                                    <FontAwesomeIcon fill="#cccccc" glyphName="CHECK" size="16" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
+                                       <GridPane.margin>
+                                          <Insets right="5.0" />
+                                       </GridPane.margin>
+                                       <HBox.margin>
+                                          <Insets left="5.0" />
+                                       </HBox.margin>
+                                    </FontAwesomeIcon>
+                                 </children>
+                              </HBox>
+                              <HBox GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                 <children>
+                                    <TextField minHeight="-Infinity" prefHeight="25.0" prefWidth="380.0" promptText="00.00" styleClass="txt-proveedor" GridPane.columnIndex="1">
+                                       <font>
+                                          <Font name="Roboto" size="14.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets left="5.0" right="10.0" />
+                                       </padding>
+                                    </TextField>
+                                    <FontAwesomeIcon fill="#cccccc" glyphName="CHECK" size="16" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
+                                       <GridPane.margin>
+                                          <Insets right="5.0" />
+                                       </GridPane.margin>
+                                       <HBox.margin>
+                                          <Insets left="5.0" />
+                                       </HBox.margin>
+                                    </FontAwesomeIcon>
+                                 </children>
+                              </HBox>
+                              <HBox GridPane.columnIndex="3" GridPane.rowIndex="3">
+                                 <children>
+                                    <DatePicker prefHeight="25.0" prefWidth="185.0" />
+                                    <FontAwesomeIcon fill="#cccccc" glyphName="CHECK" size="16" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
+                                       <GridPane.margin>
+                                          <Insets right="5.0" />
+                                       </GridPane.margin>
+                                       <HBox.margin>
+                                          <Insets left="5.0" />
+                                       </HBox.margin>
+                                    </FontAwesomeIcon>
+                                 </children>
+                              </HBox>
+                              <HBox GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                 <children>
+                                    <TextField minHeight="-Infinity" prefHeight="25.0" prefWidth="380.0" promptText="00.00" styleClass="txt-proveedor" GridPane.columnIndex="1">
+                                       <font>
+                                          <Font name="Roboto" size="14.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets left="5.0" right="10.0" />
+                                       </padding>
+                                    </TextField>
+                                    <FontAwesomeIcon fill="#cccccc" glyphName="CHECK" size="16" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
+                                       <GridPane.margin>
+                                          <Insets right="5.0" />
+                                       </GridPane.margin>
+                                       <HBox.margin>
+                                          <Insets left="5.0" />
+                                       </HBox.margin>
+                                    </FontAwesomeIcon>
+                                 </children>
+                              </HBox>
+                              <Label text="Cantidad:" GridPane.rowIndex="3">
+                                 <font>
+                                    <Font name="Roboto Light" size="14.0" />
+                                 </font>
+                              </Label>
+                              <HBox GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                 <children>
+                                    <TextField minHeight="-Infinity" prefHeight="25.0" prefWidth="380.0" promptText="00.00" styleClass="txt-proveedor" GridPane.columnIndex="1">
+                                       <font>
+                                          <Font name="Roboto" size="14.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets left="5.0" right="10.0" />
+                                       </padding>
+                                    </TextField>
+                                    <FontAwesomeIcon fill="#cccccc" glyphName="CHECK" size="16" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
+                                       <GridPane.margin>
+                                          <Insets right="5.0" />
+                                       </GridPane.margin>
+                                       <HBox.margin>
+                                          <Insets left="5.0" />
+                                       </HBox.margin>
+                                    </FontAwesomeIcon>
+                                 </children>
+                              </HBox>
+                              <Label text="Agregar imagen:" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                                 <font>
+                                    <Font name="Roboto Light" size="14.0" />
+                                 </font>
+                              </Label>
+                              <HBox GridPane.columnIndex="3" GridPane.rowIndex="4">
+                                 <children>
+                                    <JFXButton prefHeight="28.0" prefWidth="132.0" styleClass="btn-subir-imagen" text="Subir imagen..." textFill="WHITE">
+                                       <graphic>
+                                          <FontAwesomeIcon fill="WHITE" glyphName="PLUS" />
+                                       </graphic>
+                                       <font>
+                                          <Font name="Roboto Bold" size="14.0" />
+                                       </font>
+                                    </JFXButton>
+                                    <FontAwesomeIcon fill="#cccccc" glyphName="CHECK" size="16" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
+                                       <GridPane.margin>
+                                          <Insets right="5.0" />
+                                       </GridPane.margin>
+                                       <HBox.margin>
+                                          <Insets left="5.0" />
+                                       </HBox.margin>
+                                    </FontAwesomeIcon>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <columnConstraints>
+                              <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="275.0" minWidth="10.0" prefWidth="130.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="413.0" minWidth="10.0" prefWidth="260.0" />
+                              <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="413.0" minWidth="10.0" prefWidth="156.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="413.0" minWidth="10.0" prefWidth="189.0" />
+                           </columnConstraints>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                        </GridPane>
+                        <HBox layoutX="4.0" layoutY="232.0" prefHeight="55.0" prefWidth="450.0">
+                           <children>
+                              <JFXButton alignment="CENTER" prefHeight="34.0" prefWidth="123.0" styleClass="btn-agregar-prov" text="AGREGAR" textFill="#535353">
+                                 <font>
+                                    <Font name="Roboto Bold" size="12.0" />
+                                 </font>
+                                 <graphic>
+                                    <FontAwesomeIcon fill="#535353" glyphName="PLUS" size="14" styleClass="icon-proveedor-btn" wrappingWidth="30.0" />
+                                 </graphic>
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </JFXButton>
+                              <JFXButton alignment="CENTER" prefHeight="34.0" prefWidth="123.0" styleClass="btn-agregar-prov" text="EDITAR" textFill="#535353">
+                                 <font>
+                                    <Font name="Roboto Bold" size="12.0" />
+                                 </font>
+                                 <graphic>
+                                    <FontAwesomeIcon fill="#535353" glyphName="EDIT" size="14" styleClass="icon-proveedor-btn" wrappingWidth="30.0" />
+                                 </graphic>
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </JFXButton>
+                              <JFXButton alignment="CENTER" prefHeight="34.0" prefWidth="123.0" styleClass="btn-agregar-prov" text="ELIMINAR" textFill="#535353">
+                                 <font>
+                                    <Font name="Roboto Bold" size="12.0" />
+                                 </font>
+                                 <graphic>
+                                    <FontAwesomeIcon fill="#535353" glyphName="TRASH" size="14" styleClass="icon-proveedor-btn" wrappingWidth="30.0" />
+                                 </graphic>
+                              </JFXButton>
+                           </children>
+                           <padding>
+                              <Insets left="10.0" top="10.0" />
+                           </padding>
+                        </HBox>
+                        <HBox layoutX="4.0" layoutY="281.0" prefHeight="26.0" prefWidth="528.0">
+                           <children>
+                              <Label text="Busca el producto registrado:" textFill="#535353">
+                                 <font>
+                                    <Font name="Roboto Light" size="20.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <GridPane layoutX="4.0" layoutY="308.0" prefHeight="37.0" prefWidth="497.0">
+                           <children>
+                              <TextField minHeight="-Infinity" prefHeight="25.0" prefWidth="487.0">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets bottom="10.0" left="10.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                              <FontAwesomeIcon fill="#cccccc" glyphName="SEARCH" size="16" GridPane.halignment="RIGHT">
+                                 <GridPane.margin>
+                                    <Insets bottom="13.0" right="5.0" />
+                                 </GridPane.margin>
+                              </FontAwesomeIcon>
+                           </children>
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                        </GridPane>
+                        <ScrollPane layoutY="353.0" prefHeight="256.0" prefViewportHeight="357.0" prefViewportWidth="671.0" prefWidth="680.0" style="-fx-background-color: transparent;">
+                           <content>
+                              <TableView prefHeight="274.0" prefWidth="657.0">
+                                 <columns>
+                                    <TableColumn prefWidth="75.0" text="C1" />
+                                    <TableColumn prefWidth="75.0" text="C2" />
+                                 </columns>
+                              </TableView>
+                           </content>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </ScrollPane>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="ConsultarVentas" style="-fx-background-color: #fff;">
+                     <children>
+                        <HBox prefHeight="39.0" prefWidth="772.0">
+                           <children>
+                              <Label text="Consultar ventas" textFill="#535353">
+                                 <font>
+                                    <Font name="Roboto Light" size="30.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets bottom="10.0" left="10.0" top="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <Label layoutX="3.0" layoutY="58.0" text="Elige el dia que quieres consultar" textFill="#535353">
+                           <font>
+                              <Font name="Roboto Light" size="14.0" />
+                           </font>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </Label>
+                        <HBox layoutY="76.0" prefHeight="26.0" prefWidth="206.0">
+                           <children>
+                              <DatePicker prefHeight="25.0" prefWidth="200.0">
+                                 <HBox.margin>
+                                    <Insets left="10.0" top="10.0" />
+                                 </HBox.margin>
+                              </DatePicker>
+                           </children>
+                        </HBox>
+                        <Label layoutX="14.0" layoutY="124.0" text="Filtra los datos que desees">
+                           <font>
+                              <Font name="Roboto Light" size="14.0" />
+                           </font></Label>
+                        <ScrollPane layoutX="14.0" layoutY="214.0" prefHeight="330.0" prefViewportHeight="200.0" prefViewportWidth="200.0" prefWidth="725.0">
+                           <content>
+                              <TableView layoutX="14.0" layoutY="214.0" prefHeight="327.0" prefWidth="723.0">
+                                <columns>
+                                  <TableColumn prefWidth="75.0" text="C1" />
+                                  <TableColumn prefWidth="75.0" text="C2" />
+                                </columns>
+                              </TableView>
+                           </content>
+                        </ScrollPane>
+                        <HBox alignment="BOTTOM_LEFT" layoutX="14.0" layoutY="142.0" prefHeight="42.0" prefWidth="616.0">
+                           <children>
+                              <JFXTextField labelFloat="true" prefHeight="28.0" prefWidth="293.0" promptText="Escribe aqui el nombre del prodcuto">
+                                 <font>
+                                    <Font name="Roboto" size="14.0" />
+                                 </font>
+                              </JFXTextField>
+                              <Label text="Tipo del producto:">
+                                 <font>
+                                    <Font name="Roboto Light" size="14.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="20.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <ComboBox prefHeight="25.0" prefWidth="178.0">
+                                 <HBox.margin>
+                                    <Insets left="5.0" />
+                                 </HBox.margin>
+                              </ComboBox>
+                           </children>
+                        </HBox>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="RegistrarProveedor" style="-fx-background-color: #fff;">
+                     <children>
+                        <HBox prefHeight="20.0" prefWidth="772.0">
+                           <children>
+                              <Label text="Registrar Proveedor" textFill="#535353">
+                                 <font>
+                                    <Font name="Roboto Light" size="30.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets bottom="10.0" left="10.0" top="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <GridPane hgap="5.0" layoutY="58.0" prefHeight="59.0" prefWidth="501.0" vgap="5.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="275.0" minWidth="10.0" prefWidth="149.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="413.0" minWidth="10.0" prefWidth="337.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Label text="Codigo proveedor:">
+                                 <font>
+                                    <Font name="Roboto Light" size="14.0" />
+                                 </font>
+                              </Label>
+                              <TextField editable="false" minHeight="-Infinity" prefHeight="25.0" prefWidth="380.0" styleClass="txt-proveedor" text="codpro000001" GridPane.columnIndex="1">
+                                 <font>
+                                    <Font name="Roboto" size="14.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets left="5.0" right="10.0" />
+                                 </padding>
+                              </TextField>
+                              <Label text="Nombre proveedor:" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font name="Roboto Light" size="14.0" />
+                                 </font>
+                              </Label>
+                              <TextField prefHeight="25.0" prefWidth="380.0" styleClass="txt-proveedor" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font name="Roboto" size="14.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets left="5.0" right="10.0" />
+                                 </padding>
+                              </TextField>
+                              <FontAwesomeIcon fill="#3366ff" glyphName="CHECK" size="16" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
+                                 <GridPane.margin>
+                                    <Insets right="5.0" />
+                                 </GridPane.margin>
+                              </FontAwesomeIcon>
+                              <FontAwesomeIcon fill="#cccccc" glyphName="CHECK" size="16" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                                 <GridPane.margin>
+                                    <Insets right="5.0" />
+                                 </GridPane.margin>
+                              </FontAwesomeIcon>
+                           </children>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </GridPane>
+                        <HBox layoutY="133.0" prefHeight="55.0" prefWidth="771.0">
+                           <children>
+                              <JFXButton alignment="CENTER" prefHeight="34.0" prefWidth="123.0" styleClass="btn-agregar-prov" text="AGREGAR" textFill="#535353">
+                                 <graphic>
+                                    <FontAwesomeIcon fill="#535353" glyphName="PLUS" size="14" styleClass="icon-proveedor-btn" wrappingWidth="30.0" />
+                                 </graphic>
+                                 <font>
+                                    <Font name="Roboto Bold" size="12.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </JFXButton>
+                              <JFXButton alignment="CENTER" prefHeight="34.0" prefWidth="123.0" styleClass="btn-agregar-prov" text="EDITAR" textFill="#535353">
+                                 <font>
+                                    <Font name="Roboto Bold" size="12.0" />
+                                 </font>
+                                 <graphic>
+                                    <FontAwesomeIcon fill="#535353" glyphName="EDIT" size="14" styleClass="icon-proveedor-btn" wrappingWidth="30.0" />
+                                 </graphic>
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </JFXButton>
+                              <JFXButton alignment="CENTER" prefHeight="34.0" prefWidth="123.0" styleClass="btn-agregar-prov" text="ELIMINAR" textFill="#535353">
+                                 <font>
+                                    <Font name="Roboto Bold" size="12.0" />
+                                 </font>
+                                 <graphic>
+                                    <FontAwesomeIcon fill="#535353" glyphName="TRASH" size="14" styleClass="icon-proveedor-btn" wrappingWidth="30.0" />
+                                 </graphic>
+                              </JFXButton>
+                           </children>
+                           <padding>
+                              <Insets left="10.0" top="10.0" />
+                           </padding></HBox>
+                        <HBox layoutY="188.0" prefHeight="26.0" prefWidth="528.0">
+                           <children>
+                              <Label text="Buscar proveedor:" textFill="#535353">
+                                 <font>
+                                    <Font name="Roboto Light" size="20.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <GridPane layoutX="1.0" layoutY="214.0" prefHeight="37.0" prefWidth="497.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <TextField minHeight="-Infinity" prefHeight="25.0" prefWidth="487.0">
+                                 <GridPane.margin>
+                                    <Insets bottom="10.0" left="10.0" />
+                                 </GridPane.margin>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </TextField>
+                              <FontAwesomeIcon fill="#cccccc" glyphName="SEARCH" size="16" GridPane.halignment="RIGHT">
+                                 <GridPane.margin>
+                                    <Insets bottom="13.0" right="5.0" />
+                                 </GridPane.margin>
+                              </FontAwesomeIcon>
+                           </children>
+                        </GridPane>
+                        <ScrollPane layoutY="251.0" prefHeight="359.0" prefViewportHeight="357.0" prefViewportWidth="671.0" prefWidth="680.0" style="-fx-background-color: transparent;">
+                           <content>
+                              <TableView prefHeight="356.0" prefWidth="669.0">
+                                <columns>
+                                  <TableColumn prefWidth="75.0" text="C1" />
+                                  <TableColumn prefWidth="75.0" text="C2" />
+                                </columns>
+                              </TableView>
+                           </content>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </ScrollPane>
+                     </children>
+                  </AnchorPane>
+                  <Pane fx:id="PCsLocal" prefHeight="623.0" prefWidth="772.0" style="-fx-background-color: #fff;" BorderPane.alignment="CENTER">
+                     <children>
+                        <Label layoutX="47.0" layoutY="35.0" text="PCs Local">
+                           <font>
+                              <Font name="Roboto Light" size="40.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="47.0" layoutY="93.0" text="Leyenda:">
+                           <font>
+                              <Font name="Roboto" size="16.0" />
+                           </font>
+                        </Label>
+                        <Circle fill="#66ff66" layoutX="119.0" layoutY="123.0" radius="8.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+                        <Label layoutX="135.0" layoutY="113.0" text="El color verde indica que la pc ordeno un producto." textFill="#535353">
+                           <font>
+                              <Font name="Roboto Light" size="16.0" />
+                           </font>
+                        </Label>
+                        <Circle fill="#cccccc" layoutX="119.0" layoutY="147.0" radius="8.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+                        <Label layoutX="135.0" layoutY="137.0" text="El color claro indica que la pc no ordeno nada." textFill="#535353">
+                           <font>
+                              <Font name="Roboto Light" size="16.0" />
+                           </font>
+                        </Label>
+                        <ScrollPane layoutX="17.0" layoutY="177.0" prefHeight="436.0" prefWidth="711.0" style="-fx-background-color: transparent;">
+                           <content>
+                              <FlowPane hgap="5.0" prefHeight="447.0" prefWidth="697.0" vgap="5.0">
+                                 <children>
+                                    <JFXButton contentDisplay="BOTTOM" prefHeight="61.0" prefWidth="51.0" styleClass="btn-pc-local" text="PC01" textFill="WHITE">
+                                       <graphic>
+                                          <FontAwesomeIcon fill="WHITE" glyphName="DESKTOP" size="45" styleClass="icon-desktop-btn-local" />
+                                       </graphic>
+                                       <font>
+                                          <Font name="Roboto Bold" size="16.0" />
+                                       </font>
+                                    </JFXButton>
+                                    <JFXButton contentDisplay="BOTTOM" prefHeight="61.0" prefWidth="51.0" text="PC01">
+                                       <font>
+                                          <Font name="Roboto Bold" size="16.0" />
+                                       </font>
+                                       <graphic>
+                                          <FontAwesomeIcon glyphName="DESKTOP" size="45" />
+                                       </graphic>
+                                    </JFXButton>
+                                    <JFXButton contentDisplay="BOTTOM" prefHeight="61.0" prefWidth="51.0" text="PC01">
+                                       <font>
+                                          <Font name="Roboto Bold" size="16.0" />
+                                       </font>
+                                       <graphic>
+                                          <FontAwesomeIcon glyphName="DESKTOP" size="45" />
+                                       </graphic>
+                                    </JFXButton>
+                                    <JFXButton contentDisplay="BOTTOM" prefHeight="61.0" prefWidth="51.0" text="PC01">
+                                       <font>
+                                          <Font name="Roboto Bold" size="16.0" />
+                                       </font>
+                                       <graphic>
+                                          <FontAwesomeIcon glyphName="DESKTOP" size="45" />
+                                       </graphic>
+                                    </JFXButton>
+                                    <JFXButton contentDisplay="BOTTOM" prefHeight="61.0" prefWidth="51.0" text="PC01">
+                                       <font>
+                                          <Font name="Roboto Bold" size="16.0" />
+                                       </font>
+                                       <graphic>
+                                          <FontAwesomeIcon glyphName="DESKTOP" size="45" />
+                                       </graphic>
+                                    </JFXButton>
+                                    <JFXButton contentDisplay="BOTTOM" prefHeight="61.0" prefWidth="51.0" text="PC01">
+                                       <font>
+                                          <Font name="Roboto Bold" size="16.0" />
+                                       </font>
+                                       <graphic>
+                                          <FontAwesomeIcon glyphName="DESKTOP" size="45" />
+                                       </graphic>
+                                    </JFXButton>
+                                    <JFXButton contentDisplay="BOTTOM" prefHeight="61.0" prefWidth="51.0" text="PC01">
+                                       <font>
+                                          <Font name="Roboto Bold" size="16.0" />
+                                       </font>
+                                       <graphic>
+                                          <FontAwesomeIcon glyphName="DESKTOP" size="45" />
+                                       </graphic>
+                                    </JFXButton>
+                                    <JFXButton contentDisplay="BOTTOM" prefHeight="61.0" prefWidth="51.0" text="PC01">
+                                       <font>
+                                          <Font name="Roboto Bold" size="16.0" />
+                                       </font>
+                                       <graphic>
+                                          <FontAwesomeIcon glyphName="DESKTOP" size="45" />
+                                       </graphic>
+                                    </JFXButton>
+                                    <JFXButton contentDisplay="BOTTOM" prefHeight="61.0" prefWidth="51.0" text="PC01">
+                                       <font>
+                                          <Font name="Roboto Bold" size="16.0" />
+                                       </font>
+                                       <graphic>
+                                          <FontAwesomeIcon glyphName="DESKTOP" size="45" />
+                                       </graphic>
+                                    </JFXButton>
+                                    <JFXButton contentDisplay="BOTTOM" prefHeight="61.0" prefWidth="51.0" text="PC01">
+                                       <font>
+                                          <Font name="Roboto Bold" size="16.0" />
+                                       </font>
+                                       <graphic>
+                                          <FontAwesomeIcon glyphName="DESKTOP" size="45" />
+                                       </graphic>
+                                    </JFXButton>
+                                 </children>
+                                 <padding>
+                                    <Insets left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </FlowPane>
+                           </content>
+                        </ScrollPane>
+                     </children>
+                  </Pane>
+               </children>
+            </StackPane>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

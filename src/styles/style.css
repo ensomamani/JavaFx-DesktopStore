@@ -1,0 +1,106 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 29/03/2020, 03:26:57 PM
+    Author     : Enso
+*/
+
+.rectangle {
+    -fx-background-color: #FBFBFE;
+}
+.button {
+    -fx-background-radius: 0;
+}
+.button:hover {
+    -fx-background-color: #C9C9C9;
+}
+.main-button {
+    -fx-text-fill: #6b6b6b;
+}
+.sidebar {
+    /*-fx-background-color: #FFB24D;*/
+    -fx-background-color: rgba(230,230,230,1);
+}
+.flow-pane {
+    /*-fx-background-color: #FFB24D;*/
+    -fx-background-color: rgba(230,230,230,1);
+}
+.main-menu {
+    -fx-background-color: rgba(230,230,230,1);
+}
+.button1 {
+    -fx-background-color: #FFB24D;
+}
+.mark-menu-sidebar {
+    -fx-border-width: 0 2px 0 0;
+    -fx-border-style: solid;
+    -fx-border-color: #6b6b6b;
+}
+.button1:hover {
+    -fx-background-color: #fff;
+    -fx-text-fill: #000;
+}
+.bar-items {
+    -fx-background-color: #FFB24D;
+}
+.txt-buscar {
+  -fx-background-radius: 50 50 50 50;
+  -fx-text-fill: #000;
+}
+.box-item-product {
+    -fx-border-color: #d8d5d5;
+    -fx-border-width: 1px;
+    -fx-border-style: solid;
+}
+.lbl-price {
+    -fx-text-fill: #ff4949;
+}
+.txt-content {
+    -fx-text-fill: #000;
+}
+.lbl-aviso-agregado {
+   -fx-text-fill: #339933;
+}
+.container-aviso-agregado {
+    -fx-border-width: 1px;
+    -fx-border-color: #339933;
+    -fx-border-style: solid;
+    -fx-border-radius: 4 4 0 0 ;
+}
+.btn-agregar {
+    -fx-background-color: #cccccc;
+    -fx-text-fill: #999999;
+}
+.btn-agregar:hover {
+    -fx-background-color: #ff9933;
+    -fx-text-fill: #663300;
+}
+
+.btn-ordenar {
+    -fx-background-color: #ff9933;
+    -fx-background-radius: 4 4 0 0; 
+}
+
+.btn-ordenar:hover {
+    -fx-background-color: #e87678;
+    
+}
+.main-scroll-items {
+    -fx-background-color: transparent;
+}
+.btn-confirm-agregado {
+    -fx-text-fill: #fff;
+    -fx-background-color: green;
+}
+.btn-close-agregado {
+    -fx-background-color: transparent;
+    -fx-background-radius: 50 50 50 50;
+}
+.btn-historial-compras:hover {
+     -fx-background-color: #cc6600;
+     -fx-background-radius: 4 4 4 4;
+     
+}

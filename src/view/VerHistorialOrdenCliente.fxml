@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.effect.*?>
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<Pane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.VerHistorialOrdenClienteController">
+   <children>
+      <HBox layoutY="72.0" prefHeight="45.0" prefWidth="569.0">
+         <children>
+            <GridPane prefHeight="45.0" prefWidth="530.0" style="-fx-background-color: #eeeeee;">
+              <columnConstraints>
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="196.0" minWidth="10.0" prefWidth="170.0" />
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="135.0" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="130.0" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="108.0" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="92.0" minHeight="2.0" prefHeight="6.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label text="Producto" textFill="#999999">
+                     <font>
+                        <Font name="Roboto Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label text="Cantidad" textFill="#999999" GridPane.columnIndex="1">
+                     <font>
+                        <Font name="Roboto Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label text="Precio" textFill="#999999" GridPane.columnIndex="2">
+                     <font>
+                        <Font name="Roboto Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label text="Subtotal" textFill="#999999" GridPane.columnIndex="3">
+                     <font>
+                        <Font name="Roboto Bold" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin>
+            </GridPane>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" layoutY="27.0" prefHeight="45.0" prefWidth="800.0">
+         <children>
+            <Label text="Ver historial orden de compra">
+               <font>
+                  <Font name="Roboto Light" size="22.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin>
+            </Label>
+         </children>
+      </HBox>
+      <VBox alignment="TOP_CENTER" layoutX="569.0" layoutY="72.0" prefHeight="121.0" prefWidth="200.0" styleClass="sidebar-vbox-precio-total">
+         <children>
+            <Label text="Subtotal de compras" textFill="#333333">
+               <font>
+                  <Font name="Roboto" size="16.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="10.0" top="10.0" />
+               </VBox.margin>
+            </Label>
+            <Label text="s/3.20" textFill="#666666">
+               <font>
+                  <Font name="Roboto" size="14.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </Label>
+            <Separator maxWidth="-Infinity" prefWidth="170.0">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </Separator>
+            <Label text="Total de compras" textFill="#333333">
+               <font>
+                  <Font name="Roboto" size="20.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </Label>
+            <Label text="s/8.60" textFill="#cc3333">
+               <font>
+                  <Font name="Roboto Bold" size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </Label>
+         </children>
+      </VBox>
+      <ScrollPane layoutX="17.0" layoutY="117.0" prefHeight="509.0" prefWidth="536.0" style="-fx-background-color: transparent;">
+         <content>
+            <FlowPane prefHeight="499.0" prefWidth="517.0" />
+         </content>
+      </ScrollPane>
+      <GridPane fx:id="gridPaneMainMenu" layoutY="2.0" prefHeight="25.0" prefWidth="800.0" styleClass="grid-ventana-principal">
+         <children>
+            <HBox alignment="CENTER_LEFT" />
+            <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
+               <children>
+                  <JFXButton fx:id="btnMinimize" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" minHeight="-Infinity" prefHeight="20.0" prefWidth="25.0">
+                     <graphic>
+                        <FontAwesomeIcon fill="#666666" glyphName="MINUS" size="12" />
+                     </graphic>
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                     <styleClass>
+                        <String fx:value="btn-menu-header-top" />
+                        <String fx:value="btn-radius-bottom-left" />
+                     </styleClass>
+                  </JFXButton>
+                  <JFXButton fx:id="btnClose" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" minHeight="-Infinity" prefHeight="20.0" prefWidth="50.0">
+                     <graphic>
+                        <FontAwesomeIcon fill="#666666" glyphName="CLOSE" size="16" />
+                     </graphic>
+                     <styleClass>
+                        <String fx:value="btn-menu-header-top" />
+                        <String fx:value="btn-radius-bottom-right" />
+                     </styleClass>
+                  </JFXButton>
+               </children>
+            </HBox>
+         </children>
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <padding>
+            <Insets left="10.0" right="5.0" />
+         </padding>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+      </GridPane>
+   </children>
+</Pane>

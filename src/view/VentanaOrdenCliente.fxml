@@ -1,0 +1,462 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import com.jfoenix.controls.*?>
+<?import de.jensd.fx.glyphs.fontawesome.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="542.0" prefWidth="800.0" stylesheets="@../styles/ventanaordencliente.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.VentanaPedidosClienteController">
+   <children>
+      <GridPane fx:id="gridPaneMainMenu" prefHeight="25.0" prefWidth="800.0" style="-fx: 0;" styleClass="grid-ventana-principal">
+         <children>
+            <HBox alignment="CENTER_LEFT">
+               <children>
+                  <Label styleClass="lbl-text" text="Orden de la PC " textFill="#339933">
+                     <font>
+                        <Font name="Roboto Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label styleClass="lbl-text" text="01" textFill="#339933">
+                     <font>
+                        <Font name="Roboto Bold" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
+               <children>
+                  <JFXButton fx:id="btnMinimize" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" minHeight="-Infinity" onMouseClicked="#btnMinimizeClicked" prefHeight="20.0" prefWidth="25.0">
+                     <graphic>
+                        <FontAwesomeIcon fill="#666666" glyphName="MINUS" size="12" />
+                     </graphic>
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                     <styleClass>
+                        <String fx:value="btn-menu-header-top" />
+                        <String fx:value="btn-radius-bottom-left" />
+                     </styleClass>
+                  </JFXButton>
+                  <JFXButton fx:id="btnClose" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" minHeight="-Infinity" onMouseClicked="#btnCloseClicked" prefHeight="20.0" prefWidth="50.0">
+                     <graphic>
+                        <FontAwesomeIcon fill="#666666" glyphName="CLOSE" size="16" />
+                     </graphic>
+                     <styleClass>
+                        <String fx:value="btn-menu-header-top" />
+                        <String fx:value="btn-radius-bottom-right" />
+                     </styleClass>
+                  </JFXButton>
+               </children>
+            </HBox>
+         </children>
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <padding>
+            <Insets left="10.0" right="5.0" />
+         </padding>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+      </GridPane>
+      <ScrollPane fitToHeight="true" layoutY="25.0" maxHeight="1.7976931348623157E308" minHeight="-Infinity" prefHeight="404.0" prefViewportHeight="600.0" prefViewportWidth="795.0" prefWidth="797.0">
+         <content>
+            <FlowPane prefHeight="184.0" prefWidth="795.0">
+               <children>
+                  <VBox prefHeight="170.0" prefWidth="795.0">
+                     <children>
+                        <HBox>
+                           <children>
+                              <Label text="Orden N° 0 ">
+                                 <font>
+                                    <Font name="Roboto" size="14.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets top="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </HBox>
+                        <HBox prefHeight="204.0" prefWidth="795.0">
+                           <children>
+                              <ScrollPane layoutY="25.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="160.0" prefWidth="647.0">
+                                 <content>
+                                    <FlowPane alignment="TOP_CENTER" hgap="5.0" prefHeight="269.0" prefWidth="619.0" style="-fx-background-color: #fff;" vgap="5.0">
+                                       <children>
+                                          <HBox prefHeight="122.0" prefWidth="197.0" styleClass="item-pedidos-pc">
+                                             <children>
+                                                <Label />
+                                                <ImageView fitHeight="91.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../ImagesTienda/cocacola.jpg" />
+                                                   </image>
+                                                </ImageView>
+                                                <VBox prefHeight="123.0" prefWidth="214.0" spacing="5.0">
+                                                   <children>
+                                                      <Label text="Coca Cola 196ml" textFill="#ff9933">
+                                                         <font>
+                                                            <Font name="Roboto Black" size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <HBox>
+                                                         <children>
+                                                            <Label text="Cantidad: " textFill="#535353">
+                                                               <font>
+                                                                  <Font name="Roboto" size="14.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <Label text="Label" textFill="#339933">
+                                                               <font>
+                                                                  <Font name="Roboto Bold" size="14.0" />
+                                                               </font>
+                                                            </Label>
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox>
+                                                         <children>
+                                                            <Label text="Precio: " textFill="#535353">
+                                                               <font>
+                                                                  <Font name="Roboto" size="14.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <Label text="Label" textFill="#339933">
+                                                               <font>
+                                                                  <Font name="Roboto Bold" size="14.0" />
+                                                               </font>
+                                                            </Label>
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox>
+                                                         <children>
+                                                            <Label text="Total: " textFill="#535353">
+                                                               <font>
+                                                                  <Font name="Roboto" size="14.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <Label text="Label" textFill="#339933">
+                                                               <font>
+                                                                  <Font name="Roboto Bold" size="14.0" />
+                                                               </font>
+                                                            </Label>
+                                                         </children>
+                                                      </HBox>
+                                                   </children>
+                                                   <HBox.margin>
+                                                      <Insets left="5.0" />
+                                                   </HBox.margin>
+                                                </VBox>
+                                             </children>
+                                             <padding>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                             </padding>
+                                          </HBox>
+                                          <HBox prefHeight="122.0" prefWidth="197.0" styleClass="item-pedidos-pc">
+                                             <children>
+                                                <Label />
+                                                <ImageView fitHeight="91.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../ImagesTienda/cocacola.jpg" />
+                                                   </image>
+                                                </ImageView>
+                                                <VBox prefHeight="123.0" prefWidth="214.0" spacing="5.0">
+                                                   <children>
+                                                      <Label text="Coca Cola 196ml" textFill="#ff9933">
+                                                         <font>
+                                                            <Font name="Roboto Black" size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <HBox>
+                                                         <children>
+                                                            <Label text="Cantidad: " textFill="#535353">
+                                                               <font>
+                                                                  <Font name="Roboto" size="14.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <Label text="Label" textFill="#339933">
+                                                               <font>
+                                                                  <Font name="Roboto Bold" size="14.0" />
+                                                               </font>
+                                                            </Label>
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox>
+                                                         <children>
+                                                            <Label text="Precio: " textFill="#535353">
+                                                               <font>
+                                                                  <Font name="Roboto" size="14.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <Label text="Label" textFill="#339933">
+                                                               <font>
+                                                                  <Font name="Roboto Bold" size="14.0" />
+                                                               </font>
+                                                            </Label>
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox>
+                                                         <children>
+                                                            <Label text="Total: " textFill="#535353">
+                                                               <font>
+                                                                  <Font name="Roboto" size="14.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <Label text="Label" textFill="#339933">
+                                                               <font>
+                                                                  <Font name="Roboto Bold" size="14.0" />
+                                                               </font>
+                                                            </Label>
+                                                         </children>
+                                                      </HBox>
+                                                   </children>
+                                                   <HBox.margin>
+                                                      <Insets left="5.0" />
+                                                   </HBox.margin>
+                                                </VBox>
+                                             </children>
+                                             <padding>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                             </padding>
+                                          </HBox>
+                                          <HBox prefHeight="122.0" prefWidth="197.0" styleClass="item-pedidos-pc">
+                                             <children>
+                                                <Label />
+                                                <ImageView fitHeight="91.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../ImagesTienda/cocacola.jpg" />
+                                                   </image>
+                                                </ImageView>
+                                                <VBox prefHeight="123.0" prefWidth="214.0" spacing="5.0">
+                                                   <children>
+                                                      <Label text="Coca Cola 196ml" textFill="#ff9933">
+                                                         <font>
+                                                            <Font name="Roboto Black" size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <HBox>
+                                                         <children>
+                                                            <Label text="Cantidad: " textFill="#535353">
+                                                               <font>
+                                                                  <Font name="Roboto" size="14.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <Label text="Label" textFill="#339933">
+                                                               <font>
+                                                                  <Font name="Roboto Bold" size="14.0" />
+                                                               </font>
+                                                            </Label>
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox>
+                                                         <children>
+                                                            <Label text="Precio: " textFill="#535353">
+                                                               <font>
+                                                                  <Font name="Roboto" size="14.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <Label text="Label" textFill="#339933">
+                                                               <font>
+                                                                  <Font name="Roboto Bold" size="14.0" />
+                                                               </font>
+                                                            </Label>
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox>
+                                                         <children>
+                                                            <Label text="Total: " textFill="#535353">
+                                                               <font>
+                                                                  <Font name="Roboto" size="14.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <Label text="Label" textFill="#339933">
+                                                               <font>
+                                                                  <Font name="Roboto Bold" size="14.0" />
+                                                               </font>
+                                                            </Label>
+                                                         </children>
+                                                      </HBox>
+                                                   </children>
+                                                   <HBox.margin>
+                                                      <Insets left="5.0" />
+                                                   </HBox.margin>
+                                                </VBox>
+                                             </children>
+                                             <padding>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                             </padding>
+                                          </HBox>
+                                          <HBox prefHeight="122.0" prefWidth="197.0" styleClass="item-pedidos-pc">
+                                             <children>
+                                                <Label />
+                                                <ImageView fitHeight="91.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../ImagesTienda/cocacola.jpg" />
+                                                   </image>
+                                                </ImageView>
+                                                <VBox prefHeight="123.0" prefWidth="214.0" spacing="5.0">
+                                                   <children>
+                                                      <Label text="Coca Cola 196ml" textFill="#ff9933">
+                                                         <font>
+                                                            <Font name="Roboto Black" size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <HBox>
+                                                         <children>
+                                                            <Label text="Cantidad: " textFill="#535353">
+                                                               <font>
+                                                                  <Font name="Roboto" size="14.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <Label text="Label" textFill="#339933">
+                                                               <font>
+                                                                  <Font name="Roboto Bold" size="14.0" />
+                                                               </font>
+                                                            </Label>
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox>
+                                                         <children>
+                                                            <Label text="Precio: " textFill="#535353">
+                                                               <font>
+                                                                  <Font name="Roboto" size="14.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <Label text="Label" textFill="#339933">
+                                                               <font>
+                                                                  <Font name="Roboto Bold" size="14.0" />
+                                                               </font>
+                                                            </Label>
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox>
+                                                         <children>
+                                                            <Label text="Total: " textFill="#535353">
+                                                               <font>
+                                                                  <Font name="Roboto" size="14.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <Label text="Label" textFill="#339933">
+                                                               <font>
+                                                                  <Font name="Roboto Bold" size="14.0" />
+                                                               </font>
+                                                            </Label>
+                                                         </children>
+                                                      </HBox>
+                                                   </children>
+                                                   <HBox.margin>
+                                                      <Insets left="5.0" />
+                                                   </HBox.margin>
+                                                </VBox>
+                                             </children>
+                                             <padding>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                             </padding>
+                                          </HBox>
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </padding>
+                                    </FlowPane>
+                                 </content>
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </ScrollPane>
+                              <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="162.0" prefWidth="150.0">
+                                 <children>
+                                    <HBox alignment="TOP_CENTER" maxWidth="-Infinity" prefHeight="15.0" prefWidth="351.0">
+                                       <children>
+                                          <Label text="Total orden N° 0" textAlignment="CENTER" textFill="#535353" wrapText="true">
+                                             <font>
+                                                <Font name="Roboto Bold" size="14.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                             <VBox.margin>
+                                                <Insets top="10.0" />
+                                             </VBox.margin>
+                                          </Label>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets top="10.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                    <HBox alignment="TOP_CENTER">
+                                       <children>
+                                          <Label text="s/" textFill="#cc3333">
+                                             <font>
+                                                <Font name="Roboto" size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <Label text="0.00" textFill="#cc3333">
+                                             <font>
+                                                <Font name="Roboto Bold" size="16.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets bottom="5.0" />
+                                             </HBox.margin>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                    <JFXButton buttonType="RAISED" prefHeight="51.0" prefWidth="113.0" ripplerFill="#f5f0f0" styleClass="btn-pedido-entregado" text="Marcar pedido entregado" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                                       <font>
+                                          <Font name="Roboto Bold" size="14.0" />
+                                       </font>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </JFXButton>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </FlowPane>
+         </content>
+      </ScrollPane>
+      <HBox alignment="TOP_RIGHT" layoutX="2.0" layoutY="429.0" prefHeight="124.0" prefWidth="797.0">
+         <children>
+            <VBox alignment="TOP_CENTER" prefHeight="141.0" prefWidth="151.0">
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+               <children>
+                  <Label text="MONTO TOTAL " textAlignment="CENTER" textFill="#535353" wrapText="true">
+                     <font>
+                        <Font name="Roboto Bold" size="14.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label text="s/0.00" textFill="#cc3333">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Label>
+                  <JFXButton buttonType="RAISED" prefHeight="40.0" prefWidth="138.0" ripplerFill="#cc9966" styleClass="btn-finalizar-pedido" text="Finalizar pedidos" textAlignment="CENTER" textFill="#a1a1a1" wrapText="true">
+                     <font>
+                        <Font name="Roboto Bold" size="14.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

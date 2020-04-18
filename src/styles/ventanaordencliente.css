@@ -1,0 +1,53 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 05/04/2020, 08:01:47 PM
+    Author     : Enso
+*/
+
+
+.btn-menu-header-top {
+    -fx-border-width: 1px;
+    -fx-border-color: #cccccc;
+}
+.btn-menu-header-top:hover {
+    -fx-background-color: #cccccc;
+}
+.btn-radius-bottom-left {
+    -fx-border-radius: 0 0 0 4;
+}
+.btn-radius-bottom-right {
+    -fx-border-radius: 0 0 4 0;
+}
+.item-pedidos-pc {
+    -fx-border-width: 1px;
+    -fx-border-color: #cccccc;
+    -fx-border-style: solid;
+    -fx-border-radius: 8 8 8 8;
+}
+.btn-pedido-entregado {
+    -fx-background-color: #cccccc;   
+}
+.btn-pedido-entregado:hover {
+    -fx-text-fill: #999999;   
+}
+.btn-pedido-entregado-active {
+    -fx-background-color: #33cc33;
+    -fx-text-fill: #fff;
+}
+.items-entregados {
+    -fx-border-width: 1px;
+    -fx-border-color: #33cc33;
+    -fx-border-style: solid;
+    -fx-border-radius: 8 8 8 8;
+}
+.btn-finalizar-pedido {
+    -fx-background-color: #ff9933;
+    -fx-text-fill: #996633;
+}
+.btn-finalizar-pedido:hover {
+    -fx-text-fill: #535353;
+}

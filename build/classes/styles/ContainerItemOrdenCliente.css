@@ -1,0 +1,21 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 08/04/2020, 08:36:19 PM
+    Author     : Enso
+*/
+/* estilos del contenedor orden cliente*/
+.btn-pedido-entregado {
+    -fx-background-color: #cccccc;   
+}
+.btn-pedido-entregado:hover {
+    -fx-text-fill: #999999;   
+}
+.btn-pedido-entregado-active {
+    -fx-background-color: #33cc33;
+    -fx-text-fill: #fff;
+}
+

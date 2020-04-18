@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox prefHeight="162.0" prefWidth="795.0" stylesheets="@../styles/ContainerItemOrdenCliente.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ContainerItemOrdenClienteController">
+   <children>
+      <HBox>
+         <children>
+            <Label text="Orden N° 0 ">
+               <font>
+                  <Font name="Roboto" size="14.0" />
+               </font>
+               <HBox.margin>
+                  <Insets top="10.0" />
+               </HBox.margin>
+            </Label>
+         </children>
+         <padding>
+            <Insets left="10.0" />
+         </padding>
+      </HBox>
+      <HBox prefHeight="204.0" prefWidth="795.0">
+         <children>
+            <ScrollPane layoutY="25.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="160.0" prefWidth="647.0">
+               <content>
+                  <FlowPane alignment="TOP_CENTER" hgap="5.0" prefHeight="156.0" prefWidth="619.0" style="-fx-background-color: #fff;" vgap="5.0">
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </FlowPane>
+               </content>
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </ScrollPane>
+            <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="162.0" prefWidth="150.0">
+               <children>
+                  <HBox alignment="TOP_CENTER" maxWidth="-Infinity" prefHeight="15.0" prefWidth="351.0">
+                     <children>
+                        <Label text="Total orden N° 0" textAlignment="CENTER" textFill="#535353" wrapText="true">
+                           <font>
+                              <Font name="Roboto Bold" size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Label>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox alignment="TOP_CENTER">
+                     <children>
+                        <Label text="s/" textFill="#cc3333">
+                           <font>
+                              <Font name="Roboto" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label text="0.00" textFill="#cc3333">
+                           <font>
+                              <Font name="Roboto Bold" size="16.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets bottom="5.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <JFXButton buttonType="RAISED" prefHeight="51.0" prefWidth="113.0" ripplerFill="#f5f0f0" styleClass="btn-pedido-entregado" text="Marcar pedido entregado" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <font>
+                        <Font name="Roboto Bold" size="14.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</VBox>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="TOP_CENTER" fillWidth="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="354.0" prefWidth="200.0" spacing="5.0" style="-fx-background-color: #FEFEFE;" styleClass="main-box-item" stylesheets="@../styles/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AddItemVentanTiendaController">
+   <children>
+      <ImageView fitHeight="160.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../ImagesTienda/7up.png" />
+         </image>
+      </ImageView>
+      <Label alignment="CENTER" prefHeight="45.0" prefWidth="190.0" text="GASEOSA 7 UP DE 500 ML" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font name="Roboto Bold" size="14.0" />
+         </font>
+      </Label>
+      <HBox alignment="BOTTOM_CENTER" prefHeight="30.0" prefWidth="267.0">
+         <children>
+            <Label prefHeight="30.0" prefWidth="21.0" styleClass="lbl-price" text="s/">
+               <font>
+                  <Font name="Roboto Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label prefHeight="21.0" prefWidth="74.0" styleClass="lbl-price" text="2.00" textFill="#463838">
+               <font>
+                  <Font name="Roboto Bold" size="25.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <HBox alignment="TOP_CENTER" prefHeight="55.0" prefWidth="231.0" spacing="7.0">
+         <children>
+            <TextField alignment="CENTER" editable="false" minWidth="-Infinity" prefHeight="66.0" prefWidth="34.0" styleClass="txt-cantidad" text="1">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </TextField>
+            <VBox prefHeight="55.0" prefWidth="22.0" spacing="5.0">
+               <children>
+                  <Button contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" styleClass="btn-cantidad" text="Button">
+                     <graphic>
+                        <FontAwesomeIcon glyphName="PLUS" />
+                     </graphic>
+                  </Button>
+                  <Button contentDisplay="GRAPHIC_ONLY" disable="true" mnemonicParsing="false" styleClass="btn-cantidad" text="Button">
+                     <graphic>
+                        <FontAwesomeIcon glyphName="MINUS" styleClass="btn-quitar" />
+                     </graphic>
+                  </Button>
+               </children>
+            </VBox>
+            <Button mnemonicParsing="false" prefHeight="55.0" prefWidth="113.0" styleClass="btn-agregar" text="AGREGAR AL CARRITO" textAlignment="CENTER" textFill="#663300" wrapText="true">
+               <font>
+                  <Font name="Roboto Bold" size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
+      <StackPane>
+         <children>
+            <HBox alignment="CENTER" prefHeight="38.0" prefWidth="190.0" style="-fx-background-color: #fff;" styleClass="container-aviso-agregado">
+               <children>
+                  <FontAwesomeIcon fill="#339933" glyphName="CHECK">
+                     <HBox.margin>
+                        <Insets right="5.0" />
+                     </HBox.margin>
+                  </FontAwesomeIcon>
+                  <Label prefHeight="20.0" prefWidth="8.0" text="1">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <styleClass>
+                        <String fx:value="lbl-aviso-agregado" />
+                        <String fx:value="lbl-cantidad aviso" />
+                     </styleClass>
+                  </Label>
+                  <Label styleClass="lbl-aviso-agregado" text=" agregado al carrito">
+                     <font>
+                        <Font name="Roboto" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <Button mnemonicParsing="false" prefHeight="38.0" prefWidth="190.0" styleClass="btn-ordenar" text="ORDENAR PRODUCTO" textFill="WHITE">
+               <effect>
+                  <InnerShadow color="#33333380" height="0.0" offsetY="-3.0" radius="0.0" width="0.0" />
+               </effect>
+               <font>
+                  <Font name="Roboto Bold" size="16.0" />
+               </font>
+            </Button>
+         </children>
+      </StackPane>
+   </children>
+   <padding>
+      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+   </padding>
+</VBox>
