@@ -5,9 +5,11 @@
  */
 package controller;
 
+import DAO.Productos;
 import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,9 +22,12 @@ import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.FlowPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import model.DBUtils;
+import model.Producto;
 import view.Principal;
 import static view.Principal.stageExtends;
 /**
@@ -34,6 +39,8 @@ public class VentanaClienteController implements Initializable {
     
     @FXML
     private JFXButton verPedidosCliente;
+    @FXML
+    private FlowPane areaProductos;
 
     /**
      * Initializes the controller class.
@@ -42,10 +49,17 @@ public class VentanaClienteController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         clickShow();
+        
     }    
     
     private void clickShow() {
-
+        Productos producto = new Productos();
+        try {
+            producto.consultarProducto();
+        } catch (SQLException ex) {
+            System.out.println("Exception: " + ex.getMessage());
+        }
+ 
     }
 
     @FXML
@@ -61,6 +75,7 @@ public class VentanaClienteController implements Initializable {
                 Scene scene = new Scene(root);
                 stage.setScene(scene);
                 stage.show();
+        
             } catch (IOException ex) {
                 Logger.getLogger(VentanaClienteController.class.getName()).log(Level.SEVERE, null, ex);
                 System.out.println("Error: " + ex.getMessage());

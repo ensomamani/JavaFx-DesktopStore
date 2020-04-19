@@ -227,7 +227,7 @@
                <children>
                   <ScrollPane fitToHeight="true" maxHeight="-Infinity" prefHeight="486.0" prefWidth="639.0" style="-fx-background-color: #DBDBDB;" styleClass="main-scroll-items">
                      <content>
-                        <FlowPane hgap="5.0" layoutY="-3.0" prefHeight="806.0" prefWidth="622.0" rowValignment="TOP" style="-fx-background-color: #DBDBDB;" vgap="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <FlowPane fx:id="areaProductos" hgap="5.0" layoutY="-3.0" prefHeight="806.0" prefWidth="622.0" rowValignment="TOP" style="-fx-background-color: #DBDBDB;" vgap="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <padding>
                               <Insets left="5.0" right="5.0" top="5.0" />
                            </padding>

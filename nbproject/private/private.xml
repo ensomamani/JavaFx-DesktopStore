@@ -5,7 +5,7 @@
             <url>src/controller/VentanaClienteController.java</url>
             <bookmark id="1">
                 <name/>
-                <line>47</line>
+                <line>63</line>
                 <key/>
             </bookmark>
         </file>
@@ -14,9 +14,11 @@
         <group>
             <file>file:/D:/proyecto-tienda/Tienda/src/view/Principal.java</file>
             <file>file:/D:/proyecto-tienda/Tienda/src/controller/PcsLocalController.java</file>
-            <file>file:/D:/proyecto-tienda/Tienda/src/controller/VerHistorialOrdenClienteController.java</file>
-            <file>file:/D:/proyecto-tienda/Tienda/src/controller/VentanaPedidosClienteController.java</file>
+            <file>file:/D:/proyecto-tienda/Tienda/src/model/DBUtils.java</file>
+            <file>file:/D:/proyecto-tienda/Tienda/src/controller/AddItemVentanTiendaController.java</file>
             <file>file:/D:/proyecto-tienda/Tienda/src/controller/VentanaClienteController.java</file>
+            <file>file:/D:/proyecto-tienda/Tienda/src/DAO/Productos.java</file>
+            <file>file:/D:/proyecto-tienda/Tienda/src/model/Producto.java</file>
         </group>
     </open-files>
 </project-private>
