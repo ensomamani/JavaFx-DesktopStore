@@ -19,15 +19,16 @@ import model.Producto;
  */
 public class Productos{
     private ResultSet rs;
+    private PreparedStatement st = null;
+    Connection cnx = null;
     public void consultarProducto(Producto producto) throws SQLException {
-        Statement st = null;
+        
         DBUtils dbutils = new DBUtils();
-        Connection cnx = null;
         String var2 = "1";
         cnx = dbutils.getConnection();
-        String sql = "select nombre_producto, precio_venta from producto where id_producto = 9";
-        st = cnx.createStatement(rs.TYPE_SCROLL_SENSITIVE, rs.CONCUR_READ_ONLY);
-        rs = st.executeQuery(sql);
+        String sql = "select nombre_producto, precio_venta from producto where id_producto =" + var2;
+        st = cnx.prepareStatement(sql);
+        rs = st.executeQuery();
         
         while(rs.next()) {
             producto.setNombre_Producto(rs.getString("nombre_producto"));

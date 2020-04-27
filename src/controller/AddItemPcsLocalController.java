@@ -5,9 +5,16 @@
  */
 package controller;
 
+import com.jfoenix.controls.JFXButton;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import model.PcCliente;
+import DAO.pcClienteDao;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * FXML Controller class
@@ -15,13 +22,22 @@ import javafx.fxml.Initializable;
  * @author Enso
  */
 public class AddItemPcsLocalController implements Initializable {
+    pcClienteDao pcDao = null;
+    PcCliente pc = null;
+    
+    @FXML
+    private JFXButton btnPc;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+
     }    
+    
+    public void mostrarPcs(PcCliente pcs) throws SQLException {
+        btnPc.setText(pcs.getNombre_pc());
+    }
     
 }

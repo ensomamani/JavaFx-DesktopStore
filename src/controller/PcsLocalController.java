@@ -5,6 +5,7 @@
  */
 package controller;
 
+import DAO.pcClienteDao;
 import com.jfoenix.controls.JFXButton;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -21,18 +22,25 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import view.Principal;
 import animatefx.animation.*;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
-
+import javafx.scene.layout.FlowPane;
+import DAO.pcClienteDao;
+import model.PcCliente;
 /**
  * FXML Controller class
  *
  * @author Enso
  */
 public class PcsLocalController implements Initializable {
-
+    FXMLLoader loader = null;
+    PcCliente pcCliente = null;
     @FXML
     private GridPane gridPaneMainMenu;
-    private Rectangle rectangleShadow;
     @FXML
     private Pane PCsLocal;
     @FXML
@@ -55,31 +63,56 @@ public class PcsLocalController implements Initializable {
     private AnchorPane ConsultarVentas;
     @FXML
     private Label lblMainName;
+    @FXML
+    private JFXButton btnConsultarVentas1;
+    @FXML
+    private FlowPane areaPcs;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-        
-        
+        try {
+            llamarPcs();
+            System.out.println("hola probando llamar pcs");
+        } catch (SQLException ex) {
+            Logger.getLogger(PcsLocalController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
+    private void llamarPcs() throws SQLException {
+        pcCliente = new PcCliente();
+        pcClienteDao pcDao = new pcClienteDao();
+        AddItemPcsLocalController controller = new AddItemPcsLocalController();
+        
+        try {
+            Node[] nodes = new Node[4];
+            pcDao.consultarPcs(pcCliente);
+            loader = new FXMLLoader(getClass().getResource("/view/AddItemPcsLocal.fxml"));
+            for (int i = 0; i < nodes.length; i++) {
+        
+                controller.mostrarPcs(pcCliente);
+              
+                nodes[i] = loader.load();
+                areaPcs.getChildren().add(nodes[i]);
+                System.out.println("Probando insercion de nodos");
+            }
+        } catch (Exception e) {
+        }
+    }
     @FXML
     private void btnPcsLocalClicked(MouseEvent event) {
         new ZoomIn(PCsLocal).play();
             PCsLocal.toFront();
             new BounceIn(lblMainName).play();
             System.out.println("hola mundo");
-            btnPcsLocal.getStyleClass().add("btn-submenu-sidebar-active");
-            
+            btnPcsLocal.getStyleClass().add("btn-submenu-sidebar-active"); 
     }
 
     @FXML
     private void btnAgregarProdClicked(MouseEvent event) {
         AgregarProducto.toFront();
-        
     }
 
     @FXML

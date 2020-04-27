@@ -7,6 +7,7 @@ package model;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -38,5 +39,11 @@ public class DBUtils {
     
     public void closeConnection(Connection con) throws SQLException{
         con.close();
+    }
+    
+    public void procesarExcepcion(SQLException ex) {
+        System.err.println("Error: " + ex.getMessage());
+        System.err.println("Code: " + ex.getErrorCode());
+        System.err.println("SqlState: " + ex.getSQLState());
     }
 }

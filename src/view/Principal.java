@@ -27,7 +27,7 @@ public class Principal extends Application {
     
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("AddItemVentanaTienda.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("PcsLocal.fxml"));
         Scene scene = new Scene(root);
         primaryStage.setTitle("Hello World!");
         primaryStage.setScene(scene);
@@ -35,6 +35,7 @@ public class Principal extends Application {
         primaryStage.initStyle(StageStyle.TRANSPARENT);
         stageExtends = primaryStage;
         primaryStage.show();
+  
         
     }
 

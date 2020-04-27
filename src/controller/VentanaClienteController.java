@@ -17,6 +17,7 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
@@ -36,11 +37,19 @@ import static view.Principal.stageExtends;
  * @author Enso
  */
 public class VentanaClienteController implements Initializable {
-    
+    FXMLLoader fxmlLoader;
+    Stage stage = null;
+   
     @FXML
     private JFXButton verPedidosCliente;
     @FXML
     private FlowPane areaProductos;
+    @FXML
+    private JFXButton iconifiedVenCliente;
+    @FXML
+    private JFXButton cerrarVenCliente;
+    @FXML
+    private JFXButton btnBebidas;
 
     /**
      * Initializes the controller class.
@@ -48,17 +57,22 @@ public class VentanaClienteController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        clickShow();
+        llenarProductos();
         
     }    
     
-    private void clickShow() {
-        Productos producto = new Productos();
+    private void llenarProductos() {
         try {
-            producto.consultarProducto();
-        } catch (SQLException ex) {
-            System.out.println("Exception: " + ex.getMessage());
+            Node[] nodes = new Node[3];
+            for (int i = 0; i < nodes.length; i++) {
+                fxmlLoader = new FXMLLoader(getClass().getResource("/view/AddItemVentanaTienda.fxml"));
+                nodes[i] = fxmlLoader.load();
+                areaProductos.getChildren().add(nodes[i]);
+            }      
+        } catch (Exception e) {
         }
+        
+        
  
     }
 
@@ -66,8 +80,9 @@ public class VentanaClienteController implements Initializable {
     private void verPedidoClicked(MouseEvent event) {
         
          try {
-                Stage stage = new Stage();
+                
                 //stage.initModality(Modality.WINDOW_MODAL);
+                stage = new Stage();
                 stage.initStyle(StageStyle.TRANSPARENT);
                 stage.setTitle("Tus Pedidos");
                 System.out.println("hola mundo");
@@ -75,10 +90,29 @@ public class VentanaClienteController implements Initializable {
                 Scene scene = new Scene(root);
                 stage.setScene(scene);
                 stage.show();
+                
         
             } catch (IOException ex) {
                 Logger.getLogger(VentanaClienteController.class.getName()).log(Level.SEVERE, null, ex);
                 System.out.println("Error: " + ex.getMessage());
             }
+    }
+
+    @FXML
+    private void minimizarVenClienteClicked(MouseEvent event) {
+        if (event.getSource().equals(iconifiedVenCliente)) {
+            stageExtends.setIconified(true);
+        }
+    }
+
+    @FXML
+    private void cerrarVentanaClicked(MouseEvent event) {
+        if (event.getSource().equals(cerrarVenCliente)) {
+            System.exit(0);
+        }
+    }
+
+    @FXML
+    private void btnShowBebidas(MouseEvent event) {
     }
 }
