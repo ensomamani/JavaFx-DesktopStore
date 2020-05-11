@@ -23,6 +23,7 @@ public class Producto {
 
     
     /*CONSTRUCTOR*/
+    
     public Producto() {
     }
     

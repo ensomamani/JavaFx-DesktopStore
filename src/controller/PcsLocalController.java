@@ -30,6 +30,10 @@ import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import DAO.pcClienteDao;
+import java.util.ArrayList;
+import java.util.List;
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.MenuItem;
 import model.PcCliente;
 /**
  * FXML Controller class
@@ -37,8 +41,8 @@ import model.PcCliente;
  * @author Enso
  */
 public class PcsLocalController implements Initializable {
-    FXMLLoader loader = null;
-    PcCliente pcCliente = null;
+    
+
     @FXML
     private GridPane gridPaneMainMenu;
     @FXML
@@ -75,31 +79,35 @@ public class PcsLocalController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         try {
             llamarPcs();
-            System.out.println("hola probando llamar pcs");
         } catch (SQLException ex) {
             Logger.getLogger(PcsLocalController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     private void llamarPcs() throws SQLException {
-        pcCliente = new PcCliente();
+
         pcClienteDao pcDao = new pcClienteDao();
-        AddItemPcsLocalController controller = new AddItemPcsLocalController();
+        ArrayList<PcCliente> pcList = pcDao.consultar();
+        Node[] nodes = new Node[pcList.size()];
         
-        try {
-            Node[] nodes = new Node[4];
-            pcDao.consultarPcs(pcCliente);
-            loader = new FXMLLoader(getClass().getResource("/view/AddItemPcsLocal.fxml"));
-            for (int i = 0; i < nodes.length; i++) {
-        
-                controller.mostrarPcs(pcCliente);
-              
+        for (int i = 0; i < nodes.length; i++) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/AddItemPcsLocal.fxml"));
+                AddItemPcsLocalController controller = new AddItemPcsLocalController();
+                loader.setController(controller);
                 nodes[i] = loader.load();
                 areaPcs.getChildren().add(nodes[i]);
-                System.out.println("Probando insercion de nodos");
+                controller.setNamePcs(pcList.get(i));
+            } catch (Exception e) {
+                
             }
-        } catch (Exception e) {
+            
+            
+            
         }
+        
+        
+        
     }
     @FXML
     private void btnPcsLocalClicked(MouseEvent event) {

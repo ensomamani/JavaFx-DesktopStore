@@ -12,9 +12,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import model.PcCliente;
 import DAO.pcClienteDao;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * FXML Controller class
@@ -22,22 +21,24 @@ import java.util.logging.Logger;
  * @author Enso
  */
 public class AddItemPcsLocalController implements Initializable {
-    pcClienteDao pcDao = null;
-    PcCliente pc = null;
-    
+
     @FXML
     private JFXButton btnPc;
+    @FXML
+    private FontAwesomeIcon iconText;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        //TODO
+        
     }    
-    
-    public void mostrarPcs(PcCliente pcs) throws SQLException {
-        btnPc.setText(pcs.getNombre_pc());
+    public void setNamePcs(PcCliente pc) throws SQLException {
+        btnPc.setText(pc.getNombre_pc());
     }
+
+    
     
 }

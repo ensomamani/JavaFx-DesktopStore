@@ -10,14 +10,20 @@ package model;
  * @author Enso
  */
 public class PcCliente {
-    int id_pc;
-    String nombre_pc;
+    private int id_pc;
+    private  String nombre_pc;
     
     //Constructor
-    
+
     public PcCliente() {
     }
 
+    public PcCliente(String nombre_pc) {
+        this.nombre_pc = nombre_pc;
+    }
+    
+  
+    
     public PcCliente(int id_pc, String nombre_pc) {
         this.id_pc = id_pc;
         this.nombre_pc = nombre_pc;

@@ -9,8 +9,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import model.DBUtils;
 import model.PcCliente;
 /**
@@ -22,32 +24,26 @@ public class pcClienteDao {
     private DBUtils dbutils = null;
     private Connection cnx = null;
     private ResultSet rs = null;
-    public int totalFilas;
-    public void consultarPcs(PcCliente pc) throws SQLException{
+    private PcCliente model = null;
+    
+    public ArrayList<PcCliente> consultar() throws SQLException {
+        ArrayList<PcCliente> pcList = new ArrayList<>();
         dbutils = new DBUtils();
-        String sql = "select id_pc, nombre_pc from pc_cliente" ;
-        
+        String sql = "select * from pc_cliente";
         try {
             cnx = dbutils.getConnection();
             pst = cnx.prepareStatement(sql);
-            
             rs = pst.executeQuery();
-            
-            while (rs.next()) {
-                pc.setId_pc(rs.getInt("id_pc"));
-                pc.setNombre_pc(rs.getString("nombre_pc"));   
+            while (rs.next()) {                
+                model = new PcCliente(rs.getInt("id_pc"), rs.getString("nombre_pc"));
+                pcList.add(model);
             }
-             
-            System.out.println("Total de pcs es: " + totalFilas);
-        } catch (SQLException ex) {
-            dbutils.procesarExcepcion(ex);
-        } finally {   
-            cnx.close();
-            pst.close();
-            rs.close();
+            System.out.println("se listo las pc cliente");
+        } catch (SQLException e) {
+            dbutils.procesarExcepcion(e);
+        } finally {
+            dbutils.closeConnection(cnx, pst, rs);
         }
-
-        
-        
+        return pcList;
     }
 }
