@@ -5,7 +5,7 @@
  */
 package controller;
 
-import DAO.Productos;
+import DAO.ProductoDAO;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import java.net.URL;
 import java.sql.SQLException;
@@ -29,7 +29,7 @@ import model.Producto;
  * @author Enso
  */
 public class AddItemVentanTiendaController implements Initializable {
-    private Productos productoDAO;
+    private ProductoDAO productoDAO;
     @FXML
     private ImageView imagenProducto;
     @FXML
@@ -58,7 +58,7 @@ public class AddItemVentanTiendaController implements Initializable {
         llamarProducto();
     }    
     private void llamarProducto() {
-        productoDAO = new Productos();
+        productoDAO = new ProductoDAO();
         try {
             Producto producto = new Producto();
             productoDAO.consultarProducto(producto);

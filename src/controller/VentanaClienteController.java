@@ -5,7 +5,7 @@
  */
 package controller;
 
-import DAO.Productos;
+import DAO.ProductoDAO;
 import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
 import java.net.URL;

@@ -5,6 +5,7 @@
  */
 package controller;
 
+import DAO.ProductoDAO;
 import DAO.pcClienteDao;
 import com.jfoenix.controls.JFXButton;
 import java.net.URL;
@@ -32,9 +33,15 @@ import javafx.scene.layout.FlowPane;
 import DAO.pcClienteDao;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.ContextMenu;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import model.PcCliente;
+import model.Producto;
 /**
  * FXML Controller class
  *
@@ -42,7 +49,8 @@ import model.PcCliente;
  */
 public class PcsLocalController implements Initializable {
     
-
+    ProductoDAO productoDao = new ProductoDAO();
+    Producto model;
     @FXML
     private GridPane gridPaneMainMenu;
     @FXML
@@ -71,6 +79,36 @@ public class PcsLocalController implements Initializable {
     private JFXButton btnConsultarVentas1;
     @FXML
     private FlowPane areaPcs;
+    @FXML
+    private TextField txtCodProd;
+    @FXML
+    private ComboBox<?> comboTipoProd;
+    @FXML
+    private ComboBox<String> comboCatProd;
+    @FXML
+    private TextField txtNombreProd;
+    @FXML
+    private ComboBox<?> comboProveedor;
+    @FXML
+    private TextField txtPrecioProd;
+    @FXML
+    private DatePicker calendarIngreso;
+    @FXML
+    private TextField txtHoraIngresoProd;
+    @FXML
+    private TextField txtCantidadProd;
+    @FXML
+    private JFXButton btnImage;
+    @FXML
+    private JFXButton btnAgregarProd;
+    @FXML
+    private JFXButton btnEditarProd;
+    @FXML
+    private JFXButton btnEliminarProd;
+    @FXML
+    private TextField txtBuscarProd;
+    @FXML
+    private TableView<?> tableProductos;
 
     /**
      * Initializes the controller class.
@@ -79,13 +117,14 @@ public class PcsLocalController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         try {
             llamarPcs();
+          
+            llenarCombo();
         } catch (SQLException ex) {
-            Logger.getLogger(PcsLocalController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
+//Metodo que permite insertar los nombres de las pcs desde la bd hacia la parte grafica del programa 
     private void llamarPcs() throws SQLException {
-
         pcClienteDao pcDao = new pcClienteDao();
         ArrayList<PcCliente> pcList = pcDao.consultar();
         Node[] nodes = new Node[pcList.size()];
@@ -100,10 +139,7 @@ public class PcsLocalController implements Initializable {
                 controller.setNamePcs(pcList.get(i));
             } catch (Exception e) {
                 
-            }
-            
-            
-            
+            } 
         }
         
         
@@ -146,5 +182,16 @@ public class PcsLocalController implements Initializable {
         ConsultarVentas.toFront();
     }
     
-    
+    private void insertarProducto() throws SQLException {
+        model = new Producto(28,"Soda","50g",0.70,10,"05/10/2020",new Image(getClass().getResourceAsStream("hola.mundo")),"Activo",1,2,2);
+        productoDao.insertarProducto(model);
+  
+        
+    }
+     private void llenarCombo() {
+        comboCatProd.getItems().addAll("hola");
+        
+        
+        
+    }
 }

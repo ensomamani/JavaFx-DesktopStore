@@ -5,6 +5,8 @@
  */
 package model;
 
+import javafx.scene.image.Image;
+
 /**
  *
  * @author Enso
@@ -14,34 +16,37 @@ public class Producto {
     private String nombre_Producto;
     private String peso;
     private double precio_venta;
+    private int stock;
     private String fecha_vencimieto;
-    private String image;
+    private Image imagen;
     private String estado;
     private int id_categoria;
     private int id_tipo;
     private int id_proveedor;
 
     
-    /*CONSTRUCTOR*/
-    
+    //CONSTRUCTORES
     public Producto() {
     }
-    
-    /*CONSTRUCTOR*/
-    public Producto(int id_Producto, String nombre_Producto, String peso, double precio_venta, String fecha_vencimieto, String image, String estado, int id_categoria, int id_tipo, int id_proveedor) {
+
+    public Producto(int id_Producto, String nombre_Producto, String peso, double precio_venta, int stock, String fecha_vencimieto, Image imagen, String estado, int id_categoria, int id_tipo, int id_proveedor) {
         this.id_Producto = id_Producto;
         this.nombre_Producto = nombre_Producto;
         this.peso = peso;
         this.precio_venta = precio_venta;
+        this.stock = stock;
         this.fecha_vencimieto = fecha_vencimieto;
-        this.image = image;
+        this.imagen = imagen;
         this.estado = estado;
         this.id_categoria = id_categoria;
         this.id_tipo = id_tipo;
         this.id_proveedor = id_proveedor;
     }
+
     
-    /* LOS GETTER DE PRODUCTO */
+   
+
+    //GETTER
     public int getId_Producto() {
         return id_Producto;
     }
@@ -58,12 +63,16 @@ public class Producto {
         return precio_venta;
     }
 
+    public int getStock() {
+        return stock;
+    }
+
     public String getFecha_vencimieto() {
         return fecha_vencimieto;
     }
 
-    public String getImage() {
-        return image;
+    public Image getImagen() {
+        return imagen;
     }
 
     public String getEstado() {
@@ -81,9 +90,8 @@ public class Producto {
     public int getId_proveedor() {
         return id_proveedor;
     }
-    
-    /* LOS SETTER DE PRODUCTO */
 
+    // SETTER
     public void setId_Producto(int id_Producto) {
         this.id_Producto = id_Producto;
     }
@@ -100,12 +108,16 @@ public class Producto {
         this.precio_venta = precio_venta;
     }
 
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
+
     public void setFecha_vencimieto(String fecha_vencimieto) {
         this.fecha_vencimieto = fecha_vencimieto;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setImagen(Image imagen) {
+        this.imagen = imagen;
     }
 
     public void setEstado(String estado) {
@@ -125,5 +137,5 @@ public class Producto {
     }
     
     
-    
+
 }
