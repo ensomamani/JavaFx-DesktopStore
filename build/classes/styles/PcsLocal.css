@@ -89,3 +89,10 @@ and open the template in the editor.
 .btn-subir-imagen {
     -fx-background-color: #669933;
 }
+/*ICON CHECk*/
+.icon-close-error {
+    -fx-fill: red;
+}
+.icon-check-correct {
+    -fx-fill: #3366ff;
+}

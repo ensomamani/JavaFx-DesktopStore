@@ -455,7 +455,7 @@
                                           <Insets left="5.0" right="10.0" />
                                        </padding>
                                     </TextField>
-                                    <FontAwesomeIcon fill="#3366ff" glyphName="CHECK" size="16" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
+                                    <FontAwesomeIcon fx:id="iconAviso" fill="#3366ff" glyphName="CHECK" size="16" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
                                        <GridPane.margin>
                                           <Insets right="5.0" />
                                        </GridPane.margin>
@@ -498,7 +498,7 @@
                               <HBox GridPane.columnIndex="3">
                                  <children>
                                     <ComboBox fx:id="comboCatProd" prefHeight="25.0" prefWidth="185.0" promptText="Seleccionar..." />
-                                    <FontAwesomeIcon fill="#cccccc" glyphName="CHECK" size="16" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
+                                    <FontAwesomeIcon fx:id="iconAviso5" fill="#cccccc" glyphName="CHECK" size="16" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
                                        <GridPane.margin>
                                           <Insets right="5.0" />
                                        </GridPane.margin>
@@ -511,7 +511,7 @@
                               <HBox GridPane.columnIndex="3" GridPane.rowIndex="1">
                                  <children>
                                     <ComboBox fx:id="comboTipoProd" prefHeight="25.0" prefWidth="185.0" promptText="Seleccionar..." />
-                                    <FontAwesomeIcon fill="#cccccc" glyphName="CHECK" size="16" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
+                                    <FontAwesomeIcon fx:id="iconAviso6" fill="#cccccc" glyphName="CHECK" size="16" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
                                        <GridPane.margin>
                                           <Insets right="5.0" />
                                        </GridPane.margin>
@@ -531,7 +531,7 @@
                                           <Insets left="5.0" right="10.0" />
                                        </padding>
                                     </TextField>
-                                    <FontAwesomeIcon fill="#cccccc" glyphName="CHECK" size="16" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
+                                    <FontAwesomeIcon fx:id="iconAviso1" fill="#cccccc" glyphName="CHECK" size="16" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
                                        <GridPane.margin>
                                           <Insets right="5.0" />
                                        </GridPane.margin>
@@ -544,7 +544,7 @@
                               <HBox GridPane.columnIndex="3" GridPane.rowIndex="2">
                                  <children>
                                     <ComboBox fx:id="comboProveedor" prefHeight="25.0" prefWidth="185.0" promptText="Seleccionar..." />
-                                    <FontAwesomeIcon fill="#cccccc" glyphName="CHECK" size="16" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
+                                    <FontAwesomeIcon fx:id="iconAviso7" fill="#cccccc" glyphName="CHECK" size="16" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
                                        <GridPane.margin>
                                           <Insets right="5.0" />
                                        </GridPane.margin>
@@ -564,7 +564,7 @@
                                           <Insets left="5.0" right="10.0" />
                                        </padding>
                                     </TextField>
-                                    <FontAwesomeIcon fill="#cccccc" glyphName="CHECK" size="16" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
+                                    <FontAwesomeIcon fx:id="iconAviso2" fill="#cccccc" glyphName="CHECK" size="16" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
                                        <GridPane.margin>
                                           <Insets right="5.0" />
                                        </GridPane.margin>
@@ -577,7 +577,7 @@
                               <HBox GridPane.columnIndex="3" GridPane.rowIndex="3">
                                  <children>
                                     <DatePicker fx:id="calendarIngreso" prefHeight="25.0" prefWidth="185.0" />
-                                    <FontAwesomeIcon fill="#cccccc" glyphName="CHECK" size="16" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
+                                    <FontAwesomeIcon fx:id="iconAviso8" fill="#cccccc" glyphName="CHECK" size="16" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
                                        <GridPane.margin>
                                           <Insets right="5.0" />
                                        </GridPane.margin>
@@ -597,7 +597,7 @@
                                           <Insets left="5.0" right="10.0" />
                                        </padding>
                                     </TextField>
-                                    <FontAwesomeIcon fill="#cccccc" glyphName="CHECK" size="16" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
+                                    <FontAwesomeIcon fx:id="iconAviso4" fill="#cccccc" glyphName="CHECK" size="16" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
                                        <GridPane.margin>
                                           <Insets right="5.0" />
                                        </GridPane.margin>
@@ -622,7 +622,7 @@
                                           <Insets left="5.0" right="10.0" />
                                        </padding>
                                     </TextField>
-                                    <FontAwesomeIcon fill="#cccccc" glyphName="CHECK" size="16" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
+                                    <FontAwesomeIcon fx:id="iconAviso3" fill="#cccccc" glyphName="CHECK" size="16" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
                                        <GridPane.margin>
                                           <Insets right="5.0" />
                                        </GridPane.margin>
@@ -639,7 +639,7 @@
                               </Label>
                               <HBox GridPane.columnIndex="3" GridPane.rowIndex="4">
                                  <children>
-                                    <JFXButton fx:id="btnImage" prefHeight="28.0" prefWidth="132.0" styleClass="btn-subir-imagen" text="Subir imagen..." textFill="WHITE">
+                                    <JFXButton fx:id="btnImage" onMouseClicked="#btnImagenClicked" prefHeight="28.0" prefWidth="132.0" styleClass="btn-subir-imagen" text="Subir imagen..." textFill="WHITE">
                                        <graphic>
                                           <FontAwesomeIcon fill="WHITE" glyphName="PLUS" />
                                        </graphic>
@@ -647,7 +647,7 @@
                                           <Font name="Roboto Bold" size="14.0" />
                                        </font>
                                     </JFXButton>
-                                    <FontAwesomeIcon fill="#cccccc" glyphName="CHECK" size="16" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
+                                    <FontAwesomeIcon fx:id="iconAviso9" fill="#cccccc" glyphName="CHECK" size="16" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
                                        <GridPane.margin>
                                           <Insets right="5.0" />
                                        </GridPane.margin>
@@ -680,9 +680,9 @@
                               <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
                            </rowConstraints>
                         </GridPane>
-                        <HBox layoutX="4.0" layoutY="232.0" prefHeight="55.0" prefWidth="450.0">
+                        <HBox layoutX="4.0" layoutY="232.0" prefHeight="55.0" prefWidth="679.0">
                            <children>
-                              <JFXButton fx:id="btnAgregarProd" alignment="CENTER" prefHeight="34.0" prefWidth="123.0" styleClass="btn-agregar-prov" text="AGREGAR" textFill="#535353">
+                              <JFXButton fx:id="btnAgregarProd" alignment="CENTER" onMouseClicked="#btnAgregarProd" prefHeight="34.0" prefWidth="123.0" styleClass="btn-agregar-prov" text="AGREGAR" textFill="#535353">
                                  <font>
                                     <Font name="Roboto Bold" size="12.0" />
                                  </font>
@@ -712,6 +712,11 @@
                                     <FontAwesomeIcon fill="#535353" glyphName="TRASH" size="14" styleClass="icon-proveedor-btn" wrappingWidth="30.0" />
                                  </graphic>
                               </JFXButton>
+                              <ImageView fx:id="productImage" fitHeight="106.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true">
+                                 <HBox.margin>
+                                    <Insets left="150.0" />
+                                 </HBox.margin>
+                              </ImageView>
                            </children>
                            <padding>
                               <Insets left="10.0" top="10.0" />

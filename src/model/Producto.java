@@ -18,7 +18,7 @@ public class Producto {
     private double precio_venta;
     private int stock;
     private String fecha_vencimieto;
-    private Image imagen;
+    private byte[] imagen;
     private String estado;
     private int id_categoria;
     private int id_tipo;
@@ -26,10 +26,12 @@ public class Producto {
 
     
     //CONSTRUCTORES
+    
+
     public Producto() {
     }
 
-    public Producto(int id_Producto, String nombre_Producto, String peso, double precio_venta, int stock, String fecha_vencimieto, Image imagen, String estado, int id_categoria, int id_tipo, int id_proveedor) {
+    public Producto(int id_Producto, String nombre_Producto, String peso, double precio_venta, int stock, String fecha_vencimieto, byte[] imagen, String estado, int id_categoria, int id_tipo, int id_proveedor) {
         this.id_Producto = id_Producto;
         this.nombre_Producto = nombre_Producto;
         this.peso = peso;
@@ -42,11 +44,9 @@ public class Producto {
         this.id_tipo = id_tipo;
         this.id_proveedor = id_proveedor;
     }
-
     
-   
+    //getter
 
-    //GETTER
     public int getId_Producto() {
         return id_Producto;
     }
@@ -71,7 +71,7 @@ public class Producto {
         return fecha_vencimieto;
     }
 
-    public Image getImagen() {
+    public byte[] getImagen() {
         return imagen;
     }
 
@@ -90,8 +90,9 @@ public class Producto {
     public int getId_proveedor() {
         return id_proveedor;
     }
+    
+    //setter
 
-    // SETTER
     public void setId_Producto(int id_Producto) {
         this.id_Producto = id_Producto;
     }
@@ -116,7 +117,7 @@ public class Producto {
         this.fecha_vencimieto = fecha_vencimieto;
     }
 
-    public void setImagen(Image imagen) {
+    public void setImagen(byte[] imagen) {
         this.imagen = imagen;
     }
 
@@ -136,6 +137,4 @@ public class Producto {
         this.id_proveedor = id_proveedor;
     }
     
-    
-
 }

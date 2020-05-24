@@ -20,8 +20,8 @@ import model.Producto;
 public class ProductoDAO{
     private ResultSet rs;
     private PreparedStatement pst = null;
-    DBUtils dbutils = new DBUtils();
-    Connection cnx = null;
+    private DBUtils dbutils = new DBUtils();
+    private Connection cnx = null;
     public void consultarProducto(Producto producto) throws SQLException {
         
         String var2 = "1";
@@ -50,7 +50,7 @@ public class ProductoDAO{
             pst.setDouble(4, model.getPrecio_venta());
             pst.setInt(5, model.getStock());
             pst.setString(6, model.getFecha_vencimieto());
-            pst.setString(7, model.getImagen().toString());
+            pst.setBytes(7, model.getImagen());
             pst.setString(8, model.getEstado());
             pst.setInt(9, model.getId_categoria());
             pst.setInt(10, model.getId_tipo());

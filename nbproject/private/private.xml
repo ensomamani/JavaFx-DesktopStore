@@ -12,13 +12,11 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/proyecto-tienda/Tienda/src/controller/AddItemPcsLocalController.java</file>
-            <file>file:/D:/proyecto-tienda/Tienda/src/view/Principal.java</file>
             <file>file:/D:/proyecto-tienda/Tienda/src/controller/PcsLocalController.java</file>
-            <file>file:/D:/proyecto-tienda/Tienda/src/model/DBUtils.java</file>
             <file>file:/D:/proyecto-tienda/Tienda/src/controller/AddItemVentanTiendaController.java</file>
-            <file>file:/D:/proyecto-tienda/Tienda/src/model/PcCliente.java</file>
-            <file>file:/D:/proyecto-tienda/Tienda/src/view/AddItemPcsLocal.fxml</file>
+            <file>file:/D:/proyecto-tienda/Tienda/src/DAO/ProductoDAO.java</file>
+            <file>file:/D:/proyecto-tienda/Tienda/src/styles/PcsLocal.css</file>
+            <file>file:/D:/proyecto-tienda/Tienda/src/model/Producto.java</file>
             <file>file:/D:/proyecto-tienda/Tienda/src/DAO/pcClienteDao.java</file>
         </group>
     </open-files>
