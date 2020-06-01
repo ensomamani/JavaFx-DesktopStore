@@ -438,7 +438,7 @@
                               </Label>
                            </children>
                         </HBox>
-                        <GridPane hgap="5.0" layoutY="58.0" prefHeight="168.0" prefWidth="714.0" vgap="5.0">
+                        <GridPane hgap="5.0" layoutY="58.0" prefHeight="189.0" prefWidth="714.0" vgap="5.0">
                            <children>
                               <Label text="Codigo producto:">
                                  <font>
@@ -480,7 +480,7 @@
                                     <Font name="Roboto Light" size="14.0" />
                                  </font>
                               </Label>
-                              <Label text="Precio unitario:" GridPane.rowIndex="2">
+                              <Label text="Precio unitario:" GridPane.rowIndex="3">
                                  <font>
                                     <Font name="Roboto Light" size="14.0" />
                                  </font>
@@ -490,7 +490,7 @@
                                     <Font name="Roboto Light" size="14.0" />
                                  </font>
                               </Label>
-                              <Label text="Hora de ingreso:" GridPane.rowIndex="4">
+                              <Label text="Hora de ingreso:" GridPane.rowIndex="5">
                                  <font>
                                     <Font name="Roboto Light" size="14.0" />
                                  </font>
@@ -498,7 +498,7 @@
                               <HBox GridPane.columnIndex="3">
                                  <children>
                                     <ComboBox fx:id="comboCatProd" prefHeight="25.0" prefWidth="185.0" promptText="Seleccionar..." />
-                                    <FontAwesomeIcon fx:id="iconAviso5" fill="#cccccc" glyphName="CHECK" size="16" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
+                                    <FontAwesomeIcon fx:id="iconAviso6" fill="#cccccc" glyphName="CHECK" size="16" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
                                        <GridPane.margin>
                                           <Insets right="5.0" />
                                        </GridPane.margin>
@@ -511,7 +511,7 @@
                               <HBox GridPane.columnIndex="3" GridPane.rowIndex="1">
                                  <children>
                                     <ComboBox fx:id="comboTipoProd" prefHeight="25.0" prefWidth="185.0" promptText="Seleccionar..." />
-                                    <FontAwesomeIcon fx:id="iconAviso6" fill="#cccccc" glyphName="CHECK" size="16" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
+                                    <FontAwesomeIcon fx:id="iconAviso7" fill="#cccccc" glyphName="CHECK" size="16" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
                                        <GridPane.margin>
                                           <Insets right="5.0" />
                                        </GridPane.margin>
@@ -544,7 +544,7 @@
                               <HBox GridPane.columnIndex="3" GridPane.rowIndex="2">
                                  <children>
                                     <ComboBox fx:id="comboProveedor" prefHeight="25.0" prefWidth="185.0" promptText="Seleccionar..." />
-                                    <FontAwesomeIcon fx:id="iconAviso7" fill="#cccccc" glyphName="CHECK" size="16" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
+                                    <FontAwesomeIcon fx:id="iconAviso8" fill="#cccccc" glyphName="CHECK" size="16" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
                                        <GridPane.margin>
                                           <Insets right="5.0" />
                                        </GridPane.margin>
@@ -554,7 +554,7 @@
                                     </FontAwesomeIcon>
                                  </children>
                               </HBox>
-                              <HBox GridPane.columnIndex="1" GridPane.rowIndex="2">
+                              <HBox GridPane.columnIndex="1" GridPane.rowIndex="3">
                                  <children>
                                     <TextField fx:id="txtPrecioProd" minHeight="-Infinity" prefHeight="25.0" prefWidth="380.0" promptText="00.00" styleClass="txt-proveedor" GridPane.columnIndex="1">
                                        <font>
@@ -564,7 +564,7 @@
                                           <Insets left="5.0" right="10.0" />
                                        </padding>
                                     </TextField>
-                                    <FontAwesomeIcon fx:id="iconAviso2" fill="#cccccc" glyphName="CHECK" size="16" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
+                                    <FontAwesomeIcon fx:id="iconAviso3" fill="#cccccc" glyphName="CHECK" size="16" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
                                        <GridPane.margin>
                                           <Insets right="5.0" />
                                        </GridPane.margin>
@@ -577,7 +577,7 @@
                               <HBox GridPane.columnIndex="3" GridPane.rowIndex="3">
                                  <children>
                                     <DatePicker fx:id="calendarIngreso" prefHeight="25.0" prefWidth="185.0" />
-                                    <FontAwesomeIcon fx:id="iconAviso8" fill="#cccccc" glyphName="CHECK" size="16" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
+                                    <FontAwesomeIcon fx:id="iconAviso9" fill="#cccccc" glyphName="CHECK" size="16" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
                                        <GridPane.margin>
                                           <Insets right="5.0" />
                                        </GridPane.margin>
@@ -587,7 +587,7 @@
                                     </FontAwesomeIcon>
                                  </children>
                               </HBox>
-                              <HBox GridPane.columnIndex="1" GridPane.rowIndex="4">
+                              <HBox GridPane.columnIndex="1" GridPane.rowIndex="5">
                                  <children>
                                     <TextField fx:id="txtHoraIngresoProd" minHeight="-Infinity" prefHeight="25.0" prefWidth="380.0" promptText="00.00" styleClass="txt-proveedor" GridPane.columnIndex="1">
                                        <font>
@@ -597,7 +597,7 @@
                                           <Insets left="5.0" right="10.0" />
                                        </padding>
                                     </TextField>
-                                    <FontAwesomeIcon fx:id="iconAviso4" fill="#cccccc" glyphName="CHECK" size="16" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
+                                    <FontAwesomeIcon fx:id="iconAviso5" fill="#cccccc" glyphName="CHECK" size="16" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
                                        <GridPane.margin>
                                           <Insets right="5.0" />
                                        </GridPane.margin>
@@ -607,12 +607,12 @@
                                     </FontAwesomeIcon>
                                  </children>
                               </HBox>
-                              <Label text="Cantidad:" GridPane.rowIndex="3">
+                              <Label text="Cantidad:" GridPane.rowIndex="4">
                                  <font>
                                     <Font name="Roboto Light" size="14.0" />
                                  </font>
                               </Label>
-                              <HBox GridPane.columnIndex="1" GridPane.rowIndex="3">
+                              <HBox GridPane.columnIndex="1" GridPane.rowIndex="4">
                                  <children>
                                     <TextField fx:id="txtCantidadProd" minHeight="-Infinity" prefHeight="25.0" prefWidth="380.0" promptText="00.00" styleClass="txt-proveedor" GridPane.columnIndex="1">
                                        <font>
@@ -622,7 +622,7 @@
                                           <Insets left="5.0" right="10.0" />
                                        </padding>
                                     </TextField>
-                                    <FontAwesomeIcon fx:id="iconAviso3" fill="#cccccc" glyphName="CHECK" size="16" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
+                                    <FontAwesomeIcon fx:id="iconAviso4" fill="#cccccc" glyphName="CHECK" size="16" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
                                        <GridPane.margin>
                                           <Insets right="5.0" />
                                        </GridPane.margin>
@@ -647,7 +647,7 @@
                                           <Font name="Roboto Bold" size="14.0" />
                                        </font>
                                     </JFXButton>
-                                    <FontAwesomeIcon fx:id="iconAviso9" fill="#cccccc" glyphName="CHECK" size="16" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
+                                    <FontAwesomeIcon fx:id="iconAviso10" fill="#cccccc" glyphName="CHECK" size="16" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
                                        <GridPane.margin>
                                           <Insets right="5.0" />
                                        </GridPane.margin>
@@ -662,6 +662,31 @@
                                     <Font name="Roboto Light" size="14.0" />
                                  </font>
                               </Label>
+                              <Label text="Peso:" GridPane.rowIndex="2">
+                                 <font>
+                                    <Font name="Roboto Light" size="14.0" />
+                                 </font>
+                              </Label>
+                              <HBox GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                 <children>
+                                    <TextField fx:id="txtPesoProd" minHeight="-Infinity" prefHeight="25.0" prefWidth="380.0" promptText="00.00" styleClass="txt-proveedor" GridPane.columnIndex="1">
+                                       <font>
+                                          <Font name="Roboto" size="14.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets left="5.0" right="10.0" />
+                                       </padding>
+                                    </TextField>
+                                    <FontAwesomeIcon fx:id="iconAviso2" fill="#cccccc" glyphName="CHECK" size="16" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
+                                       <GridPane.margin>
+                                          <Insets right="5.0" />
+                                       </GridPane.margin>
+                                       <HBox.margin>
+                                          <Insets left="5.0" />
+                                       </HBox.margin>
+                                    </FontAwesomeIcon>
+                                 </children>
+                              </HBox>
                            </children>
                            <columnConstraints>
                               <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="275.0" minWidth="10.0" prefWidth="130.0" />
@@ -678,9 +703,10 @@
                               <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
                               <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
                               <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
                            </rowConstraints>
                         </GridPane>
-                        <HBox layoutX="4.0" layoutY="232.0" prefHeight="55.0" prefWidth="679.0">
+                        <HBox layoutX="4.0" layoutY="272.0" prefHeight="50.0" prefWidth="429.0">
                            <children>
                               <JFXButton fx:id="btnAgregarProd" alignment="CENTER" onMouseClicked="#btnAgregarProd" prefHeight="34.0" prefWidth="123.0" styleClass="btn-agregar-prov" text="AGREGAR" textFill="#535353">
                                  <font>
@@ -693,7 +719,7 @@
                                     <Insets right="10.0" />
                                  </HBox.margin>
                               </JFXButton>
-                              <JFXButton fx:id="btnEditarProd" alignment="CENTER" prefHeight="34.0" prefWidth="123.0" styleClass="btn-agregar-prov" text="EDITAR" textFill="#535353">
+                              <JFXButton fx:id="btnEditarProd" alignment="CENTER" onMouseClicked="#btnEditarProducto" prefHeight="34.0" prefWidth="123.0" styleClass="btn-agregar-prov" text="EDITAR" textFill="#535353">
                                  <font>
                                     <Font name="Roboto Bold" size="12.0" />
                                  </font>
@@ -712,17 +738,12 @@
                                     <FontAwesomeIcon fill="#535353" glyphName="TRASH" size="14" styleClass="icon-proveedor-btn" wrappingWidth="30.0" />
                                  </graphic>
                               </JFXButton>
-                              <ImageView fx:id="productImage" fitHeight="106.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true">
-                                 <HBox.margin>
-                                    <Insets left="150.0" />
-                                 </HBox.margin>
-                              </ImageView>
                            </children>
                            <padding>
                               <Insets left="10.0" top="10.0" />
                            </padding>
                         </HBox>
-                        <HBox layoutX="4.0" layoutY="281.0" prefHeight="26.0" prefWidth="528.0">
+                        <HBox layoutX="14.0" layoutY="322.0" prefHeight="26.0" prefWidth="400.0">
                            <children>
                               <Label text="Busca el producto registrado:" textFill="#535353">
                                  <font>
@@ -734,7 +755,7 @@
                               </Label>
                            </children>
                         </HBox>
-                        <GridPane layoutX="4.0" layoutY="308.0" prefHeight="37.0" prefWidth="497.0">
+                        <GridPane layoutX="4.0" layoutY="348.0" prefHeight="37.0" prefWidth="497.0">
                            <children>
                               <TextField fx:id="txtBuscarProd" minHeight="-Infinity" prefHeight="25.0" prefWidth="487.0">
                                  <font>
@@ -757,7 +778,7 @@
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                         </GridPane>
-                        <ScrollPane layoutY="353.0" prefHeight="256.0" prefViewportHeight="357.0" prefViewportWidth="671.0" prefWidth="680.0" style="-fx-background-color: transparent;">
+                        <ScrollPane layoutY="394.0" prefHeight="215.0" prefViewportHeight="357.0" prefViewportWidth="671.0" prefWidth="680.0" style="-fx-background-color: transparent;">
                            <content>
                               <TableView fx:id="tableProductos" prefHeight="274.0" prefWidth="657.0">
                                  <columns>
@@ -770,6 +791,7 @@
                               <Insets left="10.0" />
                            </padding>
                         </ScrollPane>
+                        <ImageView fx:id="productImage" fitHeight="106.0" fitWidth="110.0" layoutX="547.0" layoutY="229.0" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </AnchorPane>
                </children>

@@ -22,6 +22,7 @@ public class ProductoDAO{
     private PreparedStatement pst = null;
     private DBUtils dbutils = new DBUtils();
     private Connection cnx = null;
+    
     public void consultarProducto(Producto producto) throws SQLException {
         
         String var2 = "1";
@@ -38,6 +39,7 @@ public class ProductoDAO{
         System.out.println("El nombre del producto es: " + producto.getNombre_Producto());
         cnx.close();
     }
+    
     
     public void insertarProducto(Producto model) throws SQLException {
         try {
@@ -69,5 +71,5 @@ public class ProductoDAO{
             pst.close();
         }   
     }
-
+    
 }
