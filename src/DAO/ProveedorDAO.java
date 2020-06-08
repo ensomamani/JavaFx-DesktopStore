@@ -40,7 +40,7 @@ public class ProveedorDAO {
                 list.add(model);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(ProveedorDAO.class.getName()).log(Level.SEVERE, null, ex);
+           dbutils.procesarExcepcion(ex);
         } finally {
             dbutils.closeConnection(cnx, pst, rs);
         }

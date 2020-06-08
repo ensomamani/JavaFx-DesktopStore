@@ -10,6 +10,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import model.DBUtils;
 import model.Producto;
 
@@ -20,9 +24,10 @@ import model.Producto;
 public class ProductoDAO{
     private ResultSet rs;
     private PreparedStatement pst = null;
-    private DBUtils dbutils = new DBUtils();
+    private DBUtils dbutils;
     private Connection cnx = null;
-    
+    private Producto model;
+    //lista de producto addItemVentanaTiendaController
     public void consultarProducto(Producto producto) throws SQLException {
         
         String var2 = "1";
@@ -40,12 +45,33 @@ public class ProductoDAO{
         cnx.close();
     }
     
-    
+    public ArrayList<Producto> listarProductos() throws SQLException {
+        ArrayList<Producto> listar = new ArrayList<>();
+        String sql = "select id_producto, nombre_producto, precio_venta from producto";
+        dbutils = new DBUtils();
+        try {
+            cnx = dbutils.getConnection();
+            pst = cnx.prepareStatement(sql);
+            rs = pst.executeQuery();
+            while (rs.next()) {            
+                model = new Producto(rs.getInt(1), rs.getString(2), rs.getDouble(3));
+                listar.add(model);
+            }
+        } catch (SQLException ex) {
+            dbutils.procesarExcepcion(ex);
+        } finally {
+            dbutils.closeConnection(cnx, pst, rs);
+        } 
+        return listar;
+    }
     public void insertarProducto(Producto model) throws SQLException {
+        dbutils = new DBUtils();
         try {
             String sql_Insert = "insert into producto values (?,?,?,?,?,?,?,?,?,?,?)";
             cnx = dbutils.getConnection();
             pst = cnx.prepareStatement(sql_Insert);
+            //pst 1 igual agrega por que el codigo de producto en la base de datos es autoincrementable, no es necesario
+            // pasar datos en la interfaz grafica
             pst.setInt(1, model.getId_Producto());
             pst.setString(2, model.getNombre_Producto());
             pst.setString(3, model.getPeso());
@@ -65,6 +91,7 @@ public class ProductoDAO{
             }
             
         } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Ingresa el tipo de dato correcto o revisa el primary key");
             dbutils.procesarExcepcion(e);
         } finally {
             cnx.close();

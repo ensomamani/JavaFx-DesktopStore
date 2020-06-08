@@ -6,6 +6,7 @@
 package model;
 
 import javafx.scene.image.Image;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -27,6 +28,12 @@ public class Producto {
     
     //CONSTRUCTORES
     
+
+    public Producto(int id_Producto, String nombre_Producto, double precio_venta) {
+        this.id_Producto = id_Producto;
+        this.nombre_Producto = nombre_Producto;
+        this.precio_venta = precio_venta;
+    }
 
     public Producto() {
     }
@@ -103,6 +110,7 @@ public class Producto {
 
     public void setPeso(String peso) {
         this.peso = peso;
+
     }
 
     public void setPrecio_venta(double precio_venta) {
@@ -110,7 +118,7 @@ public class Producto {
     }
 
     public void setStock(int stock) {
-        this.stock = stock;
+        this.stock = stock; 
     }
 
     public void setFecha_vencimieto(String fecha_vencimieto) {

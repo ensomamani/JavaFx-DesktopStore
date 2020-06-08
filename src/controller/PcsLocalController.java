@@ -45,13 +45,17 @@ import java.io.InputStream;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.Cursor;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
@@ -100,7 +104,7 @@ public class PcsLocalController implements Initializable {
     @FXML
     private JFXButton btnConsultarVentas1;
     @FXML
-    private FlowPane areaPcs;
+    private  FlowPane areaPcs;
     @FXML
     private TextField txtCodProd;
     @FXML
@@ -124,22 +128,26 @@ public class PcsLocalController implements Initializable {
     @FXML
     private JFXButton btnAgregarProd;
     @FXML
-    private JFXButton btnEditarProd;
+    private FontAwesomeIcon btnEditarProd;
     @FXML
     private JFXButton btnEliminarProd;
     @FXML
     private TextField txtBuscarProd;
     @FXML
-    private TableView<?> tableProductos;
-    @FXML
     private FontAwesomeIcon iconAviso;
     @FXML
-    private FontAwesomeIcon iconAviso1,iconAviso2,iconAviso3,iconAviso4,
+    private FontAwesomeIcon iconAviso1;
+    @FXML
+    private FontAwesomeIcon iconAviso2;
+    @FXML
+    private FontAwesomeIcon iconAviso3,iconAviso4,
                             iconAviso5,iconAviso6,iconAviso7,iconAviso8,iconAviso9,iconAviso10;
     @FXML
     private ImageView productImage;
     @FXML
     private TextField txtPesoProd;
+    @FXML
+    private TableView<String> tableProductos;
  
     
 
@@ -151,14 +159,16 @@ public class PcsLocalController implements Initializable {
         try {
             llamarPcs();
             //arrenglar la inserccion de productos referente a la imagen
-            //insertarProducto();
-            llenarComboCategoria();
             insertarProducto();
+            llenarComboCategoria();
             setVisibleIconAviso();
             llenarComboTipo();
             llenarComboProveedor();
             calendarIngreso.setValue(LocalDate.now());
+            insertarDatosTableView();
+            //comboProveedor.getItems().add("hola mundo");
         } catch (SQLException ex) {
+            Logger.getLogger(PcsLocalController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -177,7 +187,6 @@ public class PcsLocalController implements Initializable {
                 areaPcs.getChildren().add(nodes[i]);
                 controller.setNamePcs(pcList.get(i));
             } catch (Exception e) {
-                
             } 
         }
         
@@ -200,10 +209,8 @@ public class PcsLocalController implements Initializable {
 
     @FXML
     private void btnRegistrarProvClicked(MouseEvent event) {
-       
             RegistrarProveedor.toFront();
-            System.out.println("hola mundo");
-        
+            System.out.println("hola mundo");  
     }
 
     @FXML
@@ -223,25 +230,35 @@ public class PcsLocalController implements Initializable {
     
     @FXML
     private void btnImagenClicked(MouseEvent event) {
-        fileChooser = new FileChooser();
-        model = new Producto();
-        File file = fileChooser.showOpenDialog(null);
-        FileInputStream is = null;
-        try {
-            is = new FileInputStream(file.getAbsolutePath());
-            Image image = new Image(is);
-            productImage.setImage(image);
-            pathImage = file.getAbsolutePath();
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(PcsLocalController.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            if (is != null) {
-                try {
-                    is.close();
-                } catch (IOException ex) {
-                    Logger.getLogger(PcsLocalController.class.getName()).log(Level.SEVERE, null, ex);
+        //boton de agregar imagen
+        //se encarga de elegir la imagen del producto
+        if (event.getSource().equals(btnImage)) {
+            fileChooser = new FileChooser();
+            model = new Producto();
+            File file = fileChooser.showOpenDialog(null);
+            FileInputStream is = null;
+            try {
+                is = new FileInputStream(file.getAbsolutePath());
+                Image image = new Image(is);
+                productImage.setImage(image);
+                pathImage = file.getAbsolutePath();
+                iconAviso10.setIcon(FontAwesomeIcons.CHECK);
+                iconAviso10.getStyleClass().add("icon-check-correct");
+                iconAviso10.setVisible(true);
+                System.out.println("se agrego imagen");
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(PcsLocalController.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (RuntimeException re){
+                System.out.println(re.getMessage());
+            } finally {
+                if (is != null) {
+                    try {
+                            is.close();
+                    } catch (IOException ex) {
+                        Logger.getLogger(PcsLocalController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
-            }
+            } 
         } 
     }
 
@@ -251,55 +268,41 @@ public class PcsLocalController implements Initializable {
         FontAwesomeIcon[] icon = {iconAviso, iconAviso1, iconAviso2, iconAviso3, iconAviso4,
                                  iconAviso5};
         TextField[] txt = {txtCodProd, txtNombreProd, txtPesoProd, txtPrecioProd, txtCantidadProd, txtHoraIngresoProd};
-        if (event.getSource().equals(btnAgregarProd)) {
-             if (ControladorValidaciones.verificarInputsVacios(txt, icon)) {
+        ComboBox[] totalCombos = {comboCatProd, comboTipoProd, comboProveedor};
+        FontAwesomeIcon[] icon2 = {iconAviso6, iconAviso7, iconAviso8};
+        try {
+            if (event.getSource().equals(btnAgregarProd)) {
+             if (ControladorValidaciones.verificarInputsVacios(txt, icon, totalCombos, icon2) ) {
                  File file = new File(pathImage);
-                 model.setId_Producto(39);
+                 //model.setId_Producto(48);
                  model.setNombre_Producto(txtNombreProd.getText());
                  model.setPeso(txtPesoProd.getText());
                  model.setPrecio_venta(Double.valueOf(txtPrecioProd.getText()));
-                 model.setStock(Integer.valueOf(txtCantidadProd.getText()));
-                 
+                 model.setStock(Integer.parseInt(txtCantidadProd.getText()));
                  model.setFecha_vencimieto(calendarIngreso.getValue().toString());
-                 model.setImagen(imageByte(file));
+                 model.setImagen(ControladorValidaciones.imageByte(file));
                  model.setEstado("ACTIVO");
                  model.setId_categoria(obtenerIdCategoria());
                  model.setId_tipo(obtenerIdTipo());
                  model.setId_proveedor(obtenerIdProveedor());
                  try {
-                     productoDao.insertarProducto(model);
+                     if (productImage.getImage() != null) {
+                         productoDao.insertarProducto(model);
+                         JOptionPane.showMessageDialog(null, "Se agrego el producto correctamente", "OK", JOptionPane.OK_OPTION);
+                     } 
                  } catch (SQLException ex) {
-                     Logger.getLogger(PcsLocalController.class.getName()).log(Level.SEVERE, null, ex);
-                 }
-             
-                 
-                
-            }
-            
-        }
-    }
-    private byte[] imageByte(File file) {
-        byte[] result = new byte[(int)file.length()];
-        FileInputStream fileInputStream = null;
-        try {
-            fileInputStream = new FileInputStream(file);
-            fileInputStream.read(result);
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(PcsLocalController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) { 
-            Logger.getLogger(PcsLocalController.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            if (fileInputStream != null) {
-                try {
-                    fileInputStream.close();
-                } catch (IOException ex) {
-                    Logger.getLogger(PcsLocalController.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                     JOptionPane.showMessageDialog(null, "ERROR EN CONEXION A BASE DE DATOS " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                 } 
+            } else {
+                  JOptionPane.showMessageDialog(null, "Por favor llene todos los espacion en blanco", "Error información",JOptionPane.ERROR_MESSAGE);
             }
         }
-        
-        return result;
+        } catch (RuntimeException e) {
+            System.out.println(e.getMessage());
+        }
     }
+    
+
     
     private void setVisibleIconAviso(){
         FontAwesomeIcon[] icon = {iconAviso, iconAviso1, iconAviso2, iconAviso3, iconAviso4,
@@ -309,7 +312,6 @@ public class PcsLocalController implements Initializable {
         }
     }
 
-    @FXML
     private void btnEditarProducto(MouseEvent event) {
         System.out.println(obtenerIdCategoria());
     }
@@ -373,7 +375,6 @@ public class PcsLocalController implements Initializable {
     }
     private void llenarComboProveedor() {
         ProveedorDAO a = new ProveedorDAO();
-        
         try {
             for(Proveedor p : a.listarProveedor()) {
                 comboProveedor.getItems().add(p.getNombre_proveedor());
@@ -381,6 +382,21 @@ public class PcsLocalController implements Initializable {
         } catch (SQLException ex) {
             Logger.getLogger(PcsLocalController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    private void insertarDatosTableView() {
+        ProductoDAO dao = new ProductoDAO();
+        ProveedorDAO a = new ProveedorDAO();
+        // ME QUEDE AQUI EN EL LLENADO DEL TABLEVIEW DE PRODUCTOS
+        try {
+            for (Producto p : dao.listarProductos()) {
+                System.out.println(p.getNombre_Producto()); 
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PcsLocalController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+ 
+        
         
     }
 }
