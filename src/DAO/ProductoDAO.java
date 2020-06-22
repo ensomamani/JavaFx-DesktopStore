@@ -27,9 +27,9 @@ public class ProductoDAO{
     private DBUtils dbutils;
     private Connection cnx = null;
     private Producto model;
+    
     //lista de producto addItemVentanaTiendaController
     public void consultarProducto(Producto producto) throws SQLException {
-        
         String var2 = "1";
         cnx = dbutils.getConnection();
         String sql = "select nombre_producto, precio_venta from producto where id_producto =" + var2;
@@ -45,6 +45,7 @@ public class ProductoDAO{
         cnx.close();
     }
     
+    //lista de productos para tableView u otros
     public ArrayList<Producto> listarProductos() throws SQLException {
         ArrayList<Producto> listar = new ArrayList<>();
         String sql = "select id_producto, nombre_producto, precio_venta from producto";
@@ -64,6 +65,8 @@ public class ProductoDAO{
         } 
         return listar;
     }
+    
+    //metodo para registrar productos a la BD
     public void insertarProducto(Producto model) throws SQLException {
         dbutils = new DBUtils();
         try {
@@ -97,6 +100,12 @@ public class ProductoDAO{
             cnx.close();
             pst.close();
         }   
+    }
+    
+    //metodo para actualizar productos a la BD
+    
+    public void actualizarProducto(Producto model) {
+        
     }
     
 }

@@ -6,6 +6,7 @@
 package controller;
 
 import DAO.CategoriaProductoDAO;
+import DAO.IngresoProductoDAO;
 import DAO.ProductoDAO;
 import DAO.ProveedorDAO;
 import DAO.TipoProductoDAO;
@@ -34,6 +35,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import DAO.pcClienteDao;
+import Utilidades.ControladorGeneral;
 import Utilidades.ControladorValidaciones;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcons;
@@ -43,6 +45,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.collections.FXCollections;
@@ -59,9 +62,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
-import javafx.util.converter.LocalDateStringConverter;
 import javax.swing.JOptionPane;
 import model.CategoriaProducto;
+import model.IngresoProducto;
 import model.PcCliente;
 import model.Producto;
 import model.Proveedor;
@@ -75,6 +78,8 @@ public class PcsLocalController implements Initializable {
     
     ProductoDAO productoDao = new ProductoDAO();
     Producto model;
+    IngresoProducto modelIngresoProducto;
+    IngresoProductoDAO ingresoProductoDAO = new IngresoProductoDAO();
     private FileChooser fileChooser;
     String pathImage = "";
     @FXML
@@ -147,7 +152,7 @@ public class PcsLocalController implements Initializable {
     @FXML
     private TextField txtPesoProd;
     @FXML
-    private TableView<String> tableProductos;
+    private TableView<Producto> tableProductos;
  
     
 
@@ -166,12 +171,19 @@ public class PcsLocalController implements Initializable {
             llenarComboProveedor();
             calendarIngreso.setValue(LocalDate.now());
             insertarDatosTableView();
+            insertarColumnasTableViewProductos();
+            codigoProducto();
             //comboProveedor.getItems().add("hola mundo");
         } catch (SQLException ex) {
             Logger.getLogger(PcsLocalController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+    //listo el codigo para el input
+    private void codigoProducto() throws SQLException {
+        for(Producto model : productoDao.listarProductos()) {
+            txtCodProd.setText(String.valueOf(model.getId_Producto() + 1));
+        }
+    }
 //Metodo que permite insertar los nombres de las pcs desde la bd hacia la parte grafica del programa 
     private void llamarPcs() throws SQLException {
         pcClienteDao pcDao = new pcClienteDao();
@@ -263,8 +275,9 @@ public class PcsLocalController implements Initializable {
     }
 
     @FXML
-    private void btnAgregarProd(MouseEvent event) {
+    private void btnAgregarProd(MouseEvent event) throws SQLException {
         model = new Producto();
+        modelIngresoProducto = new IngresoProducto();
         FontAwesomeIcon[] icon = {iconAviso, iconAviso1, iconAviso2, iconAviso3, iconAviso4,
                                  iconAviso5};
         TextField[] txt = {txtCodProd, txtNombreProd, txtPesoProd, txtPrecioProd, txtCantidadProd, txtHoraIngresoProd};
@@ -274,20 +287,25 @@ public class PcsLocalController implements Initializable {
             if (event.getSource().equals(btnAgregarProd)) {
              if (ControladorValidaciones.verificarInputsVacios(txt, icon, totalCombos, icon2) ) {
                  File file = new File(pathImage);
-                 //model.setId_Producto(48);
-                 model.setNombre_Producto(txtNombreProd.getText());
-                 model.setPeso(txtPesoProd.getText());
-                 model.setPrecio_venta(Double.valueOf(txtPrecioProd.getText()));
-                 model.setStock(Integer.parseInt(txtCantidadProd.getText()));
-                 model.setFecha_vencimieto(calendarIngreso.getValue().toString());
-                 model.setImagen(ControladorValidaciones.imageByte(file));
-                 model.setEstado("ACTIVO");
-                 model.setId_categoria(obtenerIdCategoria());
-                 model.setId_tipo(obtenerIdTipo());
-                 model.setId_proveedor(obtenerIdProveedor());
                  try {
                      if (productImage.getImage() != null) {
-                         productoDao.insertarProducto(model);
+                         model = new Producto(0,txtNombreProd.getText(), txtPesoProd.getText(), 
+                                 Double.valueOf(txtPrecioProd.getText()), Integer.parseInt(txtCantidadProd.getText()), 
+                                 calendarIngreso.getValue().toString(), ControladorValidaciones.imageByte(file), 
+                                 "ACTIVO", obtenerIdCategoria(), obtenerIdTipo(), obtenerIdProveedor());
+                        productoDao.insertarProducto(model);
+                         
+                        String hora = LocalDateTime.now().getHour() + ":" + LocalDateTime.now().getMinute();
+                        
+                         modelIngresoProducto = new IngresoProducto(0, LocalDate.now().toString(), hora, 
+                                 Integer.parseInt(txtCantidadProd.getText()),"ACTIVO", 1, Integer.parseInt(txtCodProd.getText()));
+
+                        ingresoProductoDAO.insertarIngresoProducto(modelIngresoProducto);
+                         codigoProducto();
+                         TextField[] txtLimpiar = {txtNombreProd, txtPesoProd,
+                          txtPrecioProd, txtCantidadProd, txtHoraIngresoProd};
+                         ControladorGeneral.limpiarInput(txtLimpiar);
+                         insertarDatosTableView();
                          JOptionPane.showMessageDialog(null, "Se agrego el producto correctamente", "OK", JOptionPane.OK_OPTION);
                      } 
                  } catch (SQLException ex) {
@@ -295,6 +313,7 @@ public class PcsLocalController implements Initializable {
                  } 
             } else {
                   JOptionPane.showMessageDialog(null, "Por favor llene todos los espacion en blanco", "Error información",JOptionPane.ERROR_MESSAGE);
+                  codigoProducto();
             }
         }
         } catch (RuntimeException e) {
@@ -384,19 +403,33 @@ public class PcsLocalController implements Initializable {
         }
     }
     
-    private void insertarDatosTableView() {
-        ProductoDAO dao = new ProductoDAO();
-        ProveedorDAO a = new ProveedorDAO();
-        // ME QUEDE AQUI EN EL LLENADO DEL TABLEVIEW DE PRODUCTOS
+    public ObservableList<Producto> getProducto() {
+        ObservableList<Producto> data = FXCollections.observableArrayList();
         try {
-            for (Producto p : dao.listarProductos()) {
-                System.out.println(p.getNombre_Producto()); 
+            for (Producto p : productoDao.listarProductos()) {
+                 data.add(new Producto(p.getId_Producto(), p.getNombre_Producto(), p.getPrecio_venta()));
             }
         } catch (SQLException ex) {
             Logger.getLogger(PcsLocalController.class.getName()).log(Level.SEVERE, null, ex);
         }
- 
+    return data;
+    }
+    private void insertarColumnasTableViewProductos() {
+        TableColumn<Producto, String> firstColumn = new TableColumn<>("Codigo");
+        firstColumn.setCellValueFactory(new PropertyValueFactory<Producto, String>("id_Producto"));
         
+        TableColumn<Producto, String> secondColumn = new TableColumn<>("Nombre");
+        secondColumn.setCellValueFactory(new PropertyValueFactory<Producto, String>("nombre_Producto"));
         
+        TableColumn<Producto, String> thirdColumn = new TableColumn<>("Precio");
+        thirdColumn.setCellValueFactory(new PropertyValueFactory<Producto, String>("precio_venta"));
+        tableProductos.getColumns().addAll(firstColumn, secondColumn, thirdColumn);
+    }
+    
+    private void insertarDatosTableView() {
+        ProductoDAO dao = new ProductoDAO();
+        ProveedorDAO a = new ProveedorDAO();
+        tableProductos.setItems(getProducto());
+           
     }
 }

@@ -447,7 +447,7 @@
                               </Label>
                               <HBox GridPane.columnIndex="1">
                                  <children>
-                                    <TextField fx:id="txtCodProd" editable="false" minHeight="-Infinity" prefHeight="25.0" prefWidth="241.0" styleClass="txt-proveedor" text="codpro000001" GridPane.columnIndex="1">
+                                    <TextField fx:id="txtCodProd" editable="false" minHeight="-Infinity" prefHeight="25.0" prefWidth="241.0" styleClass="txt-proveedor" GridPane.columnIndex="1">
                                        <font>
                                           <Font name="Roboto" size="14.0" />
                                        </font>
@@ -485,7 +485,7 @@
                                     <Font name="Roboto Light" size="14.0" />
                                  </font>
                               </Label>
-                              <Label text="Fecha de ingreso:" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                              <Label text="Fecha de vencimiento:" GridPane.columnIndex="2" GridPane.rowIndex="3">
                                  <font>
                                     <Font name="Roboto Light" size="14.0" />
                                  </font>
@@ -780,12 +780,7 @@
                         </GridPane>
                         <ScrollPane layoutY="442.0" prefHeight="167.0" prefViewportHeight="357.0" prefViewportWidth="671.0" prefWidth="680.0" style="-fx-background-color: transparent;">
                            <content>
-                              <TableView fx:id="tableProductos" prefHeight="274.0" prefWidth="657.0">
-                                 <columns>
-                                    <TableColumn prefWidth="75.0" text="C1" />
-                                    <TableColumn prefWidth="75.0" text="C2" />
-                                 </columns>
-                              </TableView>
+                              <TableView fx:id="tableProductos" prefHeight="274.0" prefWidth="657.0" />
                            </content>
                            <padding>
                               <Insets left="10.0" />

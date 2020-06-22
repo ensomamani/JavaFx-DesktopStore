@@ -5,10 +5,17 @@
  */
 package Utilidades;
 
+import javafx.scene.control.TextField;
+
 /**
  *
  * @author Enso
  */
 public class ControladorGeneral {
-    
+    //metodo para limpiar input
+    public static void limpiarInput(TextField[] txt){
+        for(TextField t : txt) {
+            t.setText("");
+        }
+    }
 }
