@@ -18,6 +18,11 @@ public class Proveedor {
     public Proveedor() {
     }
 
+    public Proveedor(String nombre_proveedor) {
+        this.nombre_proveedor = nombre_proveedor;
+    }
+
+    
     public Proveedor(int id_proveedor, String nombre_proveedor, String telefono, String celular) {
         this.id_proveedor = id_proveedor;
         this.nombre_proveedor = nombre_proveedor;

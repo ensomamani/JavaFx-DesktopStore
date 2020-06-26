@@ -16,6 +16,11 @@ public class TipoProducto {
     public TipoProducto() {
     }
 
+    public TipoProducto(String nombre_tipo) {
+        this.nombre_tipo = nombre_tipo;
+    }
+    
+
     public TipoProducto(int id_tipo, String nombre_tipo) {
         this.id_tipo = id_tipo;
         this.nombre_tipo = nombre_tipo;

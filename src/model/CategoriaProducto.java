@@ -15,6 +15,10 @@ public class CategoriaProducto {
 
     public CategoriaProducto() {
     }
+
+    public CategoriaProducto(String nombre_categoria) {
+        this.nombre_categoria = nombre_categoria;
+    }
     
     
     public CategoriaProducto(int idCategoria, String nombre_categoria) {

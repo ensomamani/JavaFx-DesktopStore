@@ -9,25 +9,26 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.DBUtils;
 import model.Producto;
+import model.ProductoCatTipProv;
+
 
 /**
  *
  * @author Enso
  */
-public class ProductoDAO{
+public class ProductoDAO {
+
     private ResultSet rs;
     private PreparedStatement pst = null;
     private DBUtils dbutils;
     private Connection cnx = null;
     private Producto model;
-    
+    private ProductoCatTipProv modelProductoCatTipProv;
+
     //lista de producto addItemVentanaTiendaController
     public void consultarProducto(Producto producto) throws SQLException {
         String var2 = "1";
@@ -35,37 +36,42 @@ public class ProductoDAO{
         String sql = "select nombre_producto, precio_venta from producto where id_producto =" + var2;
         pst = cnx.prepareStatement(sql);
         rs = pst.executeQuery();
-        
-        while(rs.next()) {
+
+        while (rs.next()) {
             producto.setNombre_Producto(rs.getString("nombre_producto"));
             producto.setPrecio_venta(rs.getDouble("precio_venta"));
         }
-        
+
         System.out.println("El nombre del producto es: " + producto.getNombre_Producto());
         cnx.close();
     }
-    
+
     //lista de productos para tableView u otros
-    public ArrayList<Producto> listarProductos() throws SQLException {
-        ArrayList<Producto> listar = new ArrayList<>();
-        String sql = "select id_producto, nombre_producto, precio_venta from producto";
+    public ArrayList<ProductoCatTipProv> listarProductos() throws SQLException {
+        ArrayList<ProductoCatTipProv> listar = new ArrayList<>();
+        String sql = "select p.Id_Producto, p.nombre_Producto, p.peso,p.precio_venta, p.stock, c.nombre_categoria, t.nombre_tipo, pro.nombre_proveedor, p.fecha_vencimiento from producto p\n"
+                + "inner join nobi_tienda.categoria_producto c on p.Id_Categoria = c.Id_Categoria\n"
+                + "inner join nobi_tienda.tipo_producto t on t.Id_Tipo = p.Id_Tipo\n"
+                + "inner join nobi_tienda.proveedor pro on pro.Id_Proveedor = p.Id_Proveedor";
         dbutils = new DBUtils();
         try {
             cnx = dbutils.getConnection();
             pst = cnx.prepareStatement(sql);
             rs = pst.executeQuery();
-            while (rs.next()) {            
-                model = new Producto(rs.getInt(1), rs.getString(2), rs.getDouble(3));
-                listar.add(model);
+            while (rs.next()) {
+                modelProductoCatTipProv = new ProductoCatTipProv(rs.getInt("p.id_producto"), rs.getString("p.nombre_producto"),rs.getString("p.peso"),
+                        rs.getDouble("p.precio_venta"), rs.getInt("p.stock"), rs.getString("c.nombre_categoria"), rs.getString("t.nombre_tipo"), 
+                        rs.getString("pro.nombre_proveedor"), rs.getString("p.fecha_vencimiento"));
+                listar.add(modelProductoCatTipProv);
             }
         } catch (SQLException ex) {
             dbutils.procesarExcepcion(ex);
         } finally {
             dbutils.closeConnection(cnx, pst, rs);
-        } 
+        }
         return listar;
     }
-    
+
     //metodo para registrar productos a la BD
     public void insertarProducto(Producto model) throws SQLException {
         dbutils = new DBUtils();
@@ -92,20 +98,19 @@ public class ProductoDAO{
             } else {
                 System.out.println("Fallo inserccion del producto");
             }
-            
+
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Ingresa el tipo de dato correcto o revisa el primary key");
             dbutils.procesarExcepcion(e);
         } finally {
             cnx.close();
             pst.close();
-        }   
+        }
     }
-    
+
     //metodo para actualizar productos a la BD
-    
     public void actualizarProducto(Producto model) {
-        
+
     }
-    
+
 }

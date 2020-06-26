@@ -780,7 +780,7 @@
                         </GridPane>
                         <ScrollPane layoutY="442.0" prefHeight="167.0" prefViewportHeight="357.0" prefViewportWidth="671.0" prefWidth="680.0" style="-fx-background-color: transparent;">
                            <content>
-                              <TableView fx:id="tableProductos" prefHeight="274.0" prefWidth="657.0" />
+                              <TableView fx:id="tableProductos" onMouseClicked="#tProductosClick" prefHeight="274.0" prefWidth="657.0" />
                            </content>
                            <padding>
                               <Insets left="10.0" />

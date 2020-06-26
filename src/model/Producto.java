@@ -29,10 +29,12 @@ public class Producto {
     //CONSTRUCTORES
     
 
-    public Producto(int id_Producto, String nombre_Producto, double precio_venta) {
+    public Producto(int id_Producto, String nombre_Producto, String peso, double precio_venta, int stock) {
         this.id_Producto = id_Producto;
         this.nombre_Producto = nombre_Producto;
+        this.peso = peso;
         this.precio_venta = precio_venta;
+        this.stock = stock;
     }
 
     public Producto() {
