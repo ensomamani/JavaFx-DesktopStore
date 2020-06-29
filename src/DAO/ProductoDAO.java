@@ -10,11 +10,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.DBUtils;
 import model.Producto;
 import model.ProductoCatTipProv;
-
 
 /**
  *
@@ -26,7 +27,7 @@ public class ProductoDAO {
     private PreparedStatement pst = null;
     private DBUtils dbutils;
     private Connection cnx = null;
-    private Producto model;
+    private Producto modelProducto;
     private ProductoCatTipProv modelProductoCatTipProv;
 
     //lista de producto addItemVentanaTiendaController
@@ -59,8 +60,8 @@ public class ProductoDAO {
             pst = cnx.prepareStatement(sql);
             rs = pst.executeQuery();
             while (rs.next()) {
-                modelProductoCatTipProv = new ProductoCatTipProv(rs.getInt("p.id_producto"), rs.getString("p.nombre_producto"),rs.getString("p.peso"),
-                        rs.getDouble("p.precio_venta"), rs.getInt("p.stock"), rs.getString("c.nombre_categoria"), rs.getString("t.nombre_tipo"), 
+                modelProductoCatTipProv = new ProductoCatTipProv(rs.getInt("p.id_producto"), rs.getString("p.nombre_producto"), rs.getString("p.peso"),
+                        rs.getDouble("p.precio_venta"), rs.getInt("p.stock"), rs.getString("c.nombre_categoria"), rs.getString("t.nombre_tipo"),
                         rs.getString("pro.nombre_proveedor"), rs.getString("p.fecha_vencimiento"));
                 listar.add(modelProductoCatTipProv);
             }
@@ -108,8 +109,73 @@ public class ProductoDAO {
         }
     }
 
-    //metodo para actualizar productos a la BD
-    public void actualizarProducto(Producto model) {
+    //método para consultar producto existente
+    public boolean existeProductoBool(String producto) {
+        dbutils = new DBUtils();
+        String sql = "select nombre_Producto from producto where nombre_Producto like ?";
+        try {
+            cnx = dbutils.getConnection();
+            pst = cnx.prepareStatement(sql);
+            pst.setString(1, "%" + producto + "%");
+            rs = pst.executeQuery();
+            if (rs.next()) {
+                System.out.println("Existe producto");
+                return true;
+            }
+        } catch (SQLException ex) {
+            dbutils.procesarExcepcion(ex);
+        } finally {
+            try {
+                dbutils.closeConnection(cnx, pst, rs);
+            } catch (SQLException ex) {
+                Logger.getLogger(ProductoDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return false;
+    }
+
+    public Producto existeProducto(String producto) {
+
+        dbutils = new DBUtils();
+        String sql = "select id_Producto, nombre_Producto, precio_venta, stock from producto where nombre_Producto like ?";
+        try {
+            cnx = dbutils.getConnection();
+            pst = cnx.prepareStatement(sql);
+            pst.setString(1, "%" + producto + "%");
+            rs = pst.executeQuery();
+            if (rs.next()) {
+                modelProducto = new Producto(rs.getInt("id_producto"), rs.getString("nombre_Producto"), rs.getInt("stock"));
+            }
+
+        } catch (SQLException ex) {
+            dbutils.procesarExcepcion(ex);
+
+        }
+        return modelProducto;
+    }
+
+    //método para actualizar productos a la BD
+    public void actualizarStockProducto(int codigo, int stock) {
+        dbutils = new DBUtils();
+        String sqlUpdate = "update producto set stock = ? where id_producto = ?";
+        try {
+            cnx = dbutils.getConnection();
+            pst = cnx.prepareStatement(sqlUpdate);
+            pst.setInt(1, stock);
+            pst.setInt(2, codigo);
+            int fila = pst.executeUpdate();
+            if (fila == 1) {
+                System.out.println("La actualizacion fue correcta!.");
+            }
+        } catch (SQLException ex) {
+            dbutils.procesarExcepcion(ex);
+        } finally {
+            try {
+                dbutils.closeConnection(cnx, pst);
+            } catch (SQLException ex) {
+                Logger.getLogger(ProductoDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
 
     }
 

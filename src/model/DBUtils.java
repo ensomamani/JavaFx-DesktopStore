@@ -43,6 +43,11 @@ public class DBUtils {
         pst.close();
         rs.close();
     }
+    public void closeConnection(Connection con, PreparedStatement pst) throws SQLException{
+        con.close();
+        pst.close();
+
+    }
     
     public void procesarExcepcion(SQLException ex) {
         System.err.println("Error: " + ex.getMessage());

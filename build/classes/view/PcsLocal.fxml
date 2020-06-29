@@ -706,7 +706,7 @@
                               <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
                            </rowConstraints>
                         </GridPane>
-                        <HBox layoutX="14.0" layoutY="308.0" prefHeight="55.0" prefWidth="450.0">
+                        <HBox layoutX="14.0" layoutY="308.0" prefHeight="55.0" prefWidth="514.0">
                            <children>
                               <JFXButton fx:id="btnAgregarProd" alignment="CENTER" onMouseClicked="#btnAgregarProd" prefHeight="34.0" prefWidth="123.0" styleClass="btn-agregar-prov" text="AGREGAR" textFill="#535353">
                                  <font>
@@ -736,6 +736,17 @@
                                  </font>
                                  <graphic>
                                     <FontAwesomeIcon fill="#535353" glyphName="TRASH" size="14" styleClass="icon-proveedor-btn" wrappingWidth="30.0" />
+                                 </graphic>
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </JFXButton>
+                              <JFXButton fx:id="btnLimpiar" alignment="CENTER" onMouseClicked="#btnLimpiarClick" prefHeight="34.0" prefWidth="89.0" styleClass="btn-agregar-prov" text="LIMPIAR" textFill="#535353">
+                                 <font>
+                                    <Font name="Roboto Bold" size="12.0" />
+                                 </font>
+                                 <graphic>
+                                    <FontAwesomeIcon fill="#535353" glyphName="REFRESH" size="14" styleClass="icon-proveedor-btn" text="" wrappingWidth="14.0" />
                                  </graphic>
                               </JFXButton>
                            </children>
@@ -786,7 +797,7 @@
                               <Insets left="10.0" />
                            </padding>
                         </ScrollPane>
-                        <ImageView fx:id="productImage" fitHeight="110.0" fitWidth="145.0" layoutX="541.0" layoutY="233.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="productImage" fitHeight="110.0" fitWidth="145.0" layoutX="535.0" layoutY="226.0" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </AnchorPane>
                </children>

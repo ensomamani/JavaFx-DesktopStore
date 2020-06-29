@@ -25,7 +25,7 @@ public class IngresoProductoDAO {
     private Connection cnx;
     private IngresoProducto model;
     
-    public void insertarIngresoProducto(IngresoProducto model) throws SQLException {
+    public void insertarIngresoProducto(IngresoProducto model){
         String sql = "insert into ingreso_producto values(?,?,?,?,?,?,?)";
         dbutils = new DBUtils();
         try {
@@ -40,15 +40,19 @@ public class IngresoProductoDAO {
             pst.setInt(7, model.getId_producto());
             int result = pst.executeUpdate();
             if (result == 1) {
-                System.out.println("Se inserto la fila correctamente");
+                System.out.println("Se inserto la fila correctamente de Ingreso Producto");
             } else {
-                System.out.println("Hubo un problema al insertar la fila");
+                System.out.println("Hubo un problema al insertar la fila de Ingreso Producto");
             }
         } catch (SQLException ex) {
             dbutils.procesarExcepcion(ex);
         } finally {
-            cnx.close();
-            pst.close();
+            try {
+                dbutils.closeConnection(cnx, pst);
+            } catch (SQLException ex) {
+                Logger.getLogger(IngresoProductoDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
         }
     }
 }

@@ -78,7 +78,6 @@ public class ControladorValidaciones {
                 }
             }
         }
-        
         return result;
     }
 }

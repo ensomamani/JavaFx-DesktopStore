@@ -2,14 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="2">
         <file>
-            <url>src/controller/VentanaClienteController.java</url>
-            <bookmark id="1">
-                <name/>
-                <line>77</line>
-                <key/>
-            </bookmark>
-        </file>
-        <file>
             <url>src/DAO/CategoriaProductoDAO.java</url>
             <bookmark id="2">
                 <name/>
@@ -17,8 +9,21 @@
                 <key/>
             </bookmark>
         </file>
+        <file>
+            <url>src/controller/VentanaClienteController.java</url>
+            <bookmark id="1">
+                <name/>
+                <line>77</line>
+                <key/>
+            </bookmark>
+        </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/D:/proyecto-tienda/Tienda/src/ImagesTienda/00c7a89dedc0.jpg</file>
+            <file>file:/D:/proyecto-tienda/Tienda/src/view/Principal.java</file>
+            <file>file:/D:/proyecto-tienda/Tienda/src/controller/PcsLocalController.java</file>
+            <file>file:/D:/proyecto-tienda/Tienda/src/Utilidades/ControladorValidaciones.java</file>
+        </group>
     </open-files>
 </project-private>

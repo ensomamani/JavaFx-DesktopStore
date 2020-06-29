@@ -28,7 +28,16 @@ public class Producto {
     
     //CONSTRUCTORES
     
+     public Producto() {
+    }
 
+    public Producto(int id_Producto, String nombre_Producto, int stock) {
+        this.id_Producto = id_Producto;
+        this.nombre_Producto = nombre_Producto;
+        this.stock = stock;
+    }
+     
+     
     public Producto(int id_Producto, String nombre_Producto, String peso, double precio_venta, int stock) {
         this.id_Producto = id_Producto;
         this.nombre_Producto = nombre_Producto;
@@ -36,10 +45,8 @@ public class Producto {
         this.precio_venta = precio_venta;
         this.stock = stock;
     }
-
-    public Producto() {
-    }
-
+    
+   
     public Producto(int id_Producto, String nombre_Producto, String peso, double precio_venta, int stock, String fecha_vencimieto, byte[] imagen, String estado, int id_categoria, int id_tipo, int id_proveedor) {
         this.id_Producto = id_Producto;
         this.nombre_Producto = nombre_Producto;
