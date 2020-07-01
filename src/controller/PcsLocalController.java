@@ -165,7 +165,7 @@ public class PcsLocalController implements Initializable {
     FileChooser fileChooser;
 
     String pathImage = "";
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
@@ -257,36 +257,40 @@ public class PcsLocalController implements Initializable {
             fileChooser = new FileChooser();
             model = new Producto();
             File file = fileChooser.showOpenDialog(null);
-            int imagenLength = (int) file.length();
-            if (imagenLength < 64000) {
-                System.out.println("Imagen con el peso correcto " + imagenLength);
-                FileInputStream is = null;
-                try {
-                    is = new FileInputStream(file.getAbsolutePath());
-                    Image image = new Image(is);
-                    productImage.setImage(image);
-                    pathImage = file.getAbsolutePath();
-                    iconAviso10.setIcon(FontAwesomeIcons.CHECK);
-                    iconAviso10.getStyleClass().add("icon-check-correct");
-                    iconAviso10.setVisible(true);
-                    System.out.println("se agrego imagen");
-                } catch (FileNotFoundException ex) {
-                    Logger.getLogger(PcsLocalController.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (RuntimeException re) {
-                    System.out.println(re.getMessage());
-                } finally {
-                    if (is != null) {
-                        try {
-                            is.close();
-                        } catch (IOException ex) {
-                            Logger.getLogger(PcsLocalController.class.getName()).log(Level.SEVERE, null, ex);
+            if (file != null) {
+                System.out.println("si contiene una imagen");
+                int imagenLength = (int) file.length();
+                if (imagenLength < 64000) {
+                    System.out.println("Imagen con el peso correcto " + imagenLength);
+                    FileInputStream is = null;
+                    try {
+                        is = new FileInputStream(file.getAbsolutePath());
+                        Image image = new Image(is);
+                        productImage.setImage(image);
+                        pathImage = file.getAbsolutePath();
+                        iconAviso10.setIcon(FontAwesomeIcons.CHECK);
+                        iconAviso10.getStyleClass().add("icon-check-correct");
+                        iconAviso10.setVisible(true);
+                        System.out.println("se agrego imagen");
+                    } catch (FileNotFoundException ex) {
+                        Logger.getLogger(PcsLocalController.class.getName()).log(Level.SEVERE, null, ex);
+                    } finally {
+                        if (is != null) {
+                            try {
+                                is.close();
+                            } catch (IOException ex) {
+                                Logger.getLogger(PcsLocalController.class.getName()).log(Level.SEVERE, null, ex);
+                            }
                         }
                     }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Por favor inserta una imagen menor a 64kb", "Peso de imagen es excesivo", JOptionPane.ERROR_MESSAGE);
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "Por favor inserta una imagen menor a 64kb", "Peso de imagen es excesivo", JOptionPane.ERROR_MESSAGE);
+                System.out.println("No inserto imagen");
             }
-
+        } else {
+            System.out.println("hola mundo");
         }
     }
 
@@ -300,13 +304,13 @@ public class PcsLocalController implements Initializable {
         TextField[] txt = {txtCodProd, txtNombreProd, txtPesoProd, txtPrecioProd, txtCantidadProd, txtHoraIngresoProd};
         ComboBox[] totalCombos = {comboCatProd, comboTipoProd, comboProveedor};
         FontAwesomeIcon[] icon2 = {iconAviso6, iconAviso7, iconAviso8};
-        
+
         if (event.getSource().equals(btnAgregarProd)) {
             if (productoDao.existeProductoBool(txtNombreProd.getText())) {
 
                 Producto p = productoDao.existeProducto(txtNombreProd.getText());
                 modelIngresoProducto = new IngresoProducto(0, LocalDate.now().toString(), hora, Integer.parseInt(txtCantidadProd.getText()), "ACTIVO", 1, p.getId_Producto());
-                
+
                 ingresoProductoDAO.insertarIngresoProducto(modelIngresoProducto);
 
                 //System.out.println("Confirmo aqui que el producto si existe " + p.getId_Producto() + " " + p.getNombre_Producto());
@@ -329,7 +333,7 @@ public class PcsLocalController implements Initializable {
 
                             modelIngresoProducto = new IngresoProducto(0, LocalDate.now().toString(), hora,
                                     Integer.parseInt(txtCantidadProd.getText()), "ACTIVO", 1, Integer.parseInt(txtCodProd.getText()));
-                            
+
                             ingresoProductoDAO.insertarIngresoProducto(modelIngresoProducto);
 
                             guardarImagen(file);
@@ -485,18 +489,21 @@ public class PcsLocalController implements Initializable {
     @FXML
     private void tProductosClick(MouseEvent event) {
         if (event.getSource().equals(tableProductos)) {
-            ProductoCatTipProv p = tableProductos.getSelectionModel().getSelectedItem();
-            txtCodProd.setText("" + p.getId());
-            txtNombreProd.setText("" + p.getNombreProducto());
-            txtPesoProd.setText("" + p.getPeso());
-            txtPrecioProd.setText("" + p.getPrecioVenta());
-            txtCantidadProd.setText("" + p.getStock());
-            comboCatProd.setValue(p.getNombreCategoria());
-            comboTipoProd.setValue(p.getTipoProducto());
-            comboProveedor.setValue(p.getNombreProveedor());
-            calendarIngreso.setValue(LocalDate.parse(p.getFechaVencimiento()));
+            if (tableProductos.getSelectionModel().getSelectedItem() != null) {
+                ProductoCatTipProv p = tableProductos.getSelectionModel().getSelectedItem();
+                txtCodProd.setText("" + p.getId());
+                txtNombreProd.setText("" + p.getNombreProducto());
+                txtPesoProd.setText("" + p.getPeso());
+                txtPrecioProd.setText("" + p.getPrecioVenta());
+                txtCantidadProd.setText("" + p.getStock());
+                comboCatProd.setValue(p.getNombreCategoria());
+                comboTipoProd.setValue(p.getTipoProducto());
+                comboProveedor.setValue(p.getNombreProveedor());
+                calendarIngreso.setValue(LocalDate.parse(p.getFechaVencimiento()));
+            } else {
+                System.out.println("No seleccionaste nada de la tabla");
+            }
         }
-        
     }
 
     @FXML
@@ -523,11 +530,11 @@ public class PcsLocalController implements Initializable {
 
     private void guardarImagen(File fi) {
         String absoluteUrl = "D:\\img";
-        BufferedImage bi; 
+        BufferedImage bi;
         try {
             bi = ImageIO.read(fi);
-            ImageIO.write(bi, "jpg", new File(absoluteUrl+"\\"+ fi.getName()));
-            ImageIO.write(bi, "png", new File(absoluteUrl+"\\"+ fi.getName()));
+            ImageIO.write(bi, "jpg", new File(absoluteUrl + "\\" + fi.getName()));
+            ImageIO.write(bi, "png", new File(absoluteUrl + "\\" + fi.getName()));
             System.out.println(fi.getAbsolutePath());
         } catch (IOException ex) {
             Logger.getLogger(PcsLocalController.class.getName()).log(Level.SEVERE, null, ex);

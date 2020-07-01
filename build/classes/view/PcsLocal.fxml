@@ -789,14 +789,7 @@
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                         </GridPane>
-                        <ScrollPane layoutY="442.0" prefHeight="167.0" prefViewportHeight="357.0" prefViewportWidth="671.0" prefWidth="680.0" style="-fx-background-color: transparent;">
-                           <content>
-                              <TableView fx:id="tableProductos" onMouseClicked="#tProductosClick" prefHeight="274.0" prefWidth="657.0" />
-                           </content>
-                           <padding>
-                              <Insets left="10.0" />
-                           </padding>
-                        </ScrollPane>
+                        <TableView fx:id="tableProductos" layoutX="14.0" layoutY="418.0" onMouseClicked="#tProductosClick" prefHeight="186.0" prefWidth="741.0" />
                         <ImageView fx:id="productImage" fitHeight="110.0" fitWidth="145.0" layoutX="535.0" layoutY="226.0" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </AnchorPane>

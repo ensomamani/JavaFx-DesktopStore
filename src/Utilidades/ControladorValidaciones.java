@@ -8,14 +8,17 @@ package Utilidades;
 import controller.PcsLocalController;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcons;
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javax.swing.JOptionPane;
 
 /**
@@ -56,7 +59,7 @@ public class ControladorValidaciones {
         return result;
     }
     
-        //Convierte la imagen a un array de bytes
+    //Convierte la imagen a un array de bytes
     public static byte[] imageByte(File file) {
         byte[] result = new byte[(int)file.length()];
         FileInputStream fileInputStream = null;
@@ -79,6 +82,9 @@ public class ControladorValidaciones {
             }
         }
         return result;
+    }
+    public static Image imageToFile(byte[] imageBytes) {
+       return new Image(new ByteArrayInputStream(imageBytes));
     }
 }
 
