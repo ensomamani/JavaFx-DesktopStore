@@ -50,10 +50,10 @@ public class ProductoDAO {
     //lista de productos para tableView u otros
     public ArrayList<ProductoCatTipProv> listarProductos() throws SQLException {
         ArrayList<ProductoCatTipProv> listar = new ArrayList<>();
-        String sql = "select p.Id_Producto, p.nombre_Producto, p.peso,p.precio_venta, p.stock, c.nombre_categoria, t.nombre_tipo, pro.nombre_proveedor, p.fecha_vencimiento from producto p\n"
+        String sql = "select p.Id_Producto, p.nombre_Producto, p.peso,p.precio_venta, p.stock, c.nombre_categoria, t.nombre_tipo, pro.nombre_proveedor, p.fecha_vencimiento, p.imagen from producto p\n"
                 + "inner join nobi_tienda.categoria_producto c on p.Id_Categoria = c.Id_Categoria\n"
                 + "inner join nobi_tienda.tipo_producto t on t.Id_Tipo = p.Id_Tipo\n"
-                + "inner join nobi_tienda.proveedor pro on pro.Id_Proveedor = p.Id_Proveedor";
+                + "inner join nobi_tienda.proveedor pro on pro.Id_Proveedor = p.Id_Proveedor order by p.Id_Producto asc" ;
         dbutils = new DBUtils();
         try {
             cnx = dbutils.getConnection();
@@ -62,7 +62,7 @@ public class ProductoDAO {
             while (rs.next()) {
                 modelProductoCatTipProv = new ProductoCatTipProv(rs.getInt("p.id_producto"), rs.getString("p.nombre_producto"), rs.getString("p.peso"),
                         rs.getDouble("p.precio_venta"), rs.getInt("p.stock"), rs.getString("c.nombre_categoria"), rs.getString("t.nombre_tipo"),
-                        rs.getString("pro.nombre_proveedor"), rs.getString("p.fecha_vencimiento"));
+                        rs.getString("pro.nombre_proveedor"), rs.getString("p.fecha_vencimiento"), rs.getBytes("p.imagen"));
                 listar.add(modelProductoCatTipProv);
             }
         } catch (SQLException ex) {
@@ -71,6 +71,28 @@ public class ProductoDAO {
             dbutils.closeConnection(cnx, pst, rs);
         }
         return listar;
+    }
+    
+    //ultimo codigo del prodcuto
+    //genera el nuevo codigo producto
+    public int getUltimoCodigo() throws SQLException {
+        Producto p = new Producto();
+        String sql = "select Id_Producto from producto order by Id_Producto desc";
+        dbutils = new DBUtils();
+        int codigo = 0;
+        try {
+            cnx = dbutils.getConnection();
+            pst = cnx.prepareStatement(sql);
+            rs = pst.executeQuery();
+            if (rs.next()) {
+                codigo = rs.getInt("id_producto") + 1;
+            }             
+        } catch (SQLException ex) {
+            dbutils.procesarExcepcion(ex);
+        } finally {
+            dbutils.closeConnection(cnx, pst, rs);
+        }
+        return codigo;
     }
 
     //metodo para registrar productos a la BD
@@ -133,9 +155,8 @@ public class ProductoDAO {
         }
         return false;
     }
-
+//verifica si el producto existe
     public Producto existeProducto(String producto) {
-
         dbutils = new DBUtils();
         String sql = "select id_Producto, nombre_Producto, precio_venta, stock from producto where nombre_Producto like ?";
         try {
@@ -176,7 +197,39 @@ public class ProductoDAO {
                 Logger.getLogger(ProductoDAO.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-
     }
-
+    
+    //metodo para actualizar producto 
+    public void actualizarProducto(Producto p) {
+        dbutils = new DBUtils();
+        String sql = "update producto set nombre_Producto = ? , peso = ?, precio_venta = ?, stock = ?, fecha_vencimiento = ?, imagen = ?, id_categoria = ?, id_tipo = ?, id_proveedor = ? where id_producto = ?";
+        try {
+            cnx = dbutils.getConnection();
+            pst = cnx.prepareStatement(sql);
+            pst.setString(1, p.getNombre_Producto());
+            pst.setString(2, p.getPeso());
+            pst.setDouble(3, p.getPrecio_venta());
+            pst.setInt(4, p.getStock());
+            pst.setString(5, p.getFecha_vencimieto());
+            pst.setBytes(6, p.getImagen());
+            pst.setInt(7, p.getId_categoria());
+            pst.setInt(8, p.getId_tipo());
+            pst.setInt(9, p.getId_proveedor());
+            pst.setInt(10, p.getId_Producto());
+            int result = pst.executeUpdate();
+            if (result == 1) {
+                System.out.println("Actualización del producto ha funcionado correctamente");
+            } else {
+                System.out.println("Hubo un error por favor verifica el método actualizar producto");
+            }
+        } catch (SQLException ex) {
+            dbutils.procesarExcepcion(ex);
+        } finally {
+            try {
+                dbutils.closeConnection(cnx, pst);
+            } catch (SQLException ex) {
+                Logger.getLogger(ProductoDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
 }

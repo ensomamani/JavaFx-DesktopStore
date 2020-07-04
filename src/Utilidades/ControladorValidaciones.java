@@ -27,64 +27,6 @@ import javax.swing.JOptionPane;
  */
 public class ControladorValidaciones {
     
-    public static boolean verificarInputsVacios(TextField[] txt, FontAwesomeIcon[] icon, ComboBox[] cbo, FontAwesomeIcon[] iconCombo) {
-        boolean result = false;
-        for (int i = 0; i < txt.length ; i++) {
-            if (!txt[i].getText().isEmpty()) {
-                icon[i].setIcon(FontAwesomeIcons.CHECK);
-                icon[i].getStyleClass().add("icon-check-correct");
-                icon[i].setVisible(true);
-                result = true;
-            } else {
-                icon[i].setIcon(FontAwesomeIcons.CLOSE);
-                icon[i].getStyleClass().add("icon-close-error"); 
-                icon[i].setVisible(true);
-                result = false;
-            }
-        }
-        for (int i = 0; i < cbo.length; i++) {
-            if (cbo[i].getValue() != null) {
-                iconCombo[i].setIcon(FontAwesomeIcons.CHECK);
-                    iconCombo[i].getStyleClass().add("icon-check-correct");
-                    iconCombo[i].setVisible(true);
-                    result = true;
-                    System.out.println("he seleccionado " + cbo[i].getValue());
-            } else {
-                iconCombo[i].setIcon(FontAwesomeIcons.CLOSE);
-                iconCombo[i].getStyleClass().add("icon-close-error"); 
-                iconCombo[i].setVisible(true);
-                result = false;
-            }
-        }
-        return result;
-    }
-    
-    //Convierte la imagen a un array de bytes
-    public static byte[] imageByte(File file) {
-        byte[] result = new byte[(int)file.length()];
-        FileInputStream fileInputStream = null;
-        try {
-            fileInputStream = new FileInputStream(file);
-            fileInputStream.read(result);
-        } catch (FileNotFoundException ex) {
-            //Logger.getLogger(PcsLocalController.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, "Por favor selecciona una imagen");
-        } catch (IOException ex) { 
-            //Logger.getLogger(PcsLocalController.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, "Por favor selecciona una imagen");
-        } finally {
-            if (fileInputStream != null) {
-                try {
-                    fileInputStream.close();
-                } catch (IOException ex) {
-                    Logger.getLogger(PcsLocalController.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        }
-        return result;
-    }
-    public static Image imageToFile(byte[] imageBytes) {
-       return new Image(new ByteArrayInputStream(imageBytes));
-    }
+   
 }
 

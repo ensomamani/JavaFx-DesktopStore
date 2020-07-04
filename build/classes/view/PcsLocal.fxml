@@ -719,7 +719,7 @@
                                     <Insets right="10.0" />
                                  </HBox.margin>
                               </JFXButton>
-                              <JFXButton alignment="CENTER" prefHeight="34.0" prefWidth="123.0" styleClass="btn-agregar-prov" text="EDITAR" textFill="#535353">
+                              <JFXButton fx:id="btnEditar" alignment="CENTER" onMouseClicked="#btnEditarClicked" prefHeight="34.0" prefWidth="123.0" styleClass="btn-agregar-prov" text="EDITAR" textFill="#535353">
                                  <font>
                                     <Font name="Roboto Bold" size="12.0" />
                                  </font>

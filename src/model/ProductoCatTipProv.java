@@ -19,8 +19,9 @@ public class ProductoCatTipProv {
     private String tipoProducto;
     private String nombreProveedor;
     private String fechaVencimiento;
+    private byte[] imagen;
 
-    public ProductoCatTipProv(int id, String nombreProducto, String peso, double precioVenta, int stock, String nombreCategoria, String tipoProducto, String nombreProveedor, String fechaVencimiento) {
+    public ProductoCatTipProv(int id, String nombreProducto, String peso, double precioVenta, int stock, String nombreCategoria, String tipoProducto, String nombreProveedor, String fechaVencimiento, byte[] imagen) {
         this.id = id;
         this.nombreProducto = nombreProducto;
         this.peso = peso;
@@ -30,6 +31,7 @@ public class ProductoCatTipProv {
         this.tipoProducto = tipoProducto;
         this.nombreProveedor = nombreProveedor;
         this.fechaVencimiento = fechaVencimiento;
+        this.imagen = imagen;
     }
 
     public int getId() {
@@ -104,7 +106,13 @@ public class ProductoCatTipProv {
         this.fechaVencimiento = fechaVencimiento;
     }
 
+    public byte[] getImagen() {
+        return imagen;
+    }
     
+    public void setImagen(byte[] imagen){
+        this.imagen = imagen;
+    }
     
     
 }
