@@ -730,7 +730,7 @@
                                     <Insets right="10.0" />
                                  </HBox.margin>
                               </JFXButton>
-                              <JFXButton fx:id="btnEliminarProd" alignment="CENTER" prefHeight="34.0" prefWidth="123.0" styleClass="btn-agregar-prov" text="ELIMINAR" textFill="#535353">
+                              <JFXButton fx:id="btnEliminarProd" alignment="CENTER" onMouseClicked="#btnEliiminarClicked" prefHeight="34.0" prefWidth="123.0" styleClass="btn-agregar-prov" text="ELIMINAR" textFill="#535353">
                                  <font>
                                     <Font name="Roboto Bold" size="12.0" />
                                  </font>
@@ -768,7 +768,7 @@
                         </HBox>
                         <GridPane layoutX="14.0" layoutY="381.0" prefHeight="37.0" prefWidth="497.0">
                            <children>
-                              <TextField fx:id="txtBuscarProd" minHeight="-Infinity" prefHeight="25.0" prefWidth="487.0">
+                              <TextField fx:id="txtBuscarProd" minHeight="-Infinity" onKeyPressed="#buscarProducto" prefHeight="25.0" prefWidth="487.0">
                                  <font>
                                     <Font size="14.0" />
                                  </font>

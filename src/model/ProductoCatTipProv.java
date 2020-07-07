@@ -21,6 +21,10 @@ public class ProductoCatTipProv {
     private String fechaVencimiento;
     private byte[] imagen;
 
+    public ProductoCatTipProv() {
+    }
+    
+
     public ProductoCatTipProv(int id, String nombreProducto, String peso, double precioVenta, int stock, String nombreCategoria, String tipoProducto, String nombreProveedor, String fechaVencimiento, byte[] imagen) {
         this.id = id;
         this.nombreProducto = nombreProducto;

@@ -22,7 +22,6 @@ public class DBUtils {
     private final String MYSQLDB = "jdbc:mysql://localhost:3306/" + DB;
     private final String User = "enso";
     private final String Pass = "123456";
-    private Connection conec;
     /*Método para llamar a la conexion de la base de datos*/
     public Connection getConnection() throws SQLException {
         Connection conexion = null;

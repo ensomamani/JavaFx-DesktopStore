@@ -55,4 +55,27 @@ public class IngresoProductoDAO {
             
         }
     }
+    
+    //método para eliminar ingreso de producto
+    public void eliminarIngresoProducto(IngresoProducto ip) {
+        dbutils = new DBUtils();
+        String sqlIngresoProducto = "Delete from ingreso_producto where id_producto = ?";
+        try {
+            cnx = dbutils.getConnection();
+            pst = cnx.prepareStatement(sqlIngresoProducto);
+            pst.setInt(1, ip.getId_producto());
+            int result = pst.executeUpdate();
+            if (result == 1) {
+                System.out.println("Los productos ingresados a través del tiempo han sido eliminados");
+            }
+        } catch (SQLException ex) {
+            dbutils.procesarExcepcion(ex);
+        } finally {
+            try {
+                dbutils.closeConnection(cnx, pst);
+            } catch (SQLException ex) {
+                Logger.getLogger(ProductoDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
 }

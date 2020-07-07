@@ -114,6 +114,7 @@ public class ControladorGeneral {
         }
     }
    
+    //para reubicar la direccion de una imagen o archivo
    public static File toDiscoLocalD(File fi) {
        return new File("D:\\img\\"+fi.getName());
    } 
