@@ -186,12 +186,6 @@ public class PcsLocalController implements Initializable {
             codigoProducto();
             txtHoraIngresoProd.setText(LocalDateTime.now().getHour() + ":" + LocalDateTime.now().getMinute());
             txtHoraIngresoProd.setEditable(false);
-            productoDao = new ProductoDAO();
-            ProductoCatTipProv ps = new ProductoCatTipProv();
-            for(ProductoCatTipProv p : productoDao.listarProductosPorNombre("c")) {
-                System.out.println(p.getNombreProducto());
-                
-            }
         } catch (SQLException ex) {
             Logger.getLogger(PcsLocalController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -326,7 +320,7 @@ public class PcsLocalController implements Initializable {
                     try {
                         File path = new File(pathImage);
                         if (productImage.getImage() != null) {
-                            model = new Producto(0, txtNombreProd.getText(), txtPesoProd.getText(),
+                            model = new Producto(productoDao.getUltimoCodigo(), txtNombreProd.getText(), txtPesoProd.getText(),
                                     Double.valueOf(txtPrecioProd.getText()), Integer.parseInt(txtCantidadProd.getText()),
                                     calendarIngreso.getValue().toString(), ControladorGeneral.imageByte(path),
                                     "ACTIVO", obtenerIdCategoria(), obtenerIdTipo(), obtenerIdProveedor());
@@ -571,7 +565,7 @@ public class PcsLocalController implements Initializable {
             FontAwesomeIcon[] icon2 = {iconAviso6, iconAviso7, iconAviso8};
 
             if (ControladorGeneral.verificarInputsVacios(txt, icon, totalCombos, icon)) {
-                int result = JOptionPane.showConfirmDialog(null, "¿Esta segur@ de eliminar el producto?", "Eliminar producto", JOptionPane.OK_CANCEL_OPTION);;
+                int result = JOptionPane.showConfirmDialog(null, "¿Esta segur@ de eliminar este producto?", "Eliminar producto", JOptionPane.OK_CANCEL_OPTION);;
                 if (result == 0) {
                     System.out.println(result);
                     ingresoProductoDAO = new IngresoProductoDAO();
@@ -592,7 +586,21 @@ public class PcsLocalController implements Initializable {
 
     @FXML
     private void buscarProducto(KeyEvent event) {
-       
+       tableProductos.setItems(buscarProductos());
+    }
+    private ObservableList<ProductoCatTipProv> buscarProductos() {
+        productoDao = new ProductoDAO();
+        model = new Producto();
+        ObservableList<ProductoCatTipProv> data = FXCollections.observableArrayList();
+        String buscar = txtBuscarProd.getText().toLowerCase();
+        try {
+            for(ProductoCatTipProv p : productoDao.listarProductosPorNombre(buscar)) {
+                data.add(new ProductoCatTipProv(p.getId(), p.getNombreProducto(), p.getPeso(), p.getPrecioVenta(), p.getStock(), p.getNombreCategoria(), p.getTipoProducto(), p.getNombreProveedor(), p.getFechaVencimiento(), p.getImagen()));              
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PcsLocalController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return data;
     }
 
 }
