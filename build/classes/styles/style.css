@@ -14,11 +14,12 @@ and open the template in the editor.
 .button {
     -fx-background-radius: 0;
 }
-.button:hover {
-    -fx-background-color: #C9C9C9;
+.main-button:hover {
+    -fx-background-color: #FFB24D;
 }
 .main-button {
     -fx-text-fill: #6b6b6b;
+    -fx-background-radius: 4 4 0 0;
 }
 .sidebar {
     /*-fx-background-color: #FFB24D;*/
@@ -32,6 +33,9 @@ and open the template in the editor.
     -fx-background-color: rgba(230,230,230,1);
 }
 .button1 {
+    -fx-background-color: #FFB24D;
+}
+.mark-main-button {
     -fx-background-color: #FFB24D;
 }
 .mark-menu-sidebar {

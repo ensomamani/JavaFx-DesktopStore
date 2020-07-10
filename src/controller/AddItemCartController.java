@@ -7,7 +7,12 @@ package controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 
 /**
  * FXML Controller class
@@ -15,6 +20,21 @@ import javafx.fxml.Initializable;
  * @author Enso
  */
 public class AddItemCartController implements Initializable {
+
+    @FXML
+    private Label lblNombreProd;
+    @FXML
+    private Button btnAumentarCan;
+    @FXML
+    private Button btnDisminuirCan;
+    @FXML
+    private TextField txtCantidad;
+    @FXML
+    private Label lblPrecio;
+    @FXML
+    private ImageView imageCarrito;
+    @FXML
+    private Button btnCloseItemCart;
 
     /**
      * Initializes the controller class.

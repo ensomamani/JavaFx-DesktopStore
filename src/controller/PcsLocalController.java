@@ -186,11 +186,16 @@ public class PcsLocalController implements Initializable {
             codigoProducto();
             txtHoraIngresoProd.setText(LocalDateTime.now().getHour() + ":" + LocalDateTime.now().getMinute());
             txtHoraIngresoProd.setEditable(false);
+            setFocus();
         } catch (SQLException ex) {
             Logger.getLogger(PcsLocalController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    private void setFocus(){
+        txtNombreProd.setFocusTraversable(true);
+        
+        
+    }
 //Metodo que permite insertar los nombres de las pcs desde la bd hacia la parte grafica del programa 
     private void llamarPcs() throws SQLException {
         pcClienteDao pcDao = new pcClienteDao();

@@ -31,23 +31,64 @@ public class ProductoDAO {
     private Producto modelProducto;
     private ProductoCatTipProv modelProductoCatTipProv;
 
-    //lista de producto addItemVentanaTiendaController
-    public void consultarProducto(Producto producto) throws SQLException {
-        String var2 = "1";
-        cnx = dbutils.getConnection();
-        String sql = "select nombre_producto, precio_venta from producto where id_producto =" + var2;
-        pst = cnx.prepareStatement(sql);
-        rs = pst.executeQuery();
-
-        while (rs.next()) {
-            producto.setNombre_Producto(rs.getString("nombre_producto"));
-            producto.setPrecio_venta(rs.getDouble("precio_venta"));
+    //lista de producto para tiendaCliente
+    public ArrayList<Producto> listarProductoTienda(String categoria){
+        ArrayList<Producto> data = new ArrayList<>();
+        dbutils = new DBUtils();
+        try {
+            cnx = dbutils.getConnection();
+            String sql = "select p.Id_Producto,p.nombre_Producto, p.precio_venta, p.imagen from producto p, categoria_producto c, tipo_producto t where p.Id_Categoria = c.Id_Categoria and p.Id_Tipo = t.Id_Tipo and c.nombre_categoria = ?";
+            pst = cnx.prepareStatement(sql);
+            pst.setString(1, categoria);
+            rs = pst.executeQuery();
+            while (rs.next()) {                
+                modelProducto = new Producto();
+                modelProducto.setId_Producto(rs.getInt("p.Id_Producto"));
+                modelProducto.setNombre_Producto(rs.getString("p.nombre_Producto"));
+                modelProducto.setPrecio_venta(rs.getDouble("p.precio_venta"));
+                modelProducto.setImagen(rs.getBytes("p.imagen"));
+                data.add(modelProducto);
+            }
+        } catch (SQLException ex) {
+            dbutils.procesarExcepcion(ex);
+        } finally {
+            try {
+                dbutils.closeConnection(cnx, pst, rs);
+            } catch (SQLException ex) {
+                Logger.getLogger(ProductoDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-
-        System.out.println("El nombre del producto es: " + producto.getNombre_Producto());
-        cnx.close();
+        return data;
     }
-
+    public ArrayList<Producto> listarProductoTienda(String categoria, String tipo){
+        ArrayList<Producto> data = new ArrayList<>();
+        dbutils = new DBUtils();
+        try {
+            cnx = dbutils.getConnection();
+            String sql = "select p.Id_Producto,p.nombre_Producto, p.precio_venta, p.imagen from producto p, categoria_producto c, tipo_producto t where p.Id_Categoria = c.Id_Categoria and p.Id_Tipo = t.Id_Tipo and c.nombre_categoria = ? and t.nombre_tipo = ?";
+            pst = cnx.prepareStatement(sql);
+            pst.setString(1, categoria);
+            pst.setString(2, tipo);
+            rs = pst.executeQuery();
+            while (rs.next()) {                
+                modelProducto = new Producto();
+                modelProducto.setId_Producto(rs.getInt("p.Id_Producto"));
+                modelProducto.setNombre_Producto(rs.getString("p.nombre_Producto"));
+                modelProducto.setPrecio_venta(rs.getDouble("p.precio_venta"));
+                modelProducto.setImagen(rs.getBytes("p.imagen"));
+                data.add(modelProducto);
+            }
+        } catch (SQLException ex) {
+            dbutils.procesarExcepcion(ex);
+        } finally {
+            try {
+                dbutils.closeConnection(cnx, pst, rs);
+            } catch (SQLException ex) {
+                Logger.getLogger(ProductoDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return data;
+    }
     //lista de productos para tableView u otros
     public ArrayList<ProductoCatTipProv> listarProductos() throws SQLException {
         ArrayList<ProductoCatTipProv> listar = new ArrayList<>();
@@ -65,6 +106,29 @@ public class ProductoDAO {
                         rs.getDouble("p.precio_venta"), rs.getInt("p.stock"), rs.getString("c.nombre_categoria"), rs.getString("t.nombre_tipo"),
                         rs.getString("pro.nombre_proveedor"), rs.getString("p.fecha_vencimiento"), rs.getBytes("p.imagen"));
                 listar.add(modelProductoCatTipProv);
+            }
+        } catch (SQLException ex) {
+            dbutils.procesarExcepcion(ex);
+        } finally {
+            dbutils.closeConnection(cnx, pst, rs);
+        }
+        return listar;
+    }
+    
+    //lista de productos para ventana cliente 
+    public ArrayList<Producto> listarProductoCliente() throws SQLException {
+        ArrayList<Producto> listar = new ArrayList<>();
+        String sql = "select * from producto";
+        dbutils = new DBUtils();
+        try {
+            cnx = dbutils.getConnection();
+            pst = cnx.prepareStatement(sql);
+            rs = pst.executeQuery();
+            while (rs.next()) {
+                modelProducto = new Producto(rs.getInt("id_producto"), rs.getString("nombre_producto"), rs.getString("peso"), 
+                        rs.getDouble("precio_venta"), rs.getInt("stock"), rs.getString("fecha_vencimiento"), rs.getBytes("imagen"), 
+                        rs.getInt("id_categoria"), rs.getInt("id_tipo"), rs.getInt("id_proveedor"));
+                listar.add(modelProducto);
             }
         } catch (SQLException ex) {
             dbutils.procesarExcepcion(ex);

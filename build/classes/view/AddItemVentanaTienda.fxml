@@ -11,14 +11,10 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox fx:id="mainVboxItemProd" alignment="TOP_CENTER" fillWidth="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="354.0" prefWidth="200.0" spacing="5.0" style="-fx-background-color: #FEFEFE;" styleClass="main-box-item" stylesheets="@../styles/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AddItemVentanTiendaController">
+<VBox fx:id="mainVboxItemProd" alignment="TOP_CENTER" fillWidth="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="354.0" prefWidth="200.0" spacing="5.0" style="-fx-background-color: #FEFEFE;" styleClass="main-box-item" stylesheets="@../styles/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ImageView fx:id="imagenProducto" fitHeight="160.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../ImagesTienda" />
-         </image>
-      </ImageView>
-      <Label fx:id="nombreProducto" alignment="CENTER" prefHeight="45.0" prefWidth="190.0" text="GASEOSA 7 UP DE 500 ML" textAlignment="CENTER" wrapText="true">
+      <ImageView fx:id="imagenProducto" fitHeight="159.0" fitWidth="151.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="nombreProducto" alignment="CENTER" prefHeight="45.0" prefWidth="190.0" textAlignment="CENTER" wrapText="true">
          <font>
             <Font name="Roboto Bold" size="14.0" />
          </font>
@@ -30,7 +26,7 @@
                   <Font name="Roboto Bold" size="18.0" />
                </font>
             </Label>
-            <Label fx:id="precioProducto" prefHeight="30.0" prefWidth="53.0" styleClass="lbl-price" text="2.00" textFill="#463838">
+            <Label fx:id="precioProducto" prefHeight="30.0" prefWidth="53.0" styleClass="lbl-price" textFill="#463838">
                <font>
                   <Font name="Roboto Bold" size="25.0" />
                </font>
@@ -58,7 +54,7 @@
                   </Button>
                </children>
             </VBox>
-            <Button fx:id="btnAgregarCarrito" mnemonicParsing="false" prefHeight="55.0" prefWidth="113.0" styleClass="btn-agregar" text="AGREGAR AL CARRITO" textAlignment="CENTER" textFill="#663300" wrapText="true">
+            <Button fx:id="btnAgregarCarrito" mnemonicParsing="false" onMouseClicked="#btnOrdenarCarritoClicked" prefHeight="55.0" prefWidth="113.0" styleClass="btn-agregar" text="AGREGAR AL CARRITO" textAlignment="CENTER" textFill="#663300" wrapText="true">
                <font>
                   <Font name="Roboto Bold" size="14.0" />
                </font>
@@ -90,7 +86,7 @@
                   </Label>
                </children>
             </HBox>
-            <Button fx:id="ordenarProducto" mnemonicParsing="false" prefHeight="38.0" prefWidth="190.0" styleClass="btn-ordenar" text="ORDENAR PRODUCTO" textFill="WHITE">
+            <Button fx:id="ordenarProducto" mnemonicParsing="false" onMouseClicked="#btnOrdenarClicked" prefHeight="38.0" prefWidth="190.0" styleClass="btn-ordenar" text="ORDENAR PRODUCTO" textFill="WHITE">
                <effect>
                   <InnerShadow color="#33333380" height="0.0" offsetY="-3.0" radius="0.0" width="0.0" />
                </effect>

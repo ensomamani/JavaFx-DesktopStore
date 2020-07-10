@@ -6,6 +6,7 @@
 package controller;
 
 import DAO.ProductoDAO;
+import Utilidades.ControladorGeneral;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import java.net.URL;
 import java.sql.SQLException;
@@ -13,6 +14,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -28,8 +30,9 @@ import model.Producto;
  *
  * @author Enso
  */
-public class AddItemVentanTiendaController implements Initializable {
+public class AddItemVentanaTiendaController implements Initializable {
     private ProductoDAO productoDAO;
+    private FXMLLoader fxLoader;
     @FXML
     private ImageView imagenProducto;
     @FXML
@@ -55,23 +58,12 @@ public class AddItemVentanTiendaController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        llamarProducto();
-    }    
-    private void llamarProducto() {
-        productoDAO = new ProductoDAO();
-        try {
-            Producto producto = new Producto();
-            productoDAO.consultarProducto(producto);
-            
-            //Establecemos los valores y dentro llamamos a sus respectivos getters
-            precioProducto.setText(String.valueOf(producto.getPrecio_venta()));
-            nombreProducto.setText(producto.getNombre_Producto());
-            imagenProducto.setImage(new Image(getClass().getResourceAsStream("/ImagesTienda/7up.png")));
         
-        System.out.println("El del producto es: " + producto.getNombre_Producto());
-        } catch (SQLException ex) {
-            Logger.getLogger(AddItemVentanTiendaController.class.getName()).log(Level.SEVERE, null, ex);
-        }  
+    }    
+    public void llamarProducto(Producto p) {
+        nombreProducto.setText(p.getNombre_Producto());
+        precioProducto.setText(""+p.getPrecio_venta());
+        imagenProducto.setImage(ControladorGeneral.bytesToImage(p.getImagen()));
     }
     @FXML
     private void btnAumentarClicked(MouseEvent event) {
@@ -109,6 +101,19 @@ public class AddItemVentanTiendaController implements Initializable {
             }
         }  
     }  
+
+    @FXML
+    private void btnOrdenarClicked(MouseEvent event) {
+        System.out.println("hola mundo");
+        System.out.println(nombreProducto.getText());
+        System.out.println(precioProducto.getText());
+        
+    }
+
+    @FXML
+    private void btnOrdenarCarritoClicked(MouseEvent event) {
+        
+    }
     
     
 }

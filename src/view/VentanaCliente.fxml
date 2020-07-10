@@ -83,59 +83,138 @@
                   </HBox>
                </children>
             </GridPane>
-            <VBox prefHeight="476.0" prefWidth="160.0">
+            <StackPane>
                <children>
-                  <JFXButton alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="51.0" prefWidth="160.0" text="Gaseosas" textFill="#7c7979">
-                     <font>
-                        <Font name="Roboto Bold" size="16.0" />
-                     </font>
-                     <styleClass>
-                        <String fx:value="mark-menu-sidebar" />
-                        <String fx:value="main-button" />
-                     </styleClass>
-                  </JFXButton>
-                  <JFXButton alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="51.0" prefWidth="160.0" styleClass="main-button" text="Citricos" textFill="#7c7979">
-                     <font>
-                        <Font name="Roboto Bold" size="16.0" />
-                     </font>
-                  </JFXButton>
-                  <JFXButton alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="51.0" prefWidth="160.0" styleClass="main-button" text="Jugos" textFill="#7c7979">
-                     <font>
-                        <Font name="Roboto Bold" size="16.0" />
-                     </font>
-                  </JFXButton>
-                  <JFXButton alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="51.0" prefWidth="160.0" styleClass="main-button" text="Agua" textFill="#7c7979">
-                     <font>
-                        <Font name="Roboto Bold" size="16.0" />
-                     </font>
-                  </JFXButton>
-                  <JFXButton alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="51.0" prefWidth="160.0" styleClass="main-button" text="Rehidratantes" textFill="#7c7979">
-                     <font>
-                        <Font name="Roboto Bold" size="16.0" />
-                     </font>
-                  </JFXButton>
+                  <Pane fx:id="sidebarGalletas" styleClass="sidebar">
+                     <children>
+                        <VBox prefHeight="476.0" prefWidth="160.0">
+                           <children>
+                              <JFXButton fx:id="btnChocolate" alignment="CENTER_RIGHT" contentDisplay="CENTER" onAction="#eventsAction" prefHeight="51.0" prefWidth="160.0" text="Chocolate" textFill="#7c7979">
+                                 <font>
+                                    <Font name="Roboto Bold" size="16.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="mark-menu-sidebar" />
+                                    <String fx:value="main-button" />
+                                 </styleClass>
+                              </JFXButton>
+                              <JFXButton fx:id="btnVainilla" alignment="CENTER_RIGHT" contentDisplay="CENTER" onAction="#eventsAction" prefHeight="51.0" prefWidth="160.0" styleClass="main-button" text="Vainilla" textFill="#7c7979">
+                                 <font>
+                                    <Font name="Roboto Bold" size="16.0" />
+                                 </font>
+                              </JFXButton>
+                              <JFXButton fx:id="btnSalada" alignment="CENTER_RIGHT" contentDisplay="CENTER" onAction="#eventsAction" prefHeight="51.0" prefWidth="160.0" styleClass="main-button" text="Salada" textFill="#7c7979">
+                                 <font>
+                                    <Font name="Roboto Bold" size="16.0" />
+                                 </font>
+                              </JFXButton>
+                              <JFXButton fx:id="btnSinAzucar" alignment="CENTER_RIGHT" contentDisplay="CENTER" onAction="#eventsAction" prefHeight="51.0" prefWidth="160.0" styleClass="main-button" text="Sin Azucar" textFill="#7c7979">
+                                 <font>
+                                    <Font name="Roboto Bold" size="16.0" />
+                                 </font>
+                              </JFXButton>
+                           </children>
+                        </VBox>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="sidebarSnacks" styleClass="sidebar">
+                     <children>
+                        <VBox prefHeight="476.0" prefWidth="160.0">
+                           <children>
+                              <JFXButton fx:id="btnPicante" alignment="CENTER_RIGHT" contentDisplay="CENTER" onAction="#eventsAction" prefHeight="51.0" prefWidth="160.0" text="Picante" textFill="#7c7979">
+                                 <font>
+                                    <Font name="Roboto Bold" size="16.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="mark-menu-sidebar" />
+                                    <String fx:value="main-button" />
+                                 </styleClass>
+                              </JFXButton>
+                              <JFXButton fx:id="btnSinPicante" alignment="CENTER_RIGHT" contentDisplay="CENTER" onAction="#eventsAction" prefHeight="51.0" prefWidth="160.0" styleClass="main-button" text="Sin Picante" textFill="#7c7979">
+                                 <font>
+                                    <Font name="Roboto Bold" size="16.0" />
+                                 </font>
+                              </JFXButton>
+                           </children>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </VBox>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="sidebarBocaditos" styleClass="sidebar">
+                     <children>
+                        <VBox prefHeight="476.0" prefWidth="160.0">
+                           <children>
+                              <JFXButton fx:id="btnDulces" alignment="CENTER_RIGHT" contentDisplay="CENTER" onAction="#eventsAction" prefHeight="51.0" prefWidth="160.0" text="Dulces" textFill="#7c7979">
+                                 <font>
+                                    <Font name="Roboto Bold" size="16.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="mark-menu-sidebar" />
+                                    <String fx:value="main-button" />
+                                 </styleClass>
+                              </JFXButton>
+                              <JFXButton fx:id="btnSalados" alignment="CENTER_RIGHT" contentDisplay="CENTER" onAction="#eventsAction" prefHeight="51.0" prefWidth="160.0" styleClass="main-button" text="Salados" textFill="#7c7979">
+                                 <font>
+                                    <Font name="Roboto Bold" size="16.0" />
+                                 </font>
+                              </JFXButton>
+                           </children>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </VBox>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="sidebarKekes" styleClass="sidebar" />
+                  <Pane fx:id="sidebarBebidas" styleClass="sidebar">
+                     <children>
+                        <VBox prefHeight="476.0" prefWidth="160.0">
+                           <children>
+                              <JFXButton fx:id="btnGasesosas" alignment="CENTER_RIGHT" contentDisplay="CENTER" onAction="#eventsAction" prefHeight="51.0" prefWidth="160.0" text="Gaseosas" textFill="#7c7979">
+                                 <font>
+                                    <Font name="Roboto Bold" size="16.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="mark-menu-sidebar" />
+                                    <String fx:value="main-button" />
+                                 </styleClass>
+                              </JFXButton>
+                              <JFXButton fx:id="btnCitricos" alignment="CENTER_RIGHT" contentDisplay="CENTER" onAction="#eventsAction" prefHeight="51.0" prefWidth="160.0" styleClass="main-button" text="Citricos" textFill="#7c7979">
+                                 <font>
+                                    <Font name="Roboto Bold" size="16.0" />
+                                 </font>
+                              </JFXButton>
+                              <JFXButton fx:id="btnJugos" alignment="CENTER_RIGHT" contentDisplay="CENTER" onAction="#eventsAction" prefHeight="51.0" prefWidth="160.0" styleClass="main-button" text="Jugos" textFill="#7c7979">
+                                 <font>
+                                    <Font name="Roboto Bold" size="16.0" />
+                                 </font>
+                              </JFXButton>
+                              <JFXButton fx:id="btnAgua" alignment="CENTER_RIGHT" contentDisplay="CENTER" onAction="#eventsAction" prefHeight="51.0" prefWidth="160.0" styleClass="main-button" text="Agua" textFill="#7c7979">
+                                 <font>
+                                    <Font name="Roboto Bold" size="16.0" />
+                                 </font>
+                              </JFXButton>
+                              <JFXButton fx:id="btnRehidratantes" alignment="CENTER_RIGHT" contentDisplay="CENTER" onAction="#eventsAction" prefHeight="51.0" prefWidth="160.0" styleClass="main-button" text="Rehidratantes" textFill="#7c7979">
+                                 <font>
+                                    <Font name="Roboto Bold" size="16.0" />
+                                 </font>
+                              </JFXButton>
+                           </children>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </VBox>
+                     </children>
+                  </Pane>
                </children>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </VBox>
+            </StackPane>
          </children>
       </VBox>
       <HBox alignment="CENTER" layoutX="150.0" layoutY="35.0" prefHeight="40.0" prefWidth="1061.0" styleClass="main-menu">
          <children>
-            <JFXButton fx:id="btnBebidas" onMouseClicked="#btnShowBebidas" prefHeight="45.0" ripplerFill="WHITE" text="Bebidas" textFill="#6b6b6b">
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-               <font>
-                  <Font name="Roboto Bold" size="14.0" />
-               </font>
-               <styleClass>
-                  <String fx:value="main-button" />
-                  <String fx:value="mark-main-button" />
-               </styleClass>
-            </JFXButton>
-            <JFXButton prefHeight="45.0" ripplerFill="WHITE" styleClass="main-button" text="Galletas" textFill="#6b6b6b">
+            <JFXButton fx:id="btnBebidas" onMouseClicked="#btnBebidasClicked" prefHeight="45.0" ripplerFill="WHITE" styleClass="main-button" text="Bebidas" textFill="#6b6b6b">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
@@ -143,7 +222,7 @@
                   <Font name="Roboto Bold" size="14.0" />
                </font>
             </JFXButton>
-            <JFXButton prefHeight="45.0" ripplerFill="WHITE" styleClass="main-button" text="Snacks" textFill="#6b6b6b">
+            <JFXButton fx:id="btnGalleta" onMouseClicked="#btnGalletasClicked" prefHeight="45.0" ripplerFill="WHITE" styleClass="main-button" text="Galletas" textFill="#6b6b6b">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
@@ -151,7 +230,7 @@
                   <Font name="Roboto Bold" size="14.0" />
                </font>
             </JFXButton>
-            <JFXButton prefHeight="45.0" ripplerFill="WHITE" styleClass="main-button" text="Bocaditos" textFill="#6b6b6b">
+            <JFXButton fx:id="btnSnacks" onMouseClicked="#btnSnackClicked" prefHeight="45.0" ripplerFill="WHITE" styleClass="main-button" text="Snacks" textFill="#6b6b6b">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
@@ -159,7 +238,15 @@
                   <Font name="Roboto Bold" size="14.0" />
                </font>
             </JFXButton>
-            <JFXButton prefHeight="45.0" ripplerFill="WHITE" styleClass="main-button" text="Kekes" textFill="#6b6b6b">
+            <JFXButton fx:id="btnBocadito" onMouseClicked="#btnBocaditoClicked" prefHeight="45.0" ripplerFill="WHITE" styleClass="main-button" text="Bocaditos" textFill="#6b6b6b">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+               <font>
+                  <Font name="Roboto Bold" size="14.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="btnKekes" onMouseClicked="#btnKekeClicked" prefHeight="45.0" ripplerFill="WHITE" styleClass="main-button" text="Kekes" textFill="#6b6b6b">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
@@ -221,13 +308,13 @@
             </JFXButton>
          </children>
       </HBox>
-      <HBox layoutX="149.0" layoutY="129.0" prefHeight="632.0" prefWidth="848.0" spacing="5.0">
+      <HBox layoutX="150.0" layoutY="129.0" prefHeight="632.0" prefWidth="847.0" spacing="5.0">
          <children>
-            <StackPane layoutX="151.0" layoutY="130.0" prefHeight="486.0" prefWidth="894.0">
+            <StackPane alignment="TOP_LEFT" layoutX="151.0" layoutY="130.0" prefHeight="632.0" prefWidth="844.0">
                <children>
                   <ScrollPane fitToHeight="true" maxHeight="-Infinity" prefHeight="667.0" prefWidth="848.0" style="-fx-background-color: #DBDBDB;" styleClass="main-scroll-items">
                      <content>
-                        <FlowPane fx:id="areaProductos" hgap="5.0" layoutY="-3.0" prefHeight="621.0" prefWidth="833.0" rowValignment="TOP" style="-fx-background-color: #DBDBDB;" vgap="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <FlowPane fx:id="areaProductos" hgap="5.0" layoutY="-3.0" prefHeight="630.0" prefWidth="841.0" rowValignment="TOP" style="-fx-background-color: #DBDBDB;" vgap="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <padding>
                               <Insets left="5.0" right="5.0" top="5.0" />
                            </padding>
