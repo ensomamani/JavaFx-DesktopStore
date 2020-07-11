@@ -32,6 +32,36 @@ public class ProductoDAO {
     private ProductoCatTipProv modelProductoCatTipProv;
 
     //lista de producto para tiendaCliente
+    public ArrayList<Producto> listarProductoNombre(String nombre){
+        ArrayList<Producto> data = new ArrayList<>();
+        dbutils = new DBUtils();
+        try {
+            cnx = dbutils.getConnection();
+            String sql = "select Id_Producto, nombre_Producto, precio_venta, imagen from producto where nombre_Producto like ?";
+            pst = cnx.prepareStatement(sql);
+            pst.setString(1,"%"+nombre+"%");
+            rs = pst.executeQuery();
+            while (rs.next()) {                
+                modelProducto = new Producto();
+                modelProducto.setId_Producto(rs.getInt("Id_Producto"));
+                modelProducto.setNombre_Producto(rs.getString("nombre_Producto"));
+                modelProducto.setPrecio_venta(rs.getDouble("precio_venta"));
+                modelProducto.setImagen(rs.getBytes("imagen"));
+                data.add(modelProducto);
+            }
+        } catch (SQLException ex) {
+            dbutils.procesarExcepcion(ex);
+        } finally {
+            try {
+                dbutils.closeConnection(cnx, pst, rs);
+            } catch (SQLException ex) {
+                Logger.getLogger(ProductoDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return data;
+    }    
+
+//lista de producto para tiendaCliente
     public ArrayList<Producto> listarProductoTienda(String categoria){
         ArrayList<Producto> data = new ArrayList<>();
         dbutils = new DBUtils();

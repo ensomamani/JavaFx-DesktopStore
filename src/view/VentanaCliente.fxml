@@ -258,7 +258,7 @@
       </HBox>
       <HBox alignment="CENTER_LEFT" layoutX="150.0" layoutY="75.0" prefHeight="54.0" prefWidth="1061.0" styleClass="bar-items">
          <children>
-            <Label prefHeight="27.0" prefWidth="68.0" text="Bebidas">
+            <Label fx:id="lblTitleCategoria" prefHeight="27.0" prefWidth="68.0" text="Bebidas">
                <HBox.margin>
                   <Insets left="10.0" />
                </HBox.margin>
@@ -271,12 +271,12 @@
                   <Image url="@../assets/icons8_angle_right_32px_5.png" />
                </image>
             </ImageView>
-            <Label text="Gasesosas">
+            <Label fx:id="lblTitleTipo" text="Gasesosas">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <TextField prefHeight="32.0" prefWidth="362.0" promptText="Busca aqui tu producto" styleClass="txt-buscar">
+            <TextField fx:id="txtBuscarProductoCliente" onKeyPressed="#txtBuscarCliente" prefHeight="32.0" prefWidth="362.0" promptText="Busca aqui tu producto" styleClass="txt-buscar">
                <HBox.margin>
                   <Insets left="25.0" />
                </HBox.margin>

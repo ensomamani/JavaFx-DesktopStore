@@ -31,6 +31,7 @@ import model.Producto;
  * @author Enso
  */
 public class AddItemVentanaTiendaController implements Initializable {
+
     private ProductoDAO productoDAO;
     private FXMLLoader fxLoader;
     @FXML
@@ -58,62 +59,56 @@ public class AddItemVentanaTiendaController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        
-    }    
+
+    }
+
     public void llamarProducto(Producto p) {
         nombreProducto.setText(p.getNombre_Producto());
-        precioProducto.setText(""+p.getPrecio_venta());
+        precioProducto.setText("" + p.getPrecio_venta());
         imagenProducto.setImage(ControladorGeneral.bytesToImage(p.getImagen()));
     }
+
     @FXML
     private void btnAumentarClicked(MouseEvent event) {
-        if(event.getSource().equals(aumentarProd)) {
-            //inicializamos el incremente en 1
-            int increment = 1;
+        if (event.getSource().equals(aumentarProd)) {
             //recorremos una vez para que vaya aumentando uno en uno
             int value = Integer.parseInt(mostrarCantidad.getText());
-            for (int i = 0; i < increment; i++) {
-                value++;
-                mostrarCantidad.setText(String.valueOf(value));
-                disminuirProd.setDisable(false);
-                if (value > 5) {
-                    mostrarCantidad.setText("1");
-                    disminuirProd.setDisable(true);
-                }   
-            } 
-       }   
+            int resultado = value + 1;
+            mostrarCantidad.setText(""+resultado);
+            disminuirProd.setDisable(false);
+            if (resultado > 5) {
+                mostrarCantidad.setText("1");
+                disminuirProd.setDisable(true);
+            }
+        }
     }
 
     @FXML
     private void btnDisminuirClicked(MouseEvent event) {
         if (event.getSource().equals(disminuirProd)) {
-            //inicializamos el incremente en 1
-            int increment = 1;
             //recorremos una vez para que vaya disminuyendo uno en uno
             int value = Integer.parseInt(mostrarCantidad.getText());
-            for (int i = 0; i < increment; i++) {
-                value--;
-                mostrarCantidad.setText(String.valueOf(value));
-                if (value <= 1) {
-                    mostrarCantidad.setText("1");
-                    disminuirProd.setDisable(true);
-                }
+            int resultado = value - 1;
+            mostrarCantidad.setText(""+resultado);
+            if (resultado == 1) {                
+                disminuirProd.setDisable(true);
             }
-        }  
-    }  
+
+             
+        }
+    }
 
     @FXML
     private void btnOrdenarClicked(MouseEvent event) {
         System.out.println("hola mundo");
         System.out.println(nombreProducto.getText());
         System.out.println(precioProducto.getText());
-        
+        System.out.println(mostrarCantidad.getText());
     }
 
     @FXML
     private void btnOrdenarCarritoClicked(MouseEvent event) {
-        
+
     }
-    
-    
+
 }
