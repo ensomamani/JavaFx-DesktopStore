@@ -8,6 +8,7 @@ package controller;
 import DAO.ProductoDAO;
 import animatefx.animation.ZoomIn;
 import com.jfoenix.controls.JFXButton;
+import java.beans.EventHandler;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -48,12 +49,14 @@ import static view.Principal.stageExtends;
 public class VentanaClienteController implements Initializable {
 
     FXMLLoader fxmlLoader;
-    Stage stage = null;
+    Stage stage;
     ProductoDAO productoDAO;
     Producto modelProducto;
     String categoria = "Bebidas";
-    String tipo = "gaseosa";
-
+    String tipo = "gaseosa";        
+    public static FlowPane extendsAreaCarrito;
+    public static Label precioTotalProducto;
+    public static FlowPane extendsAreaProducto;
     @FXML
     private FlowPane areaProductos;
     @FXML
@@ -76,15 +79,22 @@ public class VentanaClienteController implements Initializable {
     private Label lblTitleTipo;
     @FXML
     private TextField txtBuscarProductoCliente;
-
+    @FXML
+    private FlowPane areaCarrito;
+    @FXML
+    private Label lblPrecioTotal;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        // TODO  
         llenarProductos();
+        extendsAreaCarrito = areaCarrito;
+        precioTotalProducto = lblPrecioTotal;
+        extendsAreaProducto = areaProductos;
     }
+
 
     private void llenarProductos() {
         try {
@@ -96,7 +106,7 @@ public class VentanaClienteController implements Initializable {
                 fxmlLoader = new FXMLLoader(getClass().getResource("/view/AddItemVentanaTienda.fxml"));
                 AddItemVentanaTiendaController controller = new AddItemVentanaTiendaController();
                 fxmlLoader.setController(controller);
-                nodes[i] = fxmlLoader.load();              
+                nodes[i] = fxmlLoader.load();
                 areaProductos.getChildren().add(nodes[i]);
                 controller.llamarProducto(listProd.get(i));
             }
@@ -318,21 +328,22 @@ public class VentanaClienteController implements Initializable {
 
     @FXML
     private void txtBuscarCliente(KeyEvent event) {
-        String txt = txtBuscarProductoCliente.getText();      
+        String txt = txtBuscarProductoCliente.getText();
         if (txt.length() > 0) {
             buscarPorNombre(txt);
         } else {
             llenarProductos();
         }
-        
+
     }
+
     private void buscarPorNombre(String nombre) {
         areaProductos.getChildren().clear();
         productoDAO = new ProductoDAO();
         modelProducto = new Producto();
         ArrayList<Producto> listar = productoDAO.listarProductoNombre(nombre);
         Node[] nodes = new Node[listar.size()];
-         try {
+        try {
             for (int i = 0; i < nodes.length; i++) {
                 fxmlLoader = new FXMLLoader(getClass().getResource("/view/AddItemVentanaTienda.fxml"));
                 AddItemVentanaTiendaController controller = new AddItemVentanaTiendaController();

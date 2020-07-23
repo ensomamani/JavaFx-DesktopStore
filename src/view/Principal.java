@@ -36,7 +36,7 @@ public class Principal extends Application {
         //primaryStage.initStyle(StageStyle.TRANSPARENT);
         stageExtends = primaryStage;
         primaryStage.show();
-  
+        
         
     }
 

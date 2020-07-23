@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.*?>
 <?import de.jensd.fx.glyphs.fontawesome.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
@@ -9,9 +10,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox stylesheets="@../styles/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AddItemCartController">
+<VBox fx:id="parentAddItemCart" alignment="TOP_CENTER" prefHeight="154.0" prefWidth="169.0" stylesheets="@../styles/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label fx:id="lblNombreProd" alignment="CENTER" prefHeight="45.0" prefWidth="127.0" text="GASEOSA 7 UP DE 500 ML" textAlignment="CENTER" wrapText="true">
+      <Label fx:id="lblNombreProd" alignment="CENTER" prefHeight="45.0" prefWidth="127.0" textAlignment="CENTER" wrapText="true">
          <font>
             <Font name="Roboto Bold" size="12.0" />
          </font>
@@ -24,12 +25,12 @@
                      <children>
                         <VBox prefHeight="55.0" prefWidth="22.0" spacing="5.0">
                            <children>
-                              <Button fx:id="btnAumentarCan" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" prefHeight="25.0" prefWidth="14.0" styleClass="btn-cantidad" text="Button">
+                              <Button fx:id="btnAumentarCan" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onMouseClicked="#btnAumentarClicked" prefHeight="25.0" prefWidth="14.0" styleClass="btn-cantidad" text="Button">
                                  <graphic>
-                                    <FontAwesomeIcon glyphName="PLUS" />
+                                    <FontAwesomeIcon fx:id="btnAumentarCantidad" glyphName="PLUS" />
                                  </graphic>
                               </Button>
-                              <Button fx:id="btnDisminuirCan" contentDisplay="GRAPHIC_ONLY" disable="true" mnemonicParsing="false" styleClass="btn-cantidad" text="Button">
+                              <Button fx:id="btnDisminuirCan" contentDisplay="GRAPHIC_ONLY" disable="true" mnemonicParsing="false" onMouseClicked="#btnDisminuirClicked" styleClass="btn-cantidad" text="Button">
                                  <graphic>
                                     <FontAwesomeIcon glyphName="MINUS" styleClass="btn-quitar" />
                                  </graphic>
@@ -45,7 +46,7 @@
                   </HBox>
                   <HBox>
                      <children>
-                        <Label fx:id="lblPrecio" prefHeight="30.0" prefWidth="51.0" styleClass="lbl-price" text="2.00" textFill="#463838">
+                        <Label fx:id="lblPrecio" alignment="TOP_LEFT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="30.0" prefWidth="85.0" styleClass="lbl-price" text="hoila" textFill="#463838">
                            <font>
                               <Font name="Roboto Bold" size="25.0" />
                            </font>
@@ -59,8 +60,8 @@
                   </HBox>
                </children>
             </VBox>
-            <ImageView fx:id="imageCarrito" fitHeight="86.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
-            <Button fx:id="btnCloseItemCart" contentDisplay="GRAPHIC_ONLY" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="32.0" styleClass="btn-close-agregado">
+            <ImageView fx:id="imageCarrito" fitHeight="86.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="NEVER" />
+            <Button fx:id="btnCloseItemCart" contentDisplay="GRAPHIC_ONLY" minWidth="-Infinity" mnemonicParsing="false" onAction="#btnEliminarProdCarrito" prefHeight="30.0" prefWidth="32.0" styleClass="btn-close-agregado">
                <font>
                   <Font name="Roboto Bold" size="14.0" />
                </font>

@@ -63,14 +63,14 @@
       </HBox>
       <StackPane>
          <children>
-            <HBox alignment="CENTER" prefHeight="38.0" prefWidth="190.0" style="-fx-background-color: #fff;" styleClass="container-aviso-agregado">
+            <HBox fx:id="checkProductoAgregado" alignment="CENTER" prefHeight="38.0" prefWidth="190.0" style="-fx-background-color: #fff;" styleClass="container-aviso-agregado">
                <children>
                   <FontAwesomeIcon fill="#339933" glyphName="CHECK">
                      <HBox.margin>
                         <Insets right="5.0" />
                      </HBox.margin>
                   </FontAwesomeIcon>
-                  <Label prefHeight="20.0" prefWidth="8.0" text="1">
+                  <Label fx:id="lblCantidadAgregado" prefHeight="20.0" prefWidth="8.0" text="1">
                      <font>
                         <Font size="14.0" />
                      </font>

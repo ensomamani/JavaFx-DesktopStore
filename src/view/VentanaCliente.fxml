@@ -328,7 +328,7 @@
             </StackPane>
          </children>
       </HBox>
-      <VBox alignment="TOP_CENTER" layoutX="1000.0" layoutY="129.0" prefHeight="638.0" prefWidth="210.0" style="-fx-background-color: #fff;">
+      <VBox alignment="TOP_CENTER" layoutX="1000.0" layoutY="129.0" prefHeight="638.0" prefWidth="210.0">
          <children>
             <ImageView fitHeight="74.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -342,7 +342,7 @@
             </Label>
             <ScrollPane layoutX="814.0" layoutY="130.0" prefHeight="416.0" prefWidth="210.0" styleClass="main-scroll-items">
                <content>
-                  <FlowPane alignment="TOP_CENTER" prefHeight="403.0" prefWidth="190.0" />
+                  <FlowPane fx:id="areaCarrito" alignment="TOP_CENTER" prefHeight="403.0" prefWidth="190.0" />
                </content>
             </ScrollPane>
             <Label text="PRECIO TOTAL">
@@ -360,7 +360,7 @@
                         <Font name="Roboto Bold" size="18.0" />
                      </font>
                   </Label>
-                  <Label prefHeight="30.0" prefWidth="51.0" styleClass="lbl-price" text="0.00" textFill="#463838">
+                  <Label fx:id="lblPrecioTotal" alignment="CENTER" prefHeight="30.0" styleClass="lbl-price" text="00.00" textFill="#463838" HBox.hgrow="ALWAYS">
                      <font>
                         <Font name="Roboto Bold" size="25.0" />
                      </font>
