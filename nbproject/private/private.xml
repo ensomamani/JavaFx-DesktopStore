@@ -13,7 +13,7 @@
             <url>src/controller/VentanaClienteController.java</url>
             <bookmark id="1">
                 <name/>
-                <line>116</line>
+                <line>118</line>
                 <key/>
             </bookmark>
         </file>
@@ -24,6 +24,7 @@
             <file>file:/D:/proyecto-tienda/Tienda/src/controller/VentanaClienteController.java</file>
             <file>file:/D:/proyecto-tienda/Tienda/src/model/Producto.java</file>
             <file>file:/D:/proyecto-tienda/Tienda/src/view/AddItemVentanaTienda.fxml</file>
+            <file>file:/D:/proyecto-tienda/Tienda/src/controller/AddItemVentanaTiendaController.java</file>
             <file>file:/D:/proyecto-tienda/Tienda/src/controller/AddItemCartController.java</file>
         </group>
     </open-files>

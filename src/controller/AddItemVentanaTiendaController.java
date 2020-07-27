@@ -74,6 +74,7 @@ public class AddItemVentanaTiendaController implements Initializable {
     public static Button disminuir, aumentar, agregar;
     public static Label prod;
     public static VBox mainBox;
+    public static Button ordenarProd;
     Node nodo;
 
     /**
@@ -85,7 +86,9 @@ public class AddItemVentanaTiendaController implements Initializable {
         deshabilitarFocus();
         mainBox = mainVboxItemProd;
         botonActivo = btnAgregarCarrito;
+        ordenarProd = ordenarProducto;
     }
+    
 
     private void deshabilitarFocus() {
         aumentarProd.setFocusTraversable(false);
@@ -126,6 +129,7 @@ public class AddItemVentanaTiendaController implements Initializable {
             mostrarCantidad.setText("" + resultado);
             if (resultado == 1) {
                 disminuirProd.setDisable(true);
+                mostrarCantidad.setText("1");
             }
 
         }
@@ -157,17 +161,22 @@ public class AddItemVentanaTiendaController implements Initializable {
             lblCantidadAgregado.setText(mostrarCantidad.getText());
             //se declaro aqui la variable addCart de tipo static porque cuando pase al carrito esta guardara el boton ordenar producto y cuando pase
             // al area del carrito esta podra tener acceso pero el intermediario va ser el btn ordenar carrito Clicked 
-            //ordenarProducto.toBack();
+            ordenarProducto.toBack();
             btnAgregarCarrito.setDisable(true);
-
+            ordenarProducto.setDisable(true);
+            aumentarProd.setDisable(true);
+            disminuirProd.setDisable(true);
         } catch (IOException ex) {
             Logger.getLogger(AddItemVentanaTiendaController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
     public void deshabilibarBotonesRaiz(String nombre) {
         if (nombreProducto.getText().equals(nombre)) {
             nombreProducto.getParent().getChildrenUnmodifiable().clear();
         }
+    }
+    public void deshabilibarBotonesCantidad() {
+        
     }
 }

@@ -369,7 +369,7 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="59.0" prefWidth="150.0">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="48.0" prefWidth="193.0" styleClass="btn-ordenar" text="ORDENAR TODO" textFill="#eeeeee">
+                  <Button fx:id="btnOrdenarTodo" mnemonicParsing="false" onAction="#ordenarTodoCarrito" prefHeight="48.0" prefWidth="193.0" styleClass="btn-ordenar" text="ORDENAR TODO" textFill="#eeeeee">
                      <font>
                         <Font name="Roboto Black" size="16.0" />
                      </font>

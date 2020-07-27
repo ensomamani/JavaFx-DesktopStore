@@ -68,15 +68,23 @@ public class AddItemCartController implements Initializable {
     private void btnAumentarClicked(MouseEvent event) {
         if (event.getSource().equals(btnAumentarCan)) {
             //recorremos una vez para que vaya aumentando uno en uno
+            double precioProducto = Double.parseDouble(lblPrecio.getText());
             int value = Integer.parseInt(txtCantidad.getText());
+            System.out.println(value);
             int resultado = value + 1;
             txtCantidad.setText("" + resultado);
-            btnDisminuirCan.setDisable(false);
-            System.out.println(lblPrecio.getText());
+            btnDisminuirCan.setDisable(false);      
+            double totalAumentado = value * precioProducto;
+            System.out.println(totalAumentado);
+            double totalAumentadoSumado = Double.parseDouble(VentanaClienteController.precioTotalProducto.getText()) + totalAumentado;
             if (resultado > 5) {
                 txtCantidad.setText("1");
+                totalAumentadoSumado = precioProducto;
                 btnDisminuirCan.setDisable(true);
+                //System.out.println(VentanaClienteController.precioTotalProducto.getText());
             }
+            //System.out.println(totalAumentadoSumado);
+
         }
     }
 
@@ -97,24 +105,41 @@ public class AddItemCartController implements Initializable {
     @FXML
     private void btnEliminarProdCarrito(ActionEvent event) {
         if (event.getSource().equals(btnCloseItemCart)) {
-
             VentanaClienteController.extendsAreaCarrito.getChildren().remove(parentAddItemCart);
-            double ventanaTotalCliente = Double.parseDouble(VentanaClienteController.precioTotalProducto.getText()) - precioTotal;
-            VentanaClienteController.precioTotalProducto.setText("" + ventanaTotalCliente);
-            Node[] areaProductoItem = new Node[VentanaClienteController.extendsAreaProducto.getChildren().size()];
-            for (int i = 0; i < areaProductoItem.length; i++) {
-                areaProductoItem[i] = VentanaClienteController.extendsAreaProducto.getChildren().get(i);
-                VBox v = (VBox) areaProductoItem[i];
-                Label nombreProd = (Label) v.getChildren().listIterator(1).next();
-                if (nombreProd.getText().equals(lblNombreProd.getText())) {
-                    HBox hBox = (HBox) v.getChildren().listIterator(3).next();
-                    Button b = (Button) hBox.getChildren().listIterator(2).next();
-                    if (b.isDisabled()) {
-                        b.setDisable(false);
+            double ventanaTotalCliente = Integer.parseInt(txtCantidad.getText()) * Double.parseDouble(lblPrecio.getText());
+            
+            double totalARestar = Double.parseDouble(VentanaClienteController.precioTotalProducto.getText()) -  ventanaTotalCliente;
+            VentanaClienteController.precioTotalProducto.setText(String.format("%.2f", totalARestar));
+            findNodesToDisable();
+
+        }
+    }
+
+    private void findNodesToDisable() {
+        Node[] areaProductoItem = new Node[VentanaClienteController.extendsAreaProducto.getChildren().size()];
+        for (int i = 0; i < areaProductoItem.length; i++) {
+            areaProductoItem[i] = VentanaClienteController.extendsAreaProducto.getChildren().get(i);
+            VBox v = (VBox) areaProductoItem[i];
+            Label nombreProd = (Label) v.lookup("#nombreProducto");
+            if (nombreProd.getText().equals(lblNombreProd.getText())) {
+                Button bAgregarCar = (Button) v.lookup("#btnAgregarCarrito");
+                Button bOrdenarProd = (Button) v.lookup("#ordenarProducto");
+                Button botonAumentar = (Button) v.lookup("#aumentarProd");
+                Button botonDisminuir = (Button) v.lookup("#disminuirProd");
+                TextField txt = (TextField) v.lookup("#mostrarCantidad");
+                if (bAgregarCar.isDisabled()) {
+                    bAgregarCar.setDisable(false);
+                    bOrdenarProd.toFront();
+                    bOrdenarProd.setDisable(false);
+                    botonAumentar.setDisable(false);
+                    botonDisminuir.setDisable(false);
+                    if (Integer.parseInt(txt.getText()) == 1) {
+                        botonDisminuir.setDisable(true);
                     }
+                    
+                    //AddItemVentanaTiendaController.ordenarProd.toFront();
                 }
             }
-
         }
     }
 
@@ -122,8 +147,8 @@ public class AddItemCartController implements Initializable {
         idProducto = id;
         lblNombreProd.setText(nombre);
         txtCantidad.setText(cantidad);
-        precioTotal = Double.parseDouble(cantidad) * Double.parseDouble(precio);
-        lblPrecio.setText(String.format("%.2f", precioTotal));
+        //precioTotal = Double.parseDouble(cantidad) * Double.parseDouble(precio);
+        lblPrecio.setText(precio);
         imageCarrito.setImage(imagen);
 
     }

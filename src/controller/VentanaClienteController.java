@@ -83,6 +83,8 @@ public class VentanaClienteController implements Initializable {
     private FlowPane areaCarrito;
     @FXML
     private Label lblPrecioTotal;
+    @FXML
+    private Button btnOrdenarTodo;
     /**
      * Initializes the controller class.
      */
@@ -354,6 +356,15 @@ public class VentanaClienteController implements Initializable {
             }
         } catch (IOException ex) {
             Logger.getLogger(VentanaClienteController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void ordenarTodoCarrito(ActionEvent event) {
+        if (event.getSource().equals(btnOrdenarTodo)) {
+            System.out.println("voy ordenar todos los productos");
+            System.out.println(event.getSource());
+            
         }
     }
 }
