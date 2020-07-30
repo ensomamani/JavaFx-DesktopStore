@@ -33,7 +33,7 @@ import model.Producto;
  */
 public class AddItemCartController implements Initializable {
 
-    double precioTotal = 0;
+    double precioProducto = 0;
     @FXML
     private Label lblNombreProd;
     @FXML
@@ -67,24 +67,25 @@ public class AddItemCartController implements Initializable {
     @FXML
     private void btnAumentarClicked(MouseEvent event) {
         if (event.getSource().equals(btnAumentarCan)) {
-            //recorremos una vez para que vaya aumentando uno en uno
-            double precioProducto = Double.parseDouble(lblPrecio.getText());
-            int value = Integer.parseInt(txtCantidad.getText());
-            System.out.println(value);
-            int resultado = value + 1;
+            //recorremos una vez para que vaya aumentando uno en uno          
+            //System.out.println(value);
+            int resultado = Integer.parseInt(txtCantidad.getText()) + 1;
             txtCantidad.setText("" + resultado);
             btnDisminuirCan.setDisable(false);      
-            double totalAumentado = value * precioProducto;
-            System.out.println(totalAumentado);
-            double totalAumentadoSumado = Double.parseDouble(VentanaClienteController.precioTotalProducto.getText()) + totalAumentado;
+            double totalSumado = Double.parseDouble(lblPrecio.getText()) + precioProducto; 
+            lblPrecio.setText(String.format("%.2f", totalSumado));
+            double sumarConTotalGeneral = Double.parseDouble(VentanaClienteController.precioTotalProducto.getText()) + precioProducto;
+            VentanaClienteController.precioTotalProducto.setText(String.format("%.2f", sumarConTotalGeneral));
             if (resultado > 5) {
                 txtCantidad.setText("1");
-                totalAumentadoSumado = precioProducto;
                 btnDisminuirCan.setDisable(true);
-                //System.out.println(VentanaClienteController.precioTotalProducto.getText());
+                //total de itemProducto
+                double restarTotalProducto = Double.parseDouble(lblPrecio.getText()) - precioProducto;
+                //total de la ventanaClienta
+                double restarTotalGeneral = Double.parseDouble(VentanaClienteController.precioTotalProducto.getText()) - restarTotalProducto;
+                VentanaClienteController.precioTotalProducto.setText(String.format("%.2f", restarTotalGeneral));
+                lblPrecio.setText(""+precioProducto);                 
             }
-            //System.out.println(totalAumentadoSumado);
-
         }
     }
 
@@ -92,9 +93,14 @@ public class AddItemCartController implements Initializable {
     private void btnDisminuirClicked(MouseEvent event) {
         if (event.getSource().equals(btnDisminuirCan)) {
             //recorremos una vez para que vaya disminuyendo uno en uno
-            int value = Integer.parseInt(txtCantidad.getText());
-            int resultado = value - 1;
+            int resultado = Integer.parseInt(txtCantidad.getText()) - 1;
             txtCantidad.setText("" + resultado);
+            //Total restado del producto Item
+            double totalRestado = Double.parseDouble(lblPrecio.getText()) - precioProducto; 
+            lblPrecio.setText(String.format("%.2f", totalRestado));
+            //Total restado de la ventana cliente
+            double restarConTotalGeneral = Double.parseDouble(VentanaClienteController.precioTotalProducto.getText()) - precioProducto;
+            VentanaClienteController.precioTotalProducto.setText(String.format("%.2f", restarConTotalGeneral));
             if (resultado == 1) {
                 btnDisminuirCan.setDisable(true);
             }
@@ -106,10 +112,9 @@ public class AddItemCartController implements Initializable {
     private void btnEliminarProdCarrito(ActionEvent event) {
         if (event.getSource().equals(btnCloseItemCart)) {
             VentanaClienteController.extendsAreaCarrito.getChildren().remove(parentAddItemCart);
-            double ventanaTotalCliente = Integer.parseInt(txtCantidad.getText()) * Double.parseDouble(lblPrecio.getText());
-            
-            double totalARestar = Double.parseDouble(VentanaClienteController.precioTotalProducto.getText()) -  ventanaTotalCliente;
-            VentanaClienteController.precioTotalProducto.setText(String.format("%.2f", totalARestar));
+            double eliminarTotalProducto = Double.parseDouble(VentanaClienteController.precioTotalProducto.getText()) - Double.parseDouble(lblPrecio.getText());
+            System.out.println(eliminarTotalProducto);
+            VentanaClienteController.precioTotalProducto.setText(String.format("%.2f", eliminarTotalProducto));          
             findNodesToDisable();
 
         }
@@ -147,10 +152,13 @@ public class AddItemCartController implements Initializable {
         idProducto = id;
         lblNombreProd.setText(nombre);
         txtCantidad.setText(cantidad);
-        //precioTotal = Double.parseDouble(cantidad) * Double.parseDouble(precio);
-        lblPrecio.setText(precio);
+        double totalPrecioCantidad = Double.parseDouble(precio) * Integer.parseInt(cantidad);
+        lblPrecio.setText(""+String.format("%.2f", totalPrecioCantidad));
         imageCarrito.setImage(imagen);
-
+        precioProducto = Double.parseDouble(precio);
+        if (Integer.parseInt(cantidad) > 1) {
+            btnDisminuirCan.setDisable(false);
+        }
     }
 
 }

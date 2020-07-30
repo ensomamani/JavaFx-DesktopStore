@@ -46,7 +46,7 @@
                   </HBox>
                   <HBox>
                      <children>
-                        <Label fx:id="lblPrecio" alignment="TOP_LEFT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="30.0" prefWidth="85.0" styleClass="lbl-price" text="hoila" textFill="#463838">
+                        <Label fx:id="lblPrecio" alignment="TOP_LEFT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="30.0" prefWidth="85.0" styleClass="lbl-price" text="precio" textFill="#463838">
                            <font>
                               <Font name="Roboto Bold" size="25.0" />
                            </font>

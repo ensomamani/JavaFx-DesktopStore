@@ -210,6 +210,27 @@
                   </Pane>
                </children>
             </StackPane>
+            <VBox alignment="BOTTOM_CENTER" prefHeight="156.0" prefWidth="150.0">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="5.0" prefWidth="150.0">
+                     <children>
+                        <Label text="PC-" textFill="#7c7979">
+                           <font>
+                              <Font name="Roboto Medium" size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </Label>
+                        <Label text="10" textFill="#7c7979">
+                           <font>
+                              <Font name="Roboto Medium" size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
          </children>
       </VBox>
       <HBox alignment="CENTER" layoutX="150.0" layoutY="35.0" prefHeight="40.0" prefWidth="1061.0" styleClass="main-menu">

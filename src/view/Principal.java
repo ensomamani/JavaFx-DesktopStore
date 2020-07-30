@@ -33,7 +33,7 @@ public class Principal extends Application {
         primaryStage.setTitle("Hello World!");
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
-        primaryStage.initStyle(StageStyle.TRANSPARENT);
+        //primaryStage.initStyle(StageStyle.TRANSPARENT);
         stageExtends = primaryStage;
         primaryStage.show();
         
