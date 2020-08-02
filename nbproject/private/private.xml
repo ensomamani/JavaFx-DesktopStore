@@ -20,14 +20,13 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/D:/proyecto-tienda/Tienda/src/styles/style.css</file>
             <file>file:/D:/proyecto-tienda/Tienda/src/view/Principal.java</file>
-            <file>file:/D:/proyecto-tienda/Tienda/src/view/AddItemCart.fxml</file>
-            <file>file:/D:/proyecto-tienda/Tienda/src/model/DBUtils.java</file>
-            <file>file:/D:/proyecto-tienda/Tienda/src/controller/VentanaClienteController.java</file>
+            <file>file:/D:/proyecto-tienda/Tienda/src/view/VentanaCliente.fxml</file>
+            <file>file:/D:/proyecto-tienda/Tienda/src/controller/VentanaClienteConectarController.java</file>
+            <file>file:/D:/proyecto-tienda/Tienda/src/view/VentanaClienteConectar.fxml</file>
             <file>file:/D:/proyecto-tienda/Tienda/src/model/Producto.java</file>
-            <file>file:/D:/proyecto-tienda/Tienda/src/styles/ventanaordencliente.css</file>
-            <file>file:/D:/proyecto-tienda/Tienda/src/view/AddItemVentanaTienda.fxml</file>
-            <file>file:/D:/proyecto-tienda/Tienda/src/controller/AddItemVentanaTiendaController.java</file>
+            <file>file:/D:/proyecto-tienda/Tienda/src/styles/ventanaclienteconectar.css</file>
             <file>file:/D:/proyecto-tienda/Tienda/src/controller/AddItemCartController.java</file>
         </group>
     </open-files>

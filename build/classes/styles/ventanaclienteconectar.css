@@ -1,0 +1,24 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.mainFxmlClass {
+    -fx-background-color: #fff;
+}
+.main-pane {
+    -fx-border-color: #c3c3c3;
+    -fx-border-style: solid;
+    -fx-border-radius: 4 4 4 4;
+}
+.title-pane {
+    -fx-background-color: #fff;
+}
+.btn-accept-data {
+    -fx-background-color: #FFB24D;
+}
+.btn-cancel-data {
+    -fx-border-color: #c3c3c3;
+    -fx-border-style: solid;
+    -fx-border-radius: 4 4 4 4;
+}
+

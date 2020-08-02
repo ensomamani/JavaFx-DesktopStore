@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="374.0" prefWidth="380.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.VentanaClienteConectarController">
+    <stylesheets>
+        <URL value="@/styles/ventanaclienteconectar.css" />
+    </stylesheets>
+   <children>
+      <Pane layoutX="11.0" layoutY="131.0" prefHeight="211.0" prefWidth="371.0" styleClass="main-pane">
+         <children>
+            <JFXTextField alignment="TOP_LEFT" focusColor="#e7890d" labelFloat="true" layoutX="33.0" layoutY="41.0" prefHeight="30.0" prefWidth="306.0" promptText="Escribe el número de pc">
+               <font>
+                  <Font name="Roboto" size="14.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField focusColor="#e7890d" labelFloat="true" layoutX="33.0" layoutY="91.0" prefHeight="30.0" prefWidth="306.0" promptText="Escribe el nombre de tu servidor o ip">
+               <font>
+                  <Font name="Roboto" size="14.0" />
+               </font>
+            </JFXTextField>
+            <JFXButton layoutX="151.0" layoutY="137.0" prefHeight="30.0" prefWidth="84.0" styleClass="btn-cancel-data" text="CANCELAR" textFill="#e7890d">
+               <font>
+                  <Font name="Roboto" size="12.0" />
+               </font>
+            </JFXButton>
+            <JFXButton layoutX="249.0" layoutY="137.0" prefHeight="30.0" prefWidth="90.0" styleClass="btn-accept-data" text="CONFIRMAR" textFill="#393939">
+               <font>
+                  <Font name="Roboto" size="12.0" />
+               </font>
+            </JFXButton>
+            <Pane layoutX="42.0" layoutY="-15.0" prefHeight="30.0" prefWidth="287.0" styleClass="title-pane">
+               <children>
+                  <Label alignment="CENTER" prefHeight="30.0" prefWidth="287.0" text="CONÉCTATE A TU SERVIDOR" textFill="#727272">
+                     <font>
+                        <Font name="Roboto" size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+      <HBox alignment="CENTER" layoutX="3.0" layoutY="43.0" prefHeight="60.0" prefWidth="371.0">
+         <children>
+            <FontAwesomeIcon fill="#e7890d" glyphName="LAPTOP" layoutX="97.0" layoutY="86.0" size="3em" />
+            <FontAwesomeIcon fill="#c3c3c3" glyphName="ARROWS_H" layoutX="136.0" layoutY="81.0" size="2em">
+               <HBox.margin>
+                  <Insets left="5.0" right="5.0" />
+               </HBox.margin>
+            </FontAwesomeIcon>
+            <FontAwesomeIcon fill="#e7890d" glyphName="SERVER" layoutX="166.0" layoutY="94.0" size="5em" />
+            <FontAwesomeIcon fill="#c3c3c3" glyphName="ARROWS_H" layoutX="232.0" layoutY="81.0" size="2em">
+               <HBox.margin>
+                  <Insets left="5.0" right="5.0" />
+               </HBox.margin>
+            </FontAwesomeIcon>
+            <FontAwesomeIcon fill="#e7890d" glyphName="LAPTOP" layoutX="262.0" layoutY="85.0" size="3em" />
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

@@ -10,7 +10,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox fx:id="parentAddItemCart" alignment="TOP_CENTER" prefHeight="154.0" prefWidth="169.0" stylesheets="@../styles/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.AddItemCartController">
+<VBox fx:id="parentAddItemCart" alignment="TOP_CENTER" prefHeight="154.0" prefWidth="169.0" stylesheets="@../styles/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label fx:id="lblNombreProd" alignment="CENTER" prefHeight="45.0" prefWidth="127.0" textAlignment="CENTER" wrapText="true">
          <font>
