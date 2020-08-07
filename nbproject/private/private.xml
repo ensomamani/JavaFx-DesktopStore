@@ -22,7 +22,10 @@
         <group>
             <file>file:/D:/proyecto-tienda/Tienda/src/styles/style.css</file>
             <file>file:/D:/proyecto-tienda/Tienda/src/view/Principal.java</file>
+            <file>file:/D:/proyecto-tienda/Tienda/src/model/DBUtils.java</file>
+            <file>file:/D:/proyecto-tienda/Tienda/src/Utilidades/ControladorValidaciones.java</file>
             <file>file:/D:/proyecto-tienda/Tienda/src/view/VentanaCliente.fxml</file>
+            <file>file:/D:/proyecto-tienda/Tienda/src/Utilidades/ControladorGeneral.java</file>
             <file>file:/D:/proyecto-tienda/Tienda/src/controller/VentanaClienteConectarController.java</file>
             <file>file:/D:/proyecto-tienda/Tienda/src/view/VentanaClienteConectar.fxml</file>
             <file>file:/D:/proyecto-tienda/Tienda/src/model/Producto.java</file>

@@ -19,22 +19,22 @@
    <children>
       <Pane layoutX="11.0" layoutY="131.0" prefHeight="211.0" prefWidth="371.0" styleClass="main-pane">
          <children>
-            <JFXTextField alignment="TOP_LEFT" focusColor="#e7890d" labelFloat="true" layoutX="33.0" layoutY="41.0" prefHeight="30.0" prefWidth="306.0" promptText="Escribe el número de pc">
+            <JFXTextField fx:id="textFieldNamePc" alignment="TOP_LEFT" focusColor="#e7890d" labelFloat="true" layoutX="33.0" layoutY="41.0" prefHeight="30.0" prefWidth="306.0" promptText="Escribe el número de pc">
                <font>
                   <Font name="Roboto" size="14.0" />
                </font>
             </JFXTextField>
-            <JFXTextField focusColor="#e7890d" labelFloat="true" layoutX="33.0" layoutY="91.0" prefHeight="30.0" prefWidth="306.0" promptText="Escribe el nombre de tu servidor o ip">
+            <JFXTextField fx:id="textFieldNameServer" focusColor="#e7890d" labelFloat="true" layoutX="33.0" layoutY="91.0" prefHeight="30.0" prefWidth="306.0" promptText="Escribe el nombre de tu servidor o ip">
                <font>
                   <Font name="Roboto" size="14.0" />
                </font>
             </JFXTextField>
-            <JFXButton layoutX="151.0" layoutY="137.0" prefHeight="30.0" prefWidth="84.0" styleClass="btn-cancel-data" text="CANCELAR" textFill="#e7890d">
+            <JFXButton fx:id="buttonCancel" layoutX="151.0" layoutY="137.0" onAction="#eventOnCancel" prefHeight="30.0" prefWidth="84.0" styleClass="btn-cancel-data" text="CANCELAR" textFill="#e7890d">
                <font>
                   <Font name="Roboto" size="12.0" />
                </font>
             </JFXButton>
-            <JFXButton layoutX="249.0" layoutY="137.0" prefHeight="30.0" prefWidth="90.0" styleClass="btn-accept-data" text="CONFIRMAR" textFill="#393939">
+            <JFXButton fx:id="buttonConfirm" layoutX="249.0" layoutY="137.0" onAction="#eventOnAction" prefHeight="30.0" prefWidth="90.0" styleClass="btn-accept-data" text="CONFIRMAR" textFill="#393939">
                <font>
                   <Font name="Roboto" size="12.0" />
                </font>

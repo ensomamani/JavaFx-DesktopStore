@@ -19,7 +19,7 @@ import java.util.logging.Logger;
  */
 public class DBUtils {
     private final String DB = "nobi_tienda";
-    private final String MYSQLDB = "jdbc:mysql://192.168.2.17:3306/" + DB;
+    private final String MYSQLDB = "jdbc:mysql://localhost:3306/" + DB;
     private final String User = "enso";
     private final String Pass = "123456";
     /*Método para llamar a la conexion de la base de datos*/
