@@ -24,8 +24,7 @@ public class DBUtils {
     private final String Pass = "123456";
     /*Método para llamar a la conexion de la base de datos*/
     public Connection getConnection() throws SQLException {
-        Connection conexion = null;
-        
+        Connection conexion = null;      
         try {
             conexion = DriverManager.getConnection(MYSQLDB, User, Pass);
             if (!conexion.isClosed()) {

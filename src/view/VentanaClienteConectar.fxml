@@ -17,7 +17,7 @@
         <URL value="@/styles/ventanaclienteconectar.css" />
     </stylesheets>
    <children>
-      <Pane layoutX="11.0" layoutY="131.0" prefHeight="211.0" prefWidth="371.0" styleClass="main-pane">
+      <Pane layoutX="3.0" layoutY="130.0" prefHeight="211.0" prefWidth="371.0" styleClass="main-pane">
          <children>
             <JFXTextField fx:id="textFieldNamePc" alignment="TOP_LEFT" focusColor="#e7890d" labelFloat="true" layoutX="33.0" layoutY="41.0" prefHeight="30.0" prefWidth="306.0" promptText="Escribe el número de pc">
                <font>
