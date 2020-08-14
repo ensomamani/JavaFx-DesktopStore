@@ -12,29 +12,24 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="374.0" prefWidth="380.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.VentanaClienteConectarController">
+<AnchorPane id="AnchorPane" prefHeight="243.0" prefWidth="380.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.VentanaClienteConectarController">
     <stylesheets>
         <URL value="@/styles/ventanaclienteconectar.css" />
     </stylesheets>
    <children>
-      <Pane layoutX="3.0" layoutY="130.0" prefHeight="211.0" prefWidth="371.0" styleClass="main-pane">
+      <Pane layoutX="5.0" layoutY="120.0" prefHeight="144.0" prefWidth="371.0" styleClass="main-pane">
          <children>
             <JFXTextField fx:id="textFieldNamePc" alignment="TOP_LEFT" focusColor="#e7890d" labelFloat="true" layoutX="33.0" layoutY="41.0" prefHeight="30.0" prefWidth="306.0" promptText="Escribe el número de pc">
                <font>
                   <Font name="Roboto" size="14.0" />
                </font>
             </JFXTextField>
-            <JFXTextField fx:id="textFieldNameServer" focusColor="#e7890d" labelFloat="true" layoutX="33.0" layoutY="91.0" prefHeight="30.0" prefWidth="306.0" promptText="Escribe el nombre de tu servidor o ip">
-               <font>
-                  <Font name="Roboto" size="14.0" />
-               </font>
-            </JFXTextField>
-            <JFXButton fx:id="buttonCancel" layoutX="151.0" layoutY="137.0" onAction="#eventOnCancel" prefHeight="30.0" prefWidth="84.0" styleClass="btn-cancel-data" text="CANCELAR" textFill="#e7890d">
+            <JFXButton fx:id="buttonCancel" layoutX="151.0" layoutY="97.0" onAction="#eventOnCancel" prefHeight="30.0" prefWidth="84.0" styleClass="btn-cancel-data" text="CANCELAR" textFill="#e7890d">
                <font>
                   <Font name="Roboto" size="12.0" />
                </font>
             </JFXButton>
-            <JFXButton fx:id="buttonConfirm" layoutX="249.0" layoutY="137.0" onAction="#eventOnAction" prefHeight="30.0" prefWidth="90.0" styleClass="btn-accept-data" text="CONFIRMAR" textFill="#393939">
+            <JFXButton fx:id="buttonConfirm" layoutX="249.0" layoutY="97.0" onAction="#eventOnAction" prefHeight="30.0" prefWidth="90.0" styleClass="btn-accept-data" text="CONFIRMAR" textFill="#393939">
                <font>
                   <Font name="Roboto" size="12.0" />
                </font>

@@ -22,13 +22,9 @@
         <group>
             <file>file:/D:/proyecto-tienda/Tienda/src/model/PropertiesServer.java</file>
             <file>file:/D:/proyecto-tienda/Tienda/src/view/Principal.java</file>
-            <file>file:/D:/proyecto-tienda/Tienda/src/model/DBUtils.java</file>
+            <file>file:/D:/proyecto-tienda/Tienda/src/Resources/config.properties</file>
             <file>file:/D:/proyecto-tienda/Tienda/src/view/VentanaCliente.fxml</file>
-            <file>file:/D:/proyecto-tienda/Tienda/src/model/PcCliente.java</file>
             <file>file:/D:/proyecto-tienda/Tienda/src/controller/VentanaClienteConectarController.java</file>
-            <file>file:/D:/proyecto-tienda/Tienda/src/view/VentanaClienteConectar.fxml</file>
-            <file>file:/D:/proyecto-tienda/Tienda/src/model/Producto.java</file>
-            <file>file:/D:/proyecto-tienda/Tienda/src/styles/ventanaclienteconectar.css</file>
         </group>
     </open-files>
 </project-private>

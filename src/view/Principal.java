@@ -27,7 +27,7 @@ public class Principal extends Application {
     
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("VentanaClienteConectar.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("VentanaCliente.fxml"));
         
         Scene scene = new Scene(root);
         primaryStage.setTitle("Hello World!");
