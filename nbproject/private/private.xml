@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="2">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="3">
         <file>
-            <url>src/DAO/CategoriaProductoDAO.java</url>
-            <bookmark id="2">
+            <url>src/controller/VentanaClienteConectarController.java</url>
+            <bookmark id="3">
                 <name/>
-                <line>61</line>
+                <line>78</line>
                 <key/>
             </bookmark>
         </file>
@@ -17,13 +17,21 @@
                 <key/>
             </bookmark>
         </file>
+        <file>
+            <url>src/DAO/CategoriaProductoDAO.java</url>
+            <bookmark id="2">
+                <name/>
+                <line>61</line>
+                <key/>
+            </bookmark>
+        </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/D:/proyecto-tienda/Tienda/src/model/PropertiesServer.java</file>
-            <file>file:/D:/proyecto-tienda/Tienda/src/view/Principal.java</file>
-            <file>file:/D:/proyecto-tienda/Tienda/src/Resources/config.properties</file>
-            <file>file:/D:/proyecto-tienda/Tienda/src/view/VentanaCliente.fxml</file>
+            <file>file:/D:/proyecto-tienda/Tienda/src/controller/PcsLocalController.java</file>
+            <file>file:/D:/proyecto-tienda/Tienda/src/controller/VentanaCargandoInstalacionController.java</file>
+            <file>file:/D:/proyecto-tienda/Tienda/src/controller/VentanaClienteController.java</file>
             <file>file:/D:/proyecto-tienda/Tienda/src/controller/VentanaClienteConectarController.java</file>
         </group>
     </open-files>

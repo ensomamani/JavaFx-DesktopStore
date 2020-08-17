@@ -14,21 +14,30 @@ import javafx.scene.Scene;
 
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import model.PropertiesServer;
 
 /**
  *
  * @author Enso
  */
-
-
 public class Principal extends Application {
-    
+
     public static Stage stageExtends;
-    
+
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("VentanaCliente.fxml"));
-        
+        PropertiesServer configServer = new PropertiesServer();
+        String namePc = configServer.getPropertiesValues();
+        if (!namePc.isEmpty()) {
+            initWindow("VentanaCliente.fxml", primaryStage);
+        } else {
+            initWindow("VentanaClienteConectar.fxml", primaryStage);
+
+        }
+    }
+
+    private void initWindow(String nameFxml, Stage primaryStage) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource(nameFxml));
         Scene scene = new Scene(root);
         primaryStage.setTitle("Hello World!");
         primaryStage.setScene(scene);
@@ -36,8 +45,6 @@ public class Principal extends Application {
         //primaryStage.initStyle(StageStyle.TRANSPARENT);
         stageExtends = primaryStage;
         primaryStage.show();
-        
-        
     }
 
     /**
@@ -46,5 +53,5 @@ public class Principal extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    
+
 }

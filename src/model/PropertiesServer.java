@@ -26,7 +26,7 @@ public class PropertiesServer {
     private final String propertiesFileName = "config.properties";
     private final File file = new File("src/Resources/" + propertiesFileName);
 
-    public void getPropertiesValues() {
+    public String getPropertiesValues() {
 
         FileInputStream fis;
         try {
@@ -39,9 +39,8 @@ public class PropertiesServer {
         } catch (IOException ex) {
             Logger.getLogger(PropertiesServer.class.getName()).log(Level.SEVERE, null, ex);
         }
-        String namePc = properties.getProperty("namePcCliente");
-        String nameServer = properties.getProperty("server");
-        System.out.println(namePc + " " + nameServer);
+        String namePc = properties.getProperty("namePc");
+        return namePc;
     }
 
     public void setPropertiesValues(String namePc) {

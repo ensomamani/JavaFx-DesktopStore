@@ -86,7 +86,7 @@ public class pcClienteDao {
             pst.setString(1, name);
             rs = pst.executeQuery();
             if (rs.next()) {
-                System.out.println("Esta pc ya está registrada en la base de datos");
+                JOptionPane.showMessageDialog(null, "Esta pc ya se encuentra registrada en la base de datos", "Conección fallida", JOptionPane.WARNING_MESSAGE);
                 return true;
             }
         } catch (SQLException ex) {
@@ -127,7 +127,31 @@ public class pcClienteDao {
             }
         }
     }
-    
+    public boolean isSavePcCliente() {
+        dbutils = new DBUtils();
+        model = new PcCliente();
+        String sql = "insert into pc_Cliente values(?,?)";
+        try {
+            cnx = dbutils.getConnection();
+            pst = cnx.prepareStatement(sql);
+            pst.setInt(1, model.getId_pc());
+            pst.setString(2, model.getNombre_pc());
+            int fileUpdate = pst.executeUpdate();
+            if (fileUpdate == 1) {
+                System.out.println("Se inserto una pc cliente correctamente");
+                return true;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(pcClienteDao.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                dbutils.closeConnection(cnx, pst);
+            } catch (SQLException ex) {
+                Logger.getLogger(pcClienteDao.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return false;
+    }
     //generar codigo automaticamente
     public int getLastCodeFromTable(PcCliente model) {
         dbutils = new DBUtils();
