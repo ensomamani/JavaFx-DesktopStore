@@ -99,10 +99,10 @@ public class ControladorGeneral {
     public static Image bytesToImage(byte[] imageBytes) {
         return new Image(new ByteArrayInputStream(imageBytes));
     }
-    
+
     //metodo para guardar una imagen en el disco local D:
     public static void guardarImagen(File fi) {
-        String absoluteUrl = "D:\\img\\"+fi.getName();
+        String absoluteUrl = "D:\\img\\" + fi.getName();
         BufferedImage bi;
         try {
             bi = ImageIO.read(fi);
@@ -113,10 +113,17 @@ public class ControladorGeneral {
             Logger.getLogger(PcsLocalController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-   
+
     //para reubicar la direccion de una imagen o archivo
-   public static File toDiscoLocalD(File fi) {
-       return new File("D:\\img\\"+fi.getName());
-   } 
-   
+    public static File toDiscoLocalD(File fi) {
+        return new File("D:\\img\\" + fi.getName());
+    }
+
+    public static boolean toInt(String text) {      
+        if (!text.matches("(^[a-zA-Z]{1})[a-zA-Z]*")) {
+            System.out.println("hay letras");
+            return true;
+        }
+        return false;
+    }
 }

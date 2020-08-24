@@ -103,33 +103,8 @@ public class pcClienteDao {
     }
 
     //guardar las pc en base datos que se encuentren en la red
-    public void savePcCliente(PcCliente model) {
+    public boolean savePcCliente(PcCliente model) {
         dbutils = new DBUtils();
-        String sql = "insert into pc_Cliente values(?,?)";
-        try {
-            cnx = dbutils.getConnection();
-            pst = cnx.prepareStatement(sql);
-            pst.setInt(1, model.getId_pc());
-            pst.setString(2, model.getNombre_pc());
-            int fileUpdate = pst.executeUpdate();
-            if (fileUpdate == 1) {
-                System.out.println("Se inserto una pc cliente correctamente");
-            } else {
-                System.out.println("Fallo la inserccion de una pc cliente");
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(pcClienteDao.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            try {
-                dbutils.closeConnection(cnx, pst);
-            } catch (SQLException ex) {
-                Logger.getLogger(pcClienteDao.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-    }
-    public boolean isSavePcCliente() {
-        dbutils = new DBUtils();
-        model = new PcCliente();
         String sql = "insert into pc_Cliente values(?,?)";
         try {
             cnx = dbutils.getConnection();
@@ -140,6 +115,8 @@ public class pcClienteDao {
             if (fileUpdate == 1) {
                 System.out.println("Se inserto una pc cliente correctamente");
                 return true;
+            } else {
+                System.out.println("Fallo la inserccion de una pc cliente");
             }
         } catch (SQLException ex) {
             Logger.getLogger(pcClienteDao.class.getName()).log(Level.SEVERE, null, ex);
@@ -165,6 +142,12 @@ public class pcClienteDao {
             }
         } catch (SQLException ex) {
             Logger.getLogger(pcClienteDao.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                dbutils.closeConnection(cnx, pst, rs);
+            } catch (SQLException ex) {
+                Logger.getLogger(pcClienteDao.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return model.getId_pc() + 1;
     }

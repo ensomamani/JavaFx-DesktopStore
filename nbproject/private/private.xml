@@ -5,7 +5,7 @@
             <url>src/controller/VentanaClienteConectarController.java</url>
             <bookmark id="3">
                 <name/>
-                <line>78</line>
+                <line>83</line>
                 <key/>
             </bookmark>
         </file>
@@ -13,7 +13,7 @@
             <url>src/controller/VentanaClienteController.java</url>
             <bookmark id="1">
                 <name/>
-                <line>118</line>
+                <line>130</line>
                 <key/>
             </bookmark>
         </file>
@@ -29,10 +29,16 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/D:/proyecto-tienda/Tienda/src/model/PropertiesServer.java</file>
+            <file>file:/D:/proyecto-tienda/Tienda/src/view/Principal.java</file>
+            <file>file:/D:/proyecto-tienda/Tienda/src/DAO/DetallePedidoDAOImpl.java</file>
             <file>file:/D:/proyecto-tienda/Tienda/src/controller/PcsLocalController.java</file>
+            <file>file:/D:/proyecto-tienda/Tienda/src/view/AddItemCart.fxml</file>
+            <file>file:/D:/proyecto-tienda/Tienda/src/Utilidades/ControladorGeneral.java</file>
             <file>file:/D:/proyecto-tienda/Tienda/src/controller/VentanaCargandoInstalacionController.java</file>
             <file>file:/D:/proyecto-tienda/Tienda/src/controller/VentanaClienteController.java</file>
-            <file>file:/D:/proyecto-tienda/Tienda/src/controller/VentanaClienteConectarController.java</file>
+            <file>file:/D:/proyecto-tienda/Tienda/src/DAO/PedidoDAOImpl.java</file>
+            <file>file:/D:/proyecto-tienda/Tienda/src/model/Pedido.java</file>
+            <file>file:/D:/proyecto-tienda/Tienda/src/controller/AddItemVentanaTiendaController.java</file>
         </group>
     </open-files>
 </project-private>

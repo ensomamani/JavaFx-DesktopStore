@@ -26,8 +26,7 @@ public class PropertiesServer {
     private final String propertiesFileName = "config.properties";
     private final File file = new File("src/Resources/" + propertiesFileName);
 
-    public String getPropertiesValues() {
-
+    public int getPropertiesValueId() {
         FileInputStream fis;
         try {
             fis = new FileInputStream(file);
@@ -39,11 +38,27 @@ public class PropertiesServer {
         } catch (IOException ex) {
             Logger.getLogger(PropertiesServer.class.getName()).log(Level.SEVERE, null, ex);
         }
-        String namePc = properties.getProperty("namePc");
-        return namePc;
+        int idPc = Integer.parseInt(properties.getProperty("id"));
+        return idPc;
+    }
+    public String getPropertiesValueNamePc() {
+        FileInputStream fis;
+        try {
+            fis = new FileInputStream(file);
+            if (fis != null) {
+                properties.load(fis);
+            }
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(PropertiesServer.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(PropertiesServer.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        String result = properties.getProperty("namePc");
+        return result;
     }
 
-    public void setPropertiesValues(String namePc) {
+    public void setPropertiesValues(String id, String namePc) {
+        properties.setProperty("id", id);
         properties.setProperty("namePc", namePc);
         try {
             properties.store(new FileOutputStream(file), "Datos de la configuracion entre pc y servidor completada");

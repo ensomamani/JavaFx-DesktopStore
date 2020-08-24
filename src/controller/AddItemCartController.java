@@ -16,6 +16,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -34,6 +35,7 @@ import model.Producto;
 public class AddItemCartController implements Initializable {
 
     double precioProducto = 0;
+    public static int idProducto = 0;
     @FXML
     private Label lblNombreProd;
     @FXML
@@ -52,7 +54,8 @@ public class AddItemCartController implements Initializable {
     private FontAwesomeIcon btnAumentarCantidad;
     @FXML
     private VBox parentAddItemCart;
-    private int idProducto = 0;
+    @FXML
+    private Label labelIdProducto;
 
     //public static Button btnCerrar;
     /**
@@ -61,7 +64,7 @@ public class AddItemCartController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-
+        labelIdProducto.setManaged(false);
     }
 
     @FXML
@@ -148,8 +151,8 @@ public class AddItemCartController implements Initializable {
         }
     }
 
-    public void setProductoCarrito(int id, String nombre, String cantidad, String precio, Image imagen) {
-        idProducto = id;
+    public void setProductoCarrito(int id, String nombre, String cantidad, String precio, Image imagen) {      
+        labelIdProducto.setText(""+id);
         lblNombreProd.setText(nombre);
         txtCantidad.setText(cantidad);
         double totalPrecioCantidad = Double.parseDouble(precio) * Integer.parseInt(cantidad);

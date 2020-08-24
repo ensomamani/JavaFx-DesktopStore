@@ -27,26 +27,25 @@ public class Principal extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         PropertiesServer configServer = new PropertiesServer();
-        String namePc = configServer.getPropertiesValues();
+        String namePc = configServer.getPropertiesValueNamePc();
         if (!namePc.isEmpty()) {
-            initWindow("VentanaCliente.fxml", primaryStage);
+            initWindow("VentanaCliente.fxml", primaryStage, StageStyle.UNDECORATED);
         } else {
-            initWindow("VentanaClienteConectar.fxml", primaryStage);
+            initWindow("VentanaClienteConectar.fxml", primaryStage, StageStyle.DECORATED);
 
         }
     }
 
-    private void initWindow(String nameFxml, Stage primaryStage) throws IOException {
+    private void initWindow(String nameFxml, Stage primaryStage, StageStyle s) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource(nameFxml));
         Scene scene = new Scene(root);
-        primaryStage.setTitle("Hello World!");
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
-        //primaryStage.initStyle(StageStyle.TRANSPARENT);
+        primaryStage.initStyle(s);
         stageExtends = primaryStage;
         primaryStage.show();
     }
-
+    
     /**
      * @param args the command line arguments
      */

@@ -222,7 +222,7 @@
                               <Insets />
                            </VBox.margin>
                         </Label>
-                        <Label text="10" textFill="#7c7979">
+                        <Label fx:id="labelNamePc" text="10" textFill="#7c7979">
                            <font>
                               <Font name="Roboto Medium" size="14.0" />
                            </font>
