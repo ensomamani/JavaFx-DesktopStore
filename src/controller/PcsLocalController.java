@@ -7,7 +7,7 @@ package controller;
 
 import DAO.CategoriaProductoDAO;
 import DAO.IngresoProductoDAO;
-import DAO.ProductoDAO;
+import DAO.ProductoDAOImpl;
 import DAO.ProveedorDAO;
 import DAO.TipoProductoDAO;
 import DAO.pcClienteDao;
@@ -161,7 +161,7 @@ public class PcsLocalController implements Initializable {
     /**
      * Initializes the controller class.
      */
-    ProductoDAO productoDao;
+    ProductoDAOImpl productoDao;
     Producto model;
     IngresoProducto modelIngresoProducto;
     IngresoProductoDAO ingresoProductoDAO;
@@ -300,7 +300,7 @@ public class PcsLocalController implements Initializable {
     private void btnAgregarProd(MouseEvent event) throws SQLException {
         model = new Producto();
         String hora = LocalDateTime.now().getHour() + ":" + LocalDateTime.now().getMinute();
-        productoDao = new ProductoDAO();
+        productoDao = new ProductoDAOImpl();
         ingresoProductoDAO = new IngresoProductoDAO();
         FontAwesomeIcon[] icon = {iconAviso, iconAviso1, iconAviso2, iconAviso3, iconAviso4, iconAviso5};
         TextField[] txt = {txtCodProd, txtNombreProd, txtPesoProd, txtPrecioProd, txtCantidadProd, txtHoraIngresoProd};
@@ -428,7 +428,7 @@ public class PcsLocalController implements Initializable {
 
     private ObservableList<ProductoCatTipProv> getProducto() {
         ObservableList<ProductoCatTipProv> data = FXCollections.observableArrayList();
-        productoDao = new ProductoDAO();
+        productoDao = new ProductoDAOImpl();
         try {
             for (ProductoCatTipProv p : productoDao.listarProductos()) {
                 data.add(new ProductoCatTipProv(p.getId(), p.getNombreProducto(), p.getPeso(), p.getPrecioVenta(),
@@ -545,7 +545,7 @@ public class PcsLocalController implements Initializable {
                     TipoProducto t = tDao.consultarIdTipo(comboTipoProd.getValue());
                     Proveedor p = pDao.obtenerIdProveedor(comboProveedor.getValue());
                     model = new Producto(Integer.parseInt(txtCodProd.getText()), txtNombreProd.getText(), txtPesoProd.getText(), Double.parseDouble(txtPrecioProd.getText()), Integer.parseInt(txtCantidadProd.getText()), calendarIngreso.getValue().toString(), ControladorGeneral.imageByte(f), c.getIdCategoria(), t.getId_tipo(), p.getId_proveedor());
-                    ProductoDAO pdao = new ProductoDAO();
+                    ProductoDAOImpl pdao = new ProductoDAOImpl();
                     pdao.actualizarProducto(model);
                     insertarDatosTableView();
                 } else {
@@ -578,7 +578,7 @@ public class PcsLocalController implements Initializable {
                     modelIngresoProducto.setId_producto(Integer.parseInt(txtCodProd.getText()));
                     ingresoProductoDAO.eliminarIngresoProducto(modelIngresoProducto);
                     model = new Producto();
-                    productoDao = new ProductoDAO();
+                    productoDao = new ProductoDAOImpl();
                     model.setId_Producto(Integer.parseInt(txtCodProd.getText()));
                     productoDao.eliminarProducto(model);
                     insertarDatosTableView();
@@ -594,7 +594,7 @@ public class PcsLocalController implements Initializable {
        tableProductos.setItems(buscarProductos());
     }
     private ObservableList<ProductoCatTipProv> buscarProductos() {
-        productoDao = new ProductoDAO();
+        productoDao = new ProductoDAOImpl();
         model = new Producto();
         ObservableList<ProductoCatTipProv> data = FXCollections.observableArrayList();
         String buscar = txtBuscarProd.getText().toLowerCase();

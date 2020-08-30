@@ -13,7 +13,7 @@
             <url>src/controller/VentanaClienteController.java</url>
             <bookmark id="1">
                 <name/>
-                <line>130</line>
+                <line>140</line>
                 <key/>
             </bookmark>
         </file>
@@ -28,17 +28,25 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/proyecto-tienda/Tienda/src/model/PropertiesServer.java</file>
-            <file>file:/D:/proyecto-tienda/Tienda/src/view/Principal.java</file>
-            <file>file:/D:/proyecto-tienda/Tienda/src/DAO/DetallePedidoDAOImpl.java</file>
-            <file>file:/D:/proyecto-tienda/Tienda/src/controller/PcsLocalController.java</file>
-            <file>file:/D:/proyecto-tienda/Tienda/src/view/AddItemCart.fxml</file>
-            <file>file:/D:/proyecto-tienda/Tienda/src/Utilidades/ControladorGeneral.java</file>
-            <file>file:/D:/proyecto-tienda/Tienda/src/controller/VentanaCargandoInstalacionController.java</file>
-            <file>file:/D:/proyecto-tienda/Tienda/src/controller/VentanaClienteController.java</file>
+            <file>file:/D:/proyecto-tienda/Tienda/src/DAO/SalidaProductoImpl.java</file>
+            <file>file:/D:/proyecto-tienda/Tienda/src/Resources/config.properties</file>
+            <file>file:/D:/proyecto-tienda/Tienda/src/Utilidades/ControladorValidaciones.java</file>
+            <file>file:/D:/proyecto-tienda/Tienda/src/InterfaceDAO/ProductoDAO.java</file>
+            <file>file:/D:/proyecto-tienda/Tienda/src/InterfaceDAO/DetallePedidoDAO.java</file>
             <file>file:/D:/proyecto-tienda/Tienda/src/DAO/PedidoDAOImpl.java</file>
             <file>file:/D:/proyecto-tienda/Tienda/src/model/Pedido.java</file>
             <file>file:/D:/proyecto-tienda/Tienda/src/controller/AddItemVentanaTiendaController.java</file>
+            <file>file:/D:/proyecto-tienda/Tienda/src/view/AddItemVentanaTienda.fxml</file>
+            <file>file:/D:/proyecto-tienda/Tienda/src/model/PropertiesServer.java</file>
+            <file>file:/D:/proyecto-tienda/Tienda/src/view/Principal.java</file>
+            <file>file:/D:/proyecto-tienda/Tienda/src/controller/PcsLocalController.java</file>
+            <file>file:/D:/proyecto-tienda/Tienda/src/view/AddItemCart.fxml</file>
+            <file>file:/D:/proyecto-tienda/Tienda/src/controller/VentanaCargandoInstalacionController.java</file>
+            <file>file:/D:/proyecto-tienda/Tienda/src/controller/VentanaPedidosClienteController.java</file>
+            <file>file:/D:/proyecto-tienda/Tienda/src/controller/VentanaClienteController.java</file>
+            <file>file:/D:/proyecto-tienda/Tienda/src/InterfaceDAO/CRUD.java</file>
+            <file>file:/D:/proyecto-tienda/Tienda/src/model/SalidaProducto.java</file>
+            <file>file:/D:/proyecto-tienda/Tienda/src/controller/AddItemCartController.java</file>
         </group>
     </open-files>
 </project-private>

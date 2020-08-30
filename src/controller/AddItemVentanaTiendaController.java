@@ -5,7 +5,7 @@
  */
 package controller;
 
-import DAO.ProductoDAO;
+import DAO.ProductoDAOImpl;
 import Utilidades.ControladorGeneral;
 import animatefx.animation.ZoomIn;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
@@ -42,10 +42,18 @@ import view.Principal;
  */
 public class AddItemVentanaTiendaController implements Initializable {
 
-    private ProductoDAO productoDAO;
+    private ProductoDAOImpl productoDAO;
     private FXMLLoader fxmlLoader;
     public static Label precioItemVentanaTienda;
     private double totalVentanaCliente = 0;
+     
+    private int idProducto = 0;
+    public static Button botonActivo;
+    public static Button disminuir, aumentar, agregar;
+    public static Label prod;
+    public static VBox mainBox;
+    public static Button ordenarProd;
+    Node nodo;
     @FXML
     private ImageView imagenProducto;
     @FXML
@@ -69,13 +77,10 @@ public class AddItemVentanaTiendaController implements Initializable {
 
     @FXML
     private Label lblCantidadAgregado;
-    private int idProducto = 0;
-    public static Button botonActivo;
-    public static Button disminuir, aumentar, agregar;
-    public static Label prod;
-    public static VBox mainBox;
-    public static Button ordenarProd;
-    Node nodo;
+    @FXML
+    private Label labelIdProductoItem;
+   
+    
 
     /**
      * Initializes the controller class.
@@ -87,6 +92,7 @@ public class AddItemVentanaTiendaController implements Initializable {
         mainBox = mainVboxItemProd;
         botonActivo = btnAgregarCarrito;
         ordenarProd = ordenarProducto;
+        labelIdProductoItem.setManaged(false);
     }
     
 
@@ -99,7 +105,7 @@ public class AddItemVentanaTiendaController implements Initializable {
     }
 
     public void llamarProducto(Producto p) {
-        idProducto = p.getId_Producto();
+        labelIdProductoItem.setText(""+p.getId_Producto()); 
         nombreProducto.setText(p.getNombre_Producto());
         precioProducto.setText("" + p.getPrecio_venta());
         imagenProducto.setImage(ControladorGeneral.bytesToImage(p.getImagen()));
@@ -154,7 +160,7 @@ public class AddItemVentanaTiendaController implements Initializable {
             nodo = fxmlLoader.load();
             VentanaClienteController.extendsAreaCarrito.getChildren().add(nodo);
             new ZoomIn(nodo).play();
-            controller.setProductoCarrito(idProducto, nombreProducto.getText(), mostrarCantidad.getText(), precioProducto.getText(), imagenProducto.getImage());
+            controller.setProductoCarrito(Integer.parseInt(labelIdProductoItem.getText()), nombreProducto.getText(), mostrarCantidad.getText(), precioProducto.getText(), imagenProducto.getImage());
             double precioTotal = Integer.parseInt(mostrarCantidad.getText()) * Double.parseDouble(precioProducto.getText());
             totalVentanaCliente = Double.parseDouble(VentanaClienteController.precioTotalProducto.getText()) + precioTotal;
             VentanaClienteController.precioTotalProducto.setText(String.format("%.2f", totalVentanaCliente));

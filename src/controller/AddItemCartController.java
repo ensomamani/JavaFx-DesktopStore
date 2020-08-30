@@ -118,38 +118,11 @@ public class AddItemCartController implements Initializable {
             double eliminarTotalProducto = Double.parseDouble(VentanaClienteController.precioTotalProducto.getText()) - Double.parseDouble(lblPrecio.getText());
             System.out.println(eliminarTotalProducto);
             VentanaClienteController.precioTotalProducto.setText(String.format("%.2f", eliminarTotalProducto));          
-            findNodesToDisable();
+            ControladorGeneral.findNodesToUnable(labelIdProducto.getText());
 
         }
     }
 
-    private void findNodesToDisable() {
-        Node[] areaProductoItem = new Node[VentanaClienteController.extendsAreaProducto.getChildren().size()];
-        for (int i = 0; i < areaProductoItem.length; i++) {
-            areaProductoItem[i] = VentanaClienteController.extendsAreaProducto.getChildren().get(i);
-            VBox v = (VBox) areaProductoItem[i];
-            Label nombreProd = (Label) v.lookup("#nombreProducto");
-            if (nombreProd.getText().equals(lblNombreProd.getText())) {
-                Button bAgregarCar = (Button) v.lookup("#btnAgregarCarrito");
-                Button bOrdenarProd = (Button) v.lookup("#ordenarProducto");
-                Button botonAumentar = (Button) v.lookup("#aumentarProd");
-                Button botonDisminuir = (Button) v.lookup("#disminuirProd");
-                TextField txt = (TextField) v.lookup("#mostrarCantidad");
-                if (bAgregarCar.isDisabled()) {
-                    bAgregarCar.setDisable(false);
-                    bOrdenarProd.toFront();
-                    bOrdenarProd.setDisable(false);
-                    botonAumentar.setDisable(false);
-                    botonDisminuir.setDisable(false);
-                    if (Integer.parseInt(txt.getText()) == 1) {
-                        botonDisminuir.setDisable(true);
-                    }
-                    
-                    //AddItemVentanaTiendaController.ordenarProd.toFront();
-                }
-            }
-        }
-    }
 
     public void setProductoCarrito(int id, String nombre, String cantidad, String precio, Image imagen) {      
         labelIdProducto.setText(""+id);

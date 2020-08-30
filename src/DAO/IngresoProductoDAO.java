@@ -74,7 +74,7 @@ public class IngresoProductoDAO {
             try {
                 dbutils.closeConnection(cnx, pst);
             } catch (SQLException ex) {
-                Logger.getLogger(ProductoDAO.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ProductoDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }

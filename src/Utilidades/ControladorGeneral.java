@@ -6,6 +6,7 @@
 package Utilidades;
 
 import controller.PcsLocalController;
+import controller.VentanaClienteController;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcons;
 import java.awt.image.BufferedImage;
@@ -16,9 +17,14 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 
@@ -119,11 +125,85 @@ public class ControladorGeneral {
         return new File("D:\\img\\" + fi.getName());
     }
 
-    public static boolean toInt(String text) {      
+    public static boolean toInt(String text) {
         if (!text.matches("(^[a-zA-Z]{1})[a-zA-Z]*")) {
             System.out.println("hay letras");
             return true;
         }
         return false;
     }
+
+    public static void findNodesToDisable(String id) {
+        Node[] areaProductoItem = new Node[VentanaClienteController.extendsAreaProducto.getChildren().size()];
+        for (int i = 0; i < areaProductoItem.length; i++) {
+            areaProductoItem[i] = VentanaClienteController.extendsAreaProducto.getChildren().get(i);
+            VBox v = (VBox) areaProductoItem[i];
+            Label labelIdProducto = (Label) v.lookup("#labelIdProductoItem");
+            if (labelIdProducto.getText().equals(id)) {
+                Button bAgregarCar = (Button) v.lookup("#btnAgregarCarrito");
+                Button bOrdenarProd = (Button) v.lookup("#ordenarProducto");
+                Button botonAumentar = (Button) v.lookup("#aumentarProd");
+                Button botonDisminuir = (Button) v.lookup("#disminuirProd");
+                TextField txt = (TextField) v.lookup("#mostrarCantidad");
+                if (bAgregarCar.isDisabled()) {
+                    bAgregarCar.setDisable(true);
+                    bOrdenarProd.toFront();
+                    bOrdenarProd.setDisable(true);
+                    botonAumentar.setDisable(true);
+                    botonDisminuir.setDisable(true);
+                    if (Integer.parseInt(txt.getText()) == 1) {
+                        botonDisminuir.setDisable(false);
+                    }
+                }
+            }
+        }
+    }
+
+    public static void findNodesToUnable(String id) {
+        Node[] areaProductoItem = new Node[VentanaClienteController.extendsAreaProducto.getChildren().size()];
+        for (int i = 0; i < areaProductoItem.length; i++) {
+            areaProductoItem[i] = VentanaClienteController.extendsAreaProducto.getChildren().get(i);
+            VBox v = (VBox) areaProductoItem[i];
+            Label labelIdProducto = (Label) v.lookup("#labelIdProductoItem");
+            if (labelIdProducto.getText().equals(id)) {
+                Button bAgregarCar = (Button) v.lookup("#btnAgregarCarrito");
+                Button bOrdenarProd = (Button) v.lookup("#ordenarProducto");
+                Button botonAumentar = (Button) v.lookup("#aumentarProd");
+                Button botonDisminuir = (Button) v.lookup("#disminuirProd");
+                TextField txt = (TextField) v.lookup("#mostrarCantidad");
+                if (bAgregarCar.isDisabled()) {
+                    bAgregarCar.setDisable(false);
+                    bOrdenarProd.toFront();
+                    bOrdenarProd.setDisable(false);
+                    botonAumentar.setDisable(false);
+                    botonDisminuir.setDisable(false);
+                    if (Integer.parseInt(txt.getText()) == 1) {
+                        botonDisminuir.setDisable(true);
+                    }
+                }
+            }
+        }
+    }
+
+    public static void setDisableToProductsStockCero(String id, Node n) {
+        Label labelIdProducto = (Label) n.lookup("#labelIdProductoItem");
+        Label labelNombreProd = (Label) n.lookup("#nombreProducto");
+        Button bAgregarCar = (Button) n.lookup("#btnAgregarCarrito");
+        Button bOrdenarProd = (Button) n.lookup("#ordenarProducto");
+        Button botonAumentar = (Button) n.lookup("#aumentarProd");
+        Button botonDisminuir = (Button) n.lookup("#disminuirProd");
+        TextField txt = (TextField) n.lookup("#mostrarCantidad");
+        HBox hb = (HBox) n.lookup("#checkProductoAgregado");
+        if (labelIdProducto.getText().equals(id)) {
+            bOrdenarProd.setText("Agotado");
+            bOrdenarProd.setDisable(true);
+            txt.setDisable(true);
+            botonAumentar.setDisable(true);
+            botonDisminuir.setDisable(true);
+            bAgregarCar.setDisable(true);
+            hb.setVisible(false);
+            labelNombreProd.setDisable(true);
+        }
+    }
+
 }

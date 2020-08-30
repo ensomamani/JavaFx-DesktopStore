@@ -7,14 +7,14 @@ package controller;
 
 import DAO.DetallePedidoDAOImpl;
 import DAO.PedidoDAOImpl;
-import DAO.ProductoDAO;
+import DAO.ProductoDAOImpl;
 import InterfaceDAO.DetallePedidoDAO;
+import InterfaceDAO.PedidoDAO;
+import Utilidades.ControladorGeneral;
 import animatefx.animation.ZoomIn;
 import com.jfoenix.controls.JFXButton;
-import java.beans.EventHandler;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -22,7 +22,6 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -34,19 +33,19 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
+
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
-import javafx.stage.Modality;
+
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import model.DBUtils;
+import javax.swing.JOptionPane;
+
 import model.DetallePedido;
 import model.Pedido;
 import model.Producto;
 import model.PropertiesServer;
-import view.Principal;
+
 import static view.Principal.stageExtends;
 
 /**
@@ -58,11 +57,12 @@ public class VentanaClienteController implements Initializable {
 
     FXMLLoader fxmlLoader;
     Stage stage;
-    ProductoDAO productoDAO;
+    ProductoDAOImpl productoDAOImpl;
     Producto modelProducto;
     String categoria = "Bebidas";
     String tipo = "gaseosa";
     PropertiesServer configProperties = new PropertiesServer();
+
     public static FlowPane extendsAreaCarrito;
     public static Label precioTotalProducto;
     public static FlowPane extendsAreaProducto;
@@ -108,21 +108,31 @@ public class VentanaClienteController implements Initializable {
         precioTotalProducto = lblPrecioTotal;
         extendsAreaProducto = areaProductos;
         labelNamePc.setText(configProperties.getPropertiesValueNamePc());
+
+    }
+
+    private void verifyProductsInStock() {
+
     }
 
     private void llenarProductos() {
         try {
-            productoDAO = new ProductoDAO();
+            productoDAOImpl = new ProductoDAOImpl();
             modelProducto = new Producto();
-            ArrayList<Producto> listProd = productoDAO.listarProductoCliente();
+            ArrayList<Producto> listProd = productoDAOImpl.listarProductoCliente();
             Node[] nodes = new Node[listProd.size()];
             for (int i = 0; i < nodes.length; i++) {
                 fxmlLoader = new FXMLLoader(getClass().getResource("/view/AddItemVentanaTienda.fxml"));
                 AddItemVentanaTiendaController controller = new AddItemVentanaTiendaController();
                 fxmlLoader.setController(controller);
                 nodes[i] = fxmlLoader.load();
-                areaProductos.getChildren().add(nodes[i]);
-                controller.llamarProducto(listProd.get(i));
+                areaProductos.getChildren().add(nodes[i]);              
+                if (productoDAOImpl.getQuantityStock(listProd.get(i).getId_Producto()) >= 1) {
+                    controller.llamarProducto(listProd.get(i));
+                } else {                    
+                    controller.llamarProducto(listProd.get(i));
+                    ControladorGeneral.setDisableToProductsStockCero(""+listProd.get(i).getId_Producto(), nodes[i]);
+                }
             }
         } catch (Exception e) {
         }
@@ -241,9 +251,9 @@ public class VentanaClienteController implements Initializable {
     private void listarProductosCategoria(String cat) {
         areaProductos.getChildren().clear();
         new ZoomIn(areaProductos).play();
-        productoDAO = new ProductoDAO();
+        productoDAOImpl = new ProductoDAOImpl();
         modelProducto = new Producto();
-        ArrayList<Producto> listar = productoDAO.listarProductoTienda(cat);
+        ArrayList<Producto> listar = productoDAOImpl.listarProductoTienda(cat);
         Node[] nodes = new Node[listar.size()];
         try {
             for (int i = 0; i < nodes.length; i++) {
@@ -262,9 +272,9 @@ public class VentanaClienteController implements Initializable {
     private void listarProductosCategoriaTipo(String cat, String tip) {
         areaProductos.getChildren().clear();
         new ZoomIn(areaProductos).play();
-        productoDAO = new ProductoDAO();
+        productoDAOImpl = new ProductoDAOImpl();
         modelProducto = new Producto();
-        ArrayList<Producto> listar = productoDAO.listarProductoTienda(categoria, tipo);
+        ArrayList<Producto> listar = productoDAOImpl.listarProductoTienda(categoria, tipo);
         Node[] nodes = new Node[listar.size()];
         try {
             for (int i = 0; i < nodes.length; i++) {
@@ -353,9 +363,9 @@ public class VentanaClienteController implements Initializable {
 
     private void buscarPorNombre(String nombre) {
         areaProductos.getChildren().clear();
-        productoDAO = new ProductoDAO();
+        productoDAOImpl = new ProductoDAOImpl();
         modelProducto = new Producto();
-        ArrayList<Producto> listar = productoDAO.listarProductoNombre(nombre);
+        ArrayList<Producto> listar = productoDAOImpl.listarProductoNombre(nombre);
         Node[] nodes = new Node[listar.size()];
         try {
             for (int i = 0; i < nodes.length; i++) {
@@ -374,39 +384,51 @@ public class VentanaClienteController implements Initializable {
     @FXML
     private void ordenarTodoCarrito(ActionEvent event) {
         if (event.getSource().equals(btnOrdenarTodo)) {
-            savePedido();
+            if (areaCarrito.getChildren().size() == 0) {
+                JOptionPane.showMessageDialog(null, "Carrito vacío, selecciona algo de la tienda.", "Carro vacío", JOptionPane.ERROR_MESSAGE);
+            } else {
+                savePedido();
+                for (Node n : areaCarrito.getChildren()) {
+                    Label idLabel = (Label) n.lookup("#labelIdProducto");
+                    ControladorGeneral.findNodesToUnable(idLabel.getText());
+                }
 
+                areaCarrito.getChildren().clear();
+            }
         }
     }
 
     private void savePedido() {
-        PedidoDAOImpl dao = new PedidoDAOImpl();
-        Pedido mo = new Pedido();
+
         //aqui debe coger el codigo del configProperties
-        //debe restarle la cantidad que se ordena a la tabla productos          
-        mo.setIdPedido(dao.getNewId() + 1);
-        mo.setEstado("Pendiente");
-        mo.setHora(LocalDateTime.now().getHour() + ":" + LocalDateTime.now().getSecond());
-        mo.setFecha(LocalDate.now().toString());
-        mo.setIdPc(configProperties.getPropertiesValueId());
-        dao.register(mo);
-        saveDetallePedido(mo);
+        //debe restarle la cantidad que se ordena a la tabla productos 
+        PedidoDAO pedidoDao = new PedidoDAOImpl();
+        Pedido modelPedido = new Pedido();
+        modelPedido.setIdPedido(pedidoDao.getNewId() + 1);
+        modelPedido.setEstado("Pendiente");
+        modelPedido.setHora(LocalDateTime.now().getHour() + ":" + LocalDateTime.now().getSecond());
+        modelPedido.setFecha(LocalDate.now().toString());
+        modelPedido.setIdPc(configProperties.getPropertiesValueId());
+        pedidoDao.register(modelPedido);
+        saveDetallePedido(modelPedido);
     }
 
     private void saveDetallePedido(Pedido modelPedido) {
-        DetallePedidoDAO a = new DetallePedidoDAOImpl();
-        DetallePedido model = new DetallePedido();
+        DetallePedidoDAO detallePedidoDao = new DetallePedidoDAOImpl();
+        DetallePedido modelDetallePedido = new DetallePedido();
+        productoDAOImpl = new ProductoDAOImpl();
         areaCarrito.getChildren().forEach((t) -> {
             Label labelId, labelPrecio;
             labelId = (Label) t.lookup("#labelIdProducto");
             TextField getTextFieldCantidad = (TextField) t.lookup("#txtCantidad");
-            labelPrecio = (Label) t.lookup("#lblPrecio");           
-            model.setIdDetallePedido(a.getNewId(model));
-            model.setCantidad(Integer.parseInt(getTextFieldCantidad.getText()));
-            model.setSubtotal(Double.parseDouble(labelPrecio.getText()));
-            model.setIdPedido(modelPedido.getIdPedido());
-            model.setIdProducto(Integer.parseInt(labelId.getText()));
-            a.register(model);
+            labelPrecio = (Label) t.lookup("#lblPrecio");
+            modelDetallePedido.setIdDetallePedido(detallePedidoDao.getNewId(modelDetallePedido));
+            modelDetallePedido.setCantidad(Integer.parseInt(getTextFieldCantidad.getText()));
+            modelDetallePedido.setSubtotal(Double.parseDouble(labelPrecio.getText()));
+            modelDetallePedido.setIdPedido(modelPedido.getIdPedido());
+            modelDetallePedido.setIdProducto(Integer.parseInt(labelId.getText()));
+            detallePedidoDao.register(modelDetallePedido);
+            productoDAOImpl.updateStockProduct(modelDetallePedido.getIdProducto(), modelDetallePedido.getCantidad());
         });
     }
 }

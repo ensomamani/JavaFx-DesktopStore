@@ -5,6 +5,7 @@
  */
 package DAO;
 
+import InterfaceDAO.ProductoDAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -22,7 +23,7 @@ import model.ProductoCatTipProv;
  *
  * @author Enso
  */
-public class ProductoDAO {
+public class ProductoDAOImpl implements ProductoDAO{
 
     private ResultSet rs;
     private PreparedStatement pst = null;
@@ -55,7 +56,7 @@ public class ProductoDAO {
             try {
                 dbutils.closeConnection(cnx, pst, rs);
             } catch (SQLException ex) {
-                Logger.getLogger(ProductoDAO.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ProductoDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         return data;
@@ -85,7 +86,7 @@ public class ProductoDAO {
             try {
                 dbutils.closeConnection(cnx, pst, rs);
             } catch (SQLException ex) {
-                Logger.getLogger(ProductoDAO.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ProductoDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         return data;
@@ -114,7 +115,7 @@ public class ProductoDAO {
             try {
                 dbutils.closeConnection(cnx, pst, rs);
             } catch (SQLException ex) {
-                Logger.getLogger(ProductoDAO.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ProductoDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         return data;
@@ -271,7 +272,7 @@ public class ProductoDAO {
             try {
                 dbutils.closeConnection(cnx, pst, rs);
             } catch (SQLException ex) {
-                Logger.getLogger(ProductoDAO.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ProductoDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         return false;
@@ -316,7 +317,7 @@ public class ProductoDAO {
             try {
                 dbutils.closeConnection(cnx, pst);
             } catch (SQLException ex) {
-                Logger.getLogger(ProductoDAO.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ProductoDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
@@ -350,7 +351,7 @@ public class ProductoDAO {
             try {
                 dbutils.closeConnection(cnx, pst);
             } catch (SQLException ex) {
-                Logger.getLogger(ProductoDAO.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ProductoDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
@@ -373,8 +374,53 @@ public class ProductoDAO {
             try {
                 dbutils.closeConnection(cnx, pst);
             } catch (SQLException ex) {
-                Logger.getLogger(ProductoDAO.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ProductoDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+    }
+
+    @Override
+    public void updateStockProduct(int id, int cantidad) {
+        dbutils = new DBUtils();
+        String sql = "update producto set stock = stock - ? where id_producto = ?";
+        try {
+            cnx = dbutils.getConnection();
+            pst = cnx.prepareStatement(sql);
+            pst.setInt(1, cantidad);
+            pst.setInt(2, id);           
+            int result = pst.executeUpdate();
+            if (result == 1) {
+               System.out.println("La actualización de la tabla producto en el campo stock ha sido correcta");  
+            } else {
+                System.out.println("¡Actualización FALLIDA!.");
+            }            
+        } catch (SQLException ex) {
+            dbutils.procesarExcepcion(ex);
+        } finally {
+            try {
+                dbutils.closeConnection(cnx, pst);
+            } catch (SQLException ex) {
+                Logger.getLogger(ProductoDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+
+    @Override
+    public int getQuantityStock(int id) {
+        dbutils = new DBUtils();
+        int result = 0;
+        String sql = "select stock from producto where id_producto = ?";
+        try {
+            cnx = dbutils.getConnection();
+            pst = cnx.prepareStatement(sql);
+            pst.setInt(1, id);
+            rs = pst.executeQuery();
+            if (rs.next()) {
+                result = rs.getInt("stock");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductoDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return result;
     }
 }

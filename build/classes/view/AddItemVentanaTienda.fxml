@@ -13,6 +13,11 @@
 
 <VBox fx:id="mainVboxItemProd" alignment="TOP_CENTER" fillWidth="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="354.0" prefWidth="200.0" spacing="5.0" style="-fx-background-color: #FEFEFE;" styleClass="main-box-item" stylesheets="@../styles/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
+      <Label fx:id="labelIdProductoItem" alignment="CENTER" prefHeight="45.0" prefWidth="190.0" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font name="Roboto Bold" size="14.0" />
+         </font>
+      </Label>
       <ImageView fx:id="imagenProducto" fitHeight="159.0" fitWidth="151.0" pickOnBounds="true" preserveRatio="true" />
       <Label fx:id="nombreProducto" alignment="CENTER" prefHeight="45.0" prefWidth="190.0" textAlignment="CENTER" wrapText="true">
          <font>
