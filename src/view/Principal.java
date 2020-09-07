@@ -44,6 +44,7 @@ public class Principal extends Application {
         primaryStage.initStyle(s);
         stageExtends = primaryStage;
         primaryStage.show();
+        primaryStage.setTitle("Nobi Tienda");
     }
     
     /**

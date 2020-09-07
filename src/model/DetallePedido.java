@@ -13,6 +13,7 @@ public class DetallePedido {
     private int idDetallePedido;
     private int cantidad;
     private double subtotal;
+    private String estado;
     private int idPedido;
     private int idProducto;
 
@@ -26,6 +27,14 @@ public class DetallePedido {
 
     public int getCantidad() {
         return cantidad;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
     public void setCantidad(int cantidad) {

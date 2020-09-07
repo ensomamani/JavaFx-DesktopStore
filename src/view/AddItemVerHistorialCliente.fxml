@@ -10,17 +10,16 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<GridPane maxHeight="1.7976931348623157E308" prefHeight="100.0" prefWidth="530.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AddItemVerHistorialClienteController">
+<GridPane maxHeight="1.7976931348623157E308" prefHeight="100.0" prefWidth="530.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.AddItemVerHistorialClienteController">
    <children>
       <HBox alignment="CENTER_LEFT">
          <children>
-            <ImageView fitHeight="90.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imageViewProducto" fitHeight="90.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../ImagesTienda/7up.png" />
                </image>
             </ImageView>
-            <Label text="Gaseosa 7 up de 500ml" textFill="#535353" wrapText="true">
+            <Label fx:id="labelNombreProducto" text="Gaseosa 7 up de 500ml" textFill="#535353" wrapText="true">
                <font>
                   <Font name="Roboto Bold" size="14.0" />
                </font>
@@ -30,17 +29,17 @@
             </Label>
          </children>
       </HBox>
-      <Label text="1" textFill="#535353" GridPane.columnIndex="1">
+      <Label fx:id="labelCantidadOrdenCliemte" text="1" textFill="#535353" GridPane.columnIndex="1">
          <font>
             <Font name="Roboto" size="14.0" />
          </font>
       </Label>
-      <Label text="s/2.00" textFill="#535353" GridPane.columnIndex="2">
+      <Label fx:id="labelPrecioProducto" text="s/2.00" textFill="#535353" GridPane.columnIndex="2">
          <font>
             <Font name="Roboto" size="14.0" />
          </font>
       </Label>
-      <Label text="s/2.00" textFill="#535353" GridPane.columnIndex="3">
+      <Label fx:id="labelSubtotalOrdenCliente" text="s/2.00" textFill="#535353" GridPane.columnIndex="3">
          <font>
             <Font name="Roboto" size="14.0" />
          </font>

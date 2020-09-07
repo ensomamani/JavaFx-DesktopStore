@@ -5,9 +5,16 @@
  */
 package controller;
 
+import DAO.PedidoDAOImpl;
+import InterfaceDAO.PedidoDAO;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import model.PedidoDetPedProd;
 
 /**
  * FXML Controller class
@@ -16,6 +23,17 @@ import javafx.fxml.Initializable;
  */
 public class AddItemVerHistorialClienteController implements Initializable {
 
+    @FXML
+    private ImageView imageViewProducto;
+    @FXML
+    private Label labelNombreProducto;
+    @FXML
+    private Label labelCantidadOrdenCliemte;
+    @FXML
+    private Label labelPrecioProducto;
+    @FXML
+    private Label labelSubtotalOrdenCliente;
+
     /**
      * Initializes the controller class.
      */
@@ -23,5 +41,12 @@ public class AddItemVerHistorialClienteController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-    
+    public void setHistorialClientePedido(PedidoDetPedProd model) {
+        
+        imageViewProducto.setImage(model.getImagen());
+        labelNombreProducto.setText(model.getNombre_Producto());
+        labelCantidadOrdenCliemte.setText(""+model.getCantidadOrden());
+        labelPrecioProducto.setText(""+model.getPrecioProducto());
+        labelSubtotalOrdenCliente.setText(""+model.getSubtotalPedido());
+    }
 }

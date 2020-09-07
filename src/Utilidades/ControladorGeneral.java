@@ -184,7 +184,8 @@ public class ControladorGeneral {
             }
         }
     }
-
+    
+    //deshabilita el slot del producto porque su stock es 0 por lo tanto debes de volver a llenar el stok de productos
     public static void setDisableToProductsStockCero(String id, Node n) {
         Label labelIdProducto = (Label) n.lookup("#labelIdProductoItem");
         Label labelNombreProd = (Label) n.lookup("#nombreProducto");

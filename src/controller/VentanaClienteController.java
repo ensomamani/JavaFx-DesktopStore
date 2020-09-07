@@ -33,6 +33,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
@@ -56,13 +57,15 @@ import static view.Principal.stageExtends;
 public class VentanaClienteController implements Initializable {
 
     FXMLLoader fxmlLoader;
-    Stage stage;
+    private Stage stage;
+    public static Stage stageExtendsVentanaCliente;
     ProductoDAOImpl productoDAOImpl;
     Producto modelProducto;
     String categoria = "Bebidas";
     String tipo = "gaseosa";
     PropertiesServer configProperties = new PropertiesServer();
-
+    double x,y;
+    public static int idPedidoVerHistoria = 0;
     public static FlowPane extendsAreaCarrito;
     public static Label precioTotalProducto;
     public static FlowPane extendsAreaProducto;
@@ -96,6 +99,8 @@ public class VentanaClienteController implements Initializable {
     private Button btnOrdenarTodo;
     @FXML
     private Label labelNamePc;
+    @FXML
+    private AnchorPane mainLayout;
 
     /**
      * Initializes the controller class.
@@ -108,11 +113,14 @@ public class VentanaClienteController implements Initializable {
         precioTotalProducto = lblPrecioTotal;
         extendsAreaProducto = areaProductos;
         labelNamePc.setText(configProperties.getPropertiesValueNamePc());
-
+        moveLayout();
+        PedidoDAOImpl s = new PedidoDAOImpl();
+        System.out.println(s.getNewId() + 1);
     }
 
     private void verifyProductsInStock() {
-
+        productoDAOImpl = new ProductoDAOImpl();
+        System.out.println(productoDAOImpl.getQuantityStock(0));
     }
 
     private void llenarProductos() {
@@ -130,7 +138,7 @@ public class VentanaClienteController implements Initializable {
                 if (productoDAOImpl.getQuantityStock(listProd.get(i).getId_Producto()) >= 1) {
                     controller.llamarProducto(listProd.get(i));
                 } else {                    
-                    controller.llamarProducto(listProd.get(i));
+                    controller.llamarProductoStockCero(listProd.get(i));
                     ControladorGeneral.setDisableToProductsStockCero(""+listProd.get(i).getId_Producto(), nodes[i]);
                 }
             }
@@ -144,12 +152,14 @@ public class VentanaClienteController implements Initializable {
 
             //stage.initModality(Modality.WINDOW_MODAL);
             stage = new Stage();
+            stageExtendsVentanaCliente = stage;
             stage.initStyle(StageStyle.TRANSPARENT);
             stage.setTitle("Tus Pedidos");
             Parent root = FXMLLoader.load(getClass().getResource("/view/VerHistorialOrdenCliente.fxml"));
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
+            
         } catch (IOException ex) {
             Logger.getLogger(VentanaClienteController.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("Error: " + ex.getMessage());
@@ -392,27 +402,27 @@ public class VentanaClienteController implements Initializable {
                     Label idLabel = (Label) n.lookup("#labelIdProducto");
                     ControladorGeneral.findNodesToUnable(idLabel.getText());
                 }
-
                 areaCarrito.getChildren().clear();
             }
         }
     }
 
+    //metodo para guardar todos los pedidos del carrito
     private void savePedido() {
-
         //aqui debe coger el codigo del configProperties
         //debe restarle la cantidad que se ordena a la tabla productos 
         PedidoDAO pedidoDao = new PedidoDAOImpl();
         Pedido modelPedido = new Pedido();
         modelPedido.setIdPedido(pedidoDao.getNewId() + 1);
-        modelPedido.setEstado("Pendiente");
+        modelPedido.setEstado("Activo");
         modelPedido.setHora(LocalDateTime.now().getHour() + ":" + LocalDateTime.now().getSecond());
         modelPedido.setFecha(LocalDate.now().toString());
         modelPedido.setIdPc(configProperties.getPropertiesValueId());
         pedidoDao.register(modelPedido);
         saveDetallePedido(modelPedido);
+        idPedidoVerHistoria = modelPedido.getIdPedido();
     }
-
+    
     private void saveDetallePedido(Pedido modelPedido) {
         DetallePedidoDAO detallePedidoDao = new DetallePedidoDAOImpl();
         DetallePedido modelDetallePedido = new DetallePedido();
@@ -425,10 +435,24 @@ public class VentanaClienteController implements Initializable {
             modelDetallePedido.setIdDetallePedido(detallePedidoDao.getNewId(modelDetallePedido));
             modelDetallePedido.setCantidad(Integer.parseInt(getTextFieldCantidad.getText()));
             modelDetallePedido.setSubtotal(Double.parseDouble(labelPrecio.getText()));
+            modelDetallePedido.setEstado("Pendiente");
             modelDetallePedido.setIdPedido(modelPedido.getIdPedido());
             modelDetallePedido.setIdProducto(Integer.parseInt(labelId.getText()));
             detallePedidoDao.register(modelDetallePedido);
             productoDAOImpl.updateStockProduct(modelDetallePedido.getIdProducto(), modelDetallePedido.getCantidad());
+        });
+    }
+    
+    //metodo para mover la ventana
+    private void moveLayout(){
+        mainLayout.setOnMousePressed((MouseEvent event) -> {
+            x = stageExtends.getX() - event.getScreenX();
+            y = stageExtends.getY() - event.getScreenY();
+        });
+        
+        mainLayout.setOnMouseDragged((MouseEvent event) -> {
+            stageExtends.setX(event.getScreenX() + x);
+            stageExtends.setY(event.getScreenY() + y);
         });
     }
 }

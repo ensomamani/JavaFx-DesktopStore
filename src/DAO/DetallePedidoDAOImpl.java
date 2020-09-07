@@ -38,15 +38,16 @@ public class DetallePedidoDAOImpl implements DetallePedidoDAO{
     @Override
     public void register(DetallePedido model) {
         dbutils = new DBUtils();
-        String sql = "insert into detalle_pedido values(?,?,?,?,?)";
+        String sql = "insert into detalle_pedido values(?,?,?,?,?,?)";
         try {
             cnx = dbutils.getConnection();
             pst = cnx.prepareStatement(sql);
             pst.setInt(1, model.getIdDetallePedido());
             pst.setInt(2, model.getCantidad());
             pst.setDouble(3, model.getSubtotal());
-            pst.setInt(4, model.getIdPedido());
-            pst.setInt(5, model.getIdProducto());
+            pst.setString(4, model.getEstado());
+            pst.setInt(5, model.getIdPedido());
+            pst.setInt(6, model.getIdProducto());
             int fileUpdate = pst.executeUpdate();
             if (fileUpdate == 1) {
                 System.out.println("¡BIEN! el detalle de pedido se registro correctamente");

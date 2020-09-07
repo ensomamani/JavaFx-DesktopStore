@@ -13,7 +13,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.VerHistorialOrdenClienteController">
+<Pane fx:id="mainLayout" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.VerHistorialOrdenClienteController">
    <children>
       <HBox layoutY="72.0" prefHeight="45.0" prefWidth="569.0">
          <children>
@@ -57,7 +57,7 @@
       </HBox>
       <HBox alignment="CENTER_LEFT" layoutY="27.0" prefHeight="45.0" prefWidth="800.0">
          <children>
-            <Label text="Ver historial orden de compra">
+            <Label text="Historial orden de compra">
                <font>
                   <Font name="Roboto Light" size="22.0" />
                </font>
@@ -110,15 +110,27 @@
       </VBox>
       <ScrollPane layoutX="17.0" layoutY="117.0" prefHeight="509.0" prefWidth="536.0" style="-fx-background-color: transparent;">
          <content>
-            <FlowPane prefHeight="499.0" prefWidth="517.0" />
+            <FlowPane fx:id="areaOrdenCliente" prefHeight="499.0" prefWidth="517.0" />
          </content>
       </ScrollPane>
       <GridPane fx:id="gridPaneMainMenu" layoutY="2.0" prefHeight="25.0" prefWidth="800.0" styleClass="grid-ventana-principal">
          <children>
-            <HBox alignment="CENTER_LEFT" />
+            <HBox alignment="CENTER_LEFT">
+               <children>
+                  <Label text="Orden N° ">
+                     <font>
+                        <Font name="Roboto" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="labelIdPedido" text="Label">
+                     <font>
+                        <Font name="Roboto" size="16.0" />
+                     </font>
+                  </Label>
+               </children></HBox>
             <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
                <children>
-                  <JFXButton fx:id="btnMinimize" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" minHeight="-Infinity" prefHeight="20.0" prefWidth="25.0">
+                  <JFXButton fx:id="btnMinimize" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" minHeight="-Infinity" onAction="#handleMinimize" prefHeight="20.0" prefWidth="25.0">
                      <graphic>
                         <FontAwesomeIcon fill="#666666" glyphName="MINUS" size="12" />
                      </graphic>
@@ -130,7 +142,7 @@
                         <String fx:value="btn-radius-bottom-left" />
                      </styleClass>
                   </JFXButton>
-                  <JFXButton fx:id="btnClose" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" minHeight="-Infinity" prefHeight="20.0" prefWidth="50.0">
+                  <JFXButton fx:id="btnClose" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" minHeight="-Infinity" onAction="#handleAction" prefHeight="20.0" prefWidth="50.0">
                      <graphic>
                         <FontAwesomeIcon fill="#666666" glyphName="CLOSE" size="16" />
                      </graphic>

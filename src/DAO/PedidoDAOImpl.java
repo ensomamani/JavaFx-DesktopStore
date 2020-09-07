@@ -6,15 +6,21 @@
 package DAO;
 
 import InterfaceDAO.PedidoDAO;
+import Utilidades.ControladorGeneral;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import model.DBUtils;
 import model.Pedido;
+import model.PedidoDetPedProd;
+import model.Producto;
 
 /**
  *
@@ -98,5 +104,37 @@ public class PedidoDAOImpl implements PedidoDAO{
             }
         }
         return model.getIdPedido();
+    }
+    
+
+    @Override
+    public List<PedidoDetPedProd> searchPedidosForId(int id) {
+        List<PedidoDetPedProd> listData = new ArrayList<>();
+        String sql = "select pro.imagen,pro.nombre_Producto, det.cantidad, pro.precio_venta, det.subtotal from pedido p inner join detalle_pedido det on p.Id_Pedido = det.id_pedido inner join producto pro on pro.Id_Producto = det.Id_Producto where p.id_pedido = ?";
+        dbutils = new DBUtils();
+        try {
+            cnx = dbutils.getConnection();
+            pst = cnx.prepareStatement(sql);
+            pst.setInt(1, id);
+            rs = pst.executeQuery();
+            while (rs.next()) {                
+                PedidoDetPedProd model = new PedidoDetPedProd();
+                model.setImagen(ControladorGeneral.bytesToImage(rs.getBytes("pro.imagen")));
+                model.setNombre_Producto(rs.getString("pro.nombre_Producto"));
+                model.setCantidadOrden(rs.getInt("det.cantidad"));
+                model.setPrecioProducto(rs.getDouble("pro.precio_venta"));
+                model.setSubtotalPedido(rs.getDouble("det.subtotal"));
+                listData.add(model);
+            }
+        } catch (SQLException ex) {
+            dbutils.procesarExcepcion(ex);
+        } finally {
+            try {
+                dbutils.closeConnection(cnx, pst, rs);
+            } catch (SQLException ex) {
+                Logger.getLogger(PedidoDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return listData;
     }
 }

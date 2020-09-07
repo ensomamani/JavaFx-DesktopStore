@@ -11,7 +11,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox fx:id="mainVboxItemProd" alignment="TOP_CENTER" fillWidth="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="354.0" prefWidth="200.0" spacing="5.0" style="-fx-background-color: #FEFEFE;" styleClass="main-box-item" stylesheets="@../styles/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<VBox fx:id="mainVboxItemProd" alignment="TOP_CENTER" fillWidth="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="354.0" prefWidth="200.0" spacing="5.0" style="-fx-background-color: #FEFEFE;" styleClass="main-box-item" stylesheets="@../styles/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.AddItemVentanaTiendaController">
    <children>
       <Label fx:id="labelIdProductoItem" alignment="CENTER" prefHeight="45.0" prefWidth="190.0" textAlignment="CENTER" wrapText="true">
          <font>
@@ -40,7 +40,7 @@
       </HBox>
       <HBox alignment="TOP_CENTER" prefHeight="55.0" prefWidth="231.0" spacing="7.0">
          <children>
-            <TextField fx:id="mostrarCantidad" alignment="CENTER" editable="false" minWidth="-Infinity" prefHeight="66.0" prefWidth="34.0" styleClass="txt-cantidad" text="1">
+            <TextField fx:id="mostrarCantidad" alignment="CENTER" editable="false" minWidth="-Infinity" prefHeight="55.0" prefWidth="41.0" styleClass="txt-cantidad" text="1">
                <font>
                   <Font size="20.0" />
                </font>

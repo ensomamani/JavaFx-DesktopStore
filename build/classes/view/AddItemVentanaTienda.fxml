@@ -40,7 +40,7 @@
       </HBox>
       <HBox alignment="TOP_CENTER" prefHeight="55.0" prefWidth="231.0" spacing="7.0">
          <children>
-            <TextField fx:id="mostrarCantidad" alignment="CENTER" editable="false" minWidth="-Infinity" prefHeight="66.0" prefWidth="34.0" styleClass="txt-cantidad" text="1">
+            <TextField fx:id="mostrarCantidad" alignment="CENTER" editable="false" minWidth="-Infinity" prefHeight="55.0" prefWidth="41.0" styleClass="txt-cantidad" text="1">
                <font>
                   <Font size="20.0" />
                </font>
