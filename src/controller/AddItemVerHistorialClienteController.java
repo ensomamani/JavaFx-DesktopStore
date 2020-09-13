@@ -14,7 +14,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import model.PedidoDetPedProd;
+import DTO.PedidoDTO;
+import javafx.scene.layout.GridPane;
 
 /**
  * FXML Controller class
@@ -33,6 +34,8 @@ public class AddItemVerHistorialClienteController implements Initializable {
     private Label labelPrecioProducto;
     @FXML
     private Label labelSubtotalOrdenCliente;
+    @FXML
+    private GridPane mainGridItemVerHistorial;
 
     /**
      * Initializes the controller class.
@@ -41,7 +44,7 @@ public class AddItemVerHistorialClienteController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-    public void setHistorialClientePedido(PedidoDetPedProd model) {
+    public void setHistorialClientePedido(PedidoDTO model) {
         
         imageViewProducto.setImage(model.getImagen());
         labelNombreProducto.setText(model.getNombre_Producto());

@@ -25,7 +25,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import model.PedidoDetPedProd;
+import DTO.PedidoDTO;
 
 
 /**
@@ -51,6 +51,9 @@ public class VerHistorialOrdenClienteController implements Initializable {
     @FXML
     private Label labelIdPedido;
 
+    double precioTotal = 0;
+    @FXML
+    private Label labelPrecioTotal;
     /**
      * Initializes the controller class.
      */
@@ -60,6 +63,13 @@ public class VerHistorialOrdenClienteController implements Initializable {
         callItemViewOrders();
         moveLayout();
         labelIdPedido.setText(""+VentanaClienteController.idPedidoVerHistoria);
+        areaOrdenCliente.getChildren().forEach((t) -> {
+            GridPane gp = (GridPane) t;
+            Label labelPrice = (Label) gp.getChildren().get(3);
+            precioTotal += Double.parseDouble(labelPrice.getText());
+            labelPrecioTotal.setText(String.format("%.2f", precioTotal));
+           
+        });
     }
 
     @FXML
@@ -76,7 +86,7 @@ public class VerHistorialOrdenClienteController implements Initializable {
 
     private void callItemViewOrders() {
         PedidoDAOImpl pedidoDaoImpl = new PedidoDAOImpl();
-        List<PedidoDetPedProd> data = pedidoDaoImpl.searchPedidosForId(1);
+        List<PedidoDTO> data = pedidoDaoImpl.searchPedidosStateAndNamePc();
         Node[] node = new Node[data.size()];
         System.out.println(node.length);
         try {

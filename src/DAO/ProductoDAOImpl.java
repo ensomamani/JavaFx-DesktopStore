@@ -17,32 +17,32 @@ import javax.swing.JOptionPane;
 import model.DBUtils;
 import model.IngresoProducto;
 import model.Producto;
-import model.ProductoCatTipProv;
+import DTO.ProductoDTO;
 
 /**
  *
  * @author Enso
  */
-public class ProductoDAOImpl implements ProductoDAO{
+public class ProductoDAOImpl implements ProductoDAO {
 
     private ResultSet rs;
     private PreparedStatement pst = null;
     private DBUtils dbutils;
     private Connection cnx = null;
     private Producto modelProducto;
-    private ProductoCatTipProv modelProductoCatTipProv;
+    private ProductoDTO productoDTO;
 
     //lista de producto para tiendaCliente
-    public ArrayList<Producto> listarProductoNombre(String nombre){
+    public ArrayList<Producto> listarProductoNombre(String nombre) {
         ArrayList<Producto> data = new ArrayList<>();
         dbutils = new DBUtils();
         try {
             cnx = dbutils.getConnection();
             String sql = "select Id_Producto, nombre_Producto, precio_venta, imagen from producto where nombre_Producto like ?";
             pst = cnx.prepareStatement(sql);
-            pst.setString(1,"%"+nombre+"%");
+            pst.setString(1, "%" + nombre + "%");
             rs = pst.executeQuery();
-            while (rs.next()) {                
+            while (rs.next()) {
                 modelProducto = new Producto();
                 modelProducto.setId_Producto(rs.getInt("Id_Producto"));
                 modelProducto.setNombre_Producto(rs.getString("nombre_Producto"));
@@ -60,10 +60,10 @@ public class ProductoDAOImpl implements ProductoDAO{
             }
         }
         return data;
-    }    
+    }
 
 //lista de producto para tiendaCliente
-    public ArrayList<Producto> listarProductoTienda(String categoria){
+    public ArrayList<Producto> listarProductoTienda(String categoria) {
         ArrayList<Producto> data = new ArrayList<>();
         dbutils = new DBUtils();
         try {
@@ -72,7 +72,7 @@ public class ProductoDAOImpl implements ProductoDAO{
             pst = cnx.prepareStatement(sql);
             pst.setString(1, categoria);
             rs = pst.executeQuery();
-            while (rs.next()) {                
+            while (rs.next()) {
                 modelProducto = new Producto();
                 modelProducto.setId_Producto(rs.getInt("p.Id_Producto"));
                 modelProducto.setNombre_Producto(rs.getString("p.nombre_Producto"));
@@ -91,7 +91,8 @@ public class ProductoDAOImpl implements ProductoDAO{
         }
         return data;
     }
-    public ArrayList<Producto> listarProductoTienda(String categoria, String tipo){
+
+    public ArrayList<Producto> listarProductoTienda(String categoria, String tipo) {
         ArrayList<Producto> data = new ArrayList<>();
         dbutils = new DBUtils();
         try {
@@ -101,7 +102,7 @@ public class ProductoDAOImpl implements ProductoDAO{
             pst.setString(1, categoria);
             pst.setString(2, tipo);
             rs = pst.executeQuery();
-            while (rs.next()) {                
+            while (rs.next()) {
                 modelProducto = new Producto();
                 modelProducto.setId_Producto(rs.getInt("p.Id_Producto"));
                 modelProducto.setNombre_Producto(rs.getString("p.nombre_Producto"));
@@ -120,9 +121,10 @@ public class ProductoDAOImpl implements ProductoDAO{
         }
         return data;
     }
+
     //lista de productos para tableView u otros
-    public ArrayList<ProductoCatTipProv> listarProductos() throws SQLException {
-        ArrayList<ProductoCatTipProv> listar = new ArrayList<>();
+    public ArrayList<ProductoDTO> listarProductos() throws SQLException {
+        ArrayList<ProductoDTO> listar = new ArrayList<>();
         String sql = "select p.Id_Producto, p.nombre_Producto, p.peso,p.precio_venta, p.stock, c.nombre_categoria, t.nombre_tipo, pro.nombre_proveedor, p.fecha_vencimiento, p.imagen from producto p\n"
                 + "inner join nobi_tienda.categoria_producto c on p.Id_Categoria = c.Id_Categoria\n"
                 + "inner join nobi_tienda.tipo_producto t on t.Id_Tipo = p.Id_Tipo\n"
@@ -133,10 +135,10 @@ public class ProductoDAOImpl implements ProductoDAO{
             pst = cnx.prepareStatement(sql);
             rs = pst.executeQuery();
             while (rs.next()) {
-                modelProductoCatTipProv = new ProductoCatTipProv(rs.getInt("p.id_producto"), rs.getString("p.nombre_producto"), rs.getString("p.peso"),
+                productoDTO = new ProductoDTO(rs.getInt("p.id_producto"), rs.getString("p.nombre_producto"), rs.getString("p.peso"),
                         rs.getDouble("p.precio_venta"), rs.getInt("p.stock"), rs.getString("c.nombre_categoria"), rs.getString("t.nombre_tipo"),
                         rs.getString("pro.nombre_proveedor"), rs.getString("p.fecha_vencimiento"), rs.getBytes("p.imagen"));
-                listar.add(modelProductoCatTipProv);
+                listar.add(productoDTO);
             }
         } catch (SQLException ex) {
             dbutils.procesarExcepcion(ex);
@@ -145,7 +147,7 @@ public class ProductoDAOImpl implements ProductoDAO{
         }
         return listar;
     }
-    
+
     //lista de productos para ventana cliente 
     public ArrayList<Producto> listarProductoCliente() throws SQLException {
         ArrayList<Producto> listar = new ArrayList<>();
@@ -156,8 +158,8 @@ public class ProductoDAOImpl implements ProductoDAO{
             pst = cnx.prepareStatement(sql);
             rs = pst.executeQuery();
             while (rs.next()) {
-                modelProducto = new Producto(rs.getInt("id_producto"), rs.getString("nombre_producto"), rs.getString("peso"), 
-                        rs.getDouble("precio_venta"), rs.getInt("stock"), rs.getString("fecha_vencimiento"), rs.getBytes("imagen"), 
+                modelProducto = new Producto(rs.getInt("id_producto"), rs.getString("nombre_producto"), rs.getString("peso"),
+                        rs.getDouble("precio_venta"), rs.getInt("stock"), rs.getString("fecha_vencimiento"), rs.getBytes("imagen"),
                         rs.getInt("id_categoria"), rs.getInt("id_tipo"), rs.getInt("id_proveedor"));
                 listar.add(modelProducto);
             }
@@ -168,9 +170,9 @@ public class ProductoDAOImpl implements ProductoDAO{
         }
         return listar;
     }
-    
-    public ArrayList<ProductoCatTipProv> listarProductosPorNombre(String nombreProducto) throws SQLException {
-        ArrayList<ProductoCatTipProv> listar = new ArrayList<>();
+
+    public ArrayList<ProductoDTO> listarProductosPorNombre(String nombreProducto) throws SQLException {
+        ArrayList<ProductoDTO> listar = new ArrayList<>();
         String sql = "select p.Id_Producto, p.nombre_Producto, p.peso,p.precio_venta, p.stock, c.nombre_categoria, t.nombre_tipo, pro.nombre_proveedor, p.fecha_vencimiento, p.imagen from producto p\n"
                 + "inner join nobi_tienda.categoria_producto c on p.Id_Categoria = c.Id_Categoria\n"
                 + "inner join nobi_tienda.tipo_producto t on t.Id_Tipo = p.Id_Tipo\n"
@@ -179,13 +181,13 @@ public class ProductoDAOImpl implements ProductoDAO{
         try {
             cnx = dbutils.getConnection();
             pst = cnx.prepareStatement(sql);
-            pst.setString(1,"%"+nombreProducto+"%");
+            pst.setString(1, "%" + nombreProducto + "%");
             rs = pst.executeQuery();
             while (rs.next()) {
-                modelProductoCatTipProv = new ProductoCatTipProv(rs.getInt("p.id_producto"), rs.getString("p.nombre_producto"), rs.getString("p.peso"),
+                productoDTO = new ProductoDTO(rs.getInt("p.id_producto"), rs.getString("p.nombre_producto"), rs.getString("p.peso"),
                         rs.getDouble("p.precio_venta"), rs.getInt("p.stock"), rs.getString("c.nombre_categoria"), rs.getString("t.nombre_tipo"),
                         rs.getString("pro.nombre_proveedor"), rs.getString("p.fecha_vencimiento"), rs.getBytes("p.imagen"));
-                listar.add(modelProductoCatTipProv);
+                listar.add(productoDTO);
             }
         } catch (SQLException ex) {
             dbutils.procesarExcepcion(ex);
@@ -387,13 +389,13 @@ public class ProductoDAOImpl implements ProductoDAO{
             cnx = dbutils.getConnection();
             pst = cnx.prepareStatement(sql);
             pst.setInt(1, cantidad);
-            pst.setInt(2, id);           
+            pst.setInt(2, id);
             int result = pst.executeUpdate();
             if (result == 1) {
-               System.out.println("La actualización de la tabla producto en el campo stock ha sido correcta");  
+                System.out.println("La actualización de la tabla producto en el campo stock ha sido correcta");
             } else {
                 System.out.println("¡Actualización FALLIDA!.");
-            }            
+            }
         } catch (SQLException ex) {
             dbutils.procesarExcepcion(ex);
         } finally {

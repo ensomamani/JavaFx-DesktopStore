@@ -134,12 +134,12 @@ public class VentanaClienteController implements Initializable {
                 AddItemVentanaTiendaController controller = new AddItemVentanaTiendaController();
                 fxmlLoader.setController(controller);
                 nodes[i] = fxmlLoader.load();
-                areaProductos.getChildren().add(nodes[i]);              
+                areaProductos.getChildren().add(nodes[i]); 
                 if (productoDAOImpl.getQuantityStock(listProd.get(i).getId_Producto()) >= 1) {
-                    controller.llamarProducto(listProd.get(i));
+                    controller.llamarProducto(listProd.get(i));                  
                 } else {                    
                     controller.llamarProductoStockCero(listProd.get(i));
-                    ControladorGeneral.setDisableToProductsStockCero(""+listProd.get(i).getId_Producto(), nodes[i]);
+                    ControladorGeneral.setDisableToProductsStockCero(""+listProd.get(i).getId_Producto(), nodes[i]); 
                 }
             }
         } catch (Exception e) {
@@ -403,6 +403,7 @@ public class VentanaClienteController implements Initializable {
                     ControladorGeneral.findNodesToUnable(idLabel.getText());
                 }
                 areaCarrito.getChildren().clear();
+                lblPrecioTotal.setText("00.00");
             }
         }
     }
@@ -414,13 +415,13 @@ public class VentanaClienteController implements Initializable {
         PedidoDAO pedidoDao = new PedidoDAOImpl();
         Pedido modelPedido = new Pedido();
         modelPedido.setIdPedido(pedidoDao.getNewId() + 1);
-        modelPedido.setEstado("Activo");
+        modelPedido.setEstado("Abierto");
         modelPedido.setHora(LocalDateTime.now().getHour() + ":" + LocalDateTime.now().getSecond());
         modelPedido.setFecha(LocalDate.now().toString());
         modelPedido.setIdPc(configProperties.getPropertiesValueId());
         pedidoDao.register(modelPedido);
         saveDetallePedido(modelPedido);
-        idPedidoVerHistoria = modelPedido.getIdPedido();
+        //idPedidoVerHistoria = modelPedido.getIdPedido();
     }
     
     private void saveDetallePedido(Pedido modelPedido) {

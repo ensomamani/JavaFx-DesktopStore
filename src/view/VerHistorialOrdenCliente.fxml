@@ -98,14 +98,23 @@
                   <Insets bottom="10.0" />
                </VBox.margin>
             </Label>
-            <Label text="s/00.00" textFill="#cc3333">
-               <font>
-                  <Font name="Roboto Bold" size="18.0" />
-               </font>
-               <VBox.margin>
-                  <Insets bottom="10.0" />
-               </VBox.margin>
-            </Label>
+            <HBox alignment="CENTER">
+               <children>
+                  <Label text="s/" textFill="#cc3333">
+                     <font>
+                        <Font name="Roboto Bold" size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label fx:id="labelPrecioTotal" text="00.00" textFill="#cc3333">
+                     <font>
+                        <Font name="Roboto Bold" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
          </children>
       </VBox>
       <ScrollPane layoutX="17.0" layoutY="117.0" prefHeight="509.0" prefWidth="536.0" style="-fx-background-color: transparent;">

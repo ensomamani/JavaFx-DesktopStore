@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package model;
+package DTO;
 
 /**
  *
  * @author Enso
  */
-public class ProductoCatTipProv {
+public class ProductoDTO {
     private int id;
     private String nombreProducto;
     private String peso;
@@ -21,11 +21,11 @@ public class ProductoCatTipProv {
     private String fechaVencimiento;
     private byte[] imagen;
 
-    public ProductoCatTipProv() {
+    public ProductoDTO() {
     }
     
 
-    public ProductoCatTipProv(int id, String nombreProducto, String peso, double precioVenta, int stock, String nombreCategoria, String tipoProducto, String nombreProveedor, String fechaVencimiento, byte[] imagen) {
+    public ProductoDTO(int id, String nombreProducto, String peso, double precioVenta, int stock, String nombreCategoria, String tipoProducto, String nombreProveedor, String fechaVencimiento, byte[] imagen) {
         this.id = id;
         this.nombreProducto = nombreProducto;
         this.peso = peso;

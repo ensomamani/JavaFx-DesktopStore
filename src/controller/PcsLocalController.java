@@ -74,7 +74,7 @@ import model.CategoriaProducto;
 import model.IngresoProducto;
 import model.PcCliente;
 import model.Producto;
-import model.ProductoCatTipProv;
+import DTO.ProductoDTO;
 import model.Proveedor;
 import model.TipoProducto;
 
@@ -153,7 +153,7 @@ public class PcsLocalController implements Initializable {
     @FXML
     private TextField txtPesoProd;
     @FXML
-    private TableView<ProductoCatTipProv> tableProductos;
+    private TableView<ProductoDTO> tableProductos;
     @FXML
     private JFXButton btnLimpiar;
     @FXML
@@ -426,12 +426,12 @@ public class PcsLocalController implements Initializable {
         }
     }
 
-    private ObservableList<ProductoCatTipProv> getProducto() {
-        ObservableList<ProductoCatTipProv> data = FXCollections.observableArrayList();
+    private ObservableList<ProductoDTO> getProducto() {
+        ObservableList<ProductoDTO> data = FXCollections.observableArrayList();
         productoDao = new ProductoDAOImpl();
         try {
-            for (ProductoCatTipProv p : productoDao.listarProductos()) {
-                data.add(new ProductoCatTipProv(p.getId(), p.getNombreProducto(), p.getPeso(), p.getPrecioVenta(),
+            for (ProductoDTO p : productoDao.listarProductos()) {
+                data.add(new ProductoDTO(p.getId(), p.getNombreProducto(), p.getPeso(), p.getPrecioVenta(),
                         p.getStock(), p.getNombreCategoria(), p.getTipoProducto(), p.getNombreProveedor(), p.getFechaVencimiento(), p.getImagen()));
             }
         } catch (SQLException ex) {
@@ -441,31 +441,31 @@ public class PcsLocalController implements Initializable {
     }
 
     private void insertarColumnasTableViewProductos() {
-        TableColumn<ProductoCatTipProv, String> codigoColumn = new TableColumn<>("Codigo");
+        TableColumn<ProductoDTO, String> codigoColumn = new TableColumn<>("Codigo");
         codigoColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
 
-        TableColumn<ProductoCatTipProv, String> nombreColumn = new TableColumn<>("Nombre");
+        TableColumn<ProductoDTO, String> nombreColumn = new TableColumn<>("Nombre");
         nombreColumn.setCellValueFactory(new PropertyValueFactory<>("nombreProducto"));
 
-        TableColumn<ProductoCatTipProv, String> pesoColumn = new TableColumn<>("Peso");
+        TableColumn<ProductoDTO, String> pesoColumn = new TableColumn<>("Peso");
         pesoColumn.setCellValueFactory(new PropertyValueFactory<>("peso"));
 
-        TableColumn<ProductoCatTipProv, String> precioColumn = new TableColumn<>("Precio");
+        TableColumn<ProductoDTO, String> precioColumn = new TableColumn<>("Precio");
         precioColumn.setCellValueFactory(new PropertyValueFactory<>("precioVenta"));
 
-        TableColumn<ProductoCatTipProv, String> stockColumn = new TableColumn<>("Stock");
+        TableColumn<ProductoDTO, String> stockColumn = new TableColumn<>("Stock");
         stockColumn.setCellValueFactory(new PropertyValueFactory<>("stock"));
 
-        TableColumn<ProductoCatTipProv, String> CategoriaColumn = new TableColumn<>("Categoria");
+        TableColumn<ProductoDTO, String> CategoriaColumn = new TableColumn<>("Categoria");
         CategoriaColumn.setCellValueFactory(new PropertyValueFactory<>("nombreCategoria"));
 
-        TableColumn<ProductoCatTipProv, String> tipoColumn = new TableColumn<>("Tipo");
+        TableColumn<ProductoDTO, String> tipoColumn = new TableColumn<>("Tipo");
         tipoColumn.setCellValueFactory(new PropertyValueFactory<>("tipoProducto"));
 
-        TableColumn<ProductoCatTipProv, String> proveedorColumn = new TableColumn<>("Proveedor");
+        TableColumn<ProductoDTO, String> proveedorColumn = new TableColumn<>("Proveedor");
         proveedorColumn.setCellValueFactory(new PropertyValueFactory<>("nombreProveedor"));
 
-        TableColumn<ProductoCatTipProv, String> fechaVencimientoColumn = new TableColumn<>("Fecha Vencimiento");
+        TableColumn<ProductoDTO, String> fechaVencimientoColumn = new TableColumn<>("Fecha Vencimiento");
         fechaVencimientoColumn.setCellValueFactory(new PropertyValueFactory<>("fechaVencimiento"));
 
 //        TableColumn<ProductoCatTipProv, String> imagenColumn = new TableColumn<>("Nombre Imagen");
@@ -482,7 +482,7 @@ public class PcsLocalController implements Initializable {
     private void tProductosClick(MouseEvent event) {
         if (event.getSource().equals(tableProductos)) {
             if (tableProductos.getSelectionModel().getSelectedItem() != null) {
-                ProductoCatTipProv p = tableProductos.getSelectionModel().getSelectedItem();
+                ProductoDTO p = tableProductos.getSelectionModel().getSelectedItem();
                 txtCodProd.setText("" + p.getId());
                 txtNombreProd.setText("" + p.getNombreProducto());
                 txtPesoProd.setText("" + p.getPeso());
@@ -593,14 +593,14 @@ public class PcsLocalController implements Initializable {
     private void buscarProducto(KeyEvent event) {
        tableProductos.setItems(buscarProductos());
     }
-    private ObservableList<ProductoCatTipProv> buscarProductos() {
+    private ObservableList<ProductoDTO> buscarProductos() {
         productoDao = new ProductoDAOImpl();
         model = new Producto();
-        ObservableList<ProductoCatTipProv> data = FXCollections.observableArrayList();
+        ObservableList<ProductoDTO> data = FXCollections.observableArrayList();
         String buscar = txtBuscarProd.getText().toLowerCase();
         try {
-            for(ProductoCatTipProv p : productoDao.listarProductosPorNombre(buscar)) {
-                data.add(new ProductoCatTipProv(p.getId(), p.getNombreProducto(), p.getPeso(), p.getPrecioVenta(), p.getStock(), p.getNombreCategoria(), p.getTipoProducto(), p.getNombreProveedor(), p.getFechaVencimiento(), p.getImagen()));              
+            for(ProductoDTO p : productoDao.listarProductosPorNombre(buscar)) {
+                data.add(new ProductoDTO(p.getId(), p.getNombreProducto(), p.getPeso(), p.getPrecioVenta(), p.getStock(), p.getNombreCategoria(), p.getTipoProducto(), p.getNombreProveedor(), p.getFechaVencimiento(), p.getImagen()));              
             }
         } catch (SQLException ex) {
             Logger.getLogger(PcsLocalController.class.getName()).log(Level.SEVERE, null, ex);

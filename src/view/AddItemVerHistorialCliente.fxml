@@ -10,7 +10,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane maxHeight="1.7976931348623157E308" prefHeight="100.0" prefWidth="530.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.AddItemVerHistorialClienteController">
+<GridPane fx:id="mainGridItemVerHistorial" maxHeight="1.7976931348623157E308" prefHeight="100.0" prefWidth="530.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.AddItemVerHistorialClienteController">
    <children>
       <HBox alignment="CENTER_LEFT">
          <children>

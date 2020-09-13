@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package model;
+package DTO;
 
 import javafx.scene.image.Image;
 
@@ -11,14 +11,14 @@ import javafx.scene.image.Image;
  *
  * @author Enso
  */
-public class PedidoDetPedProd {
+public class PedidoDTO {
     private Image imagen;
     private String nombre_Producto;
     private int cantidadOrden;
     private double precioProducto;
     private double subtotalPedido;
 
-    public PedidoDetPedProd() {
+    public PedidoDTO() {
     }
     
 

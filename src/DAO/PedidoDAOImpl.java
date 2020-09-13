@@ -19,8 +19,9 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import model.DBUtils;
 import model.Pedido;
-import model.PedidoDetPedProd;
+import DTO.PedidoDTO;
 import model.Producto;
+import model.PropertiesServer;
 
 /**
  *
@@ -108,8 +109,8 @@ public class PedidoDAOImpl implements PedidoDAO{
     
 
     @Override
-    public List<PedidoDetPedProd> searchPedidosForId(int id) {
-        List<PedidoDetPedProd> listData = new ArrayList<>();
+    public List<PedidoDTO> searchPedidosForId(int id) {
+        List<PedidoDTO> listData = new ArrayList<>();
         String sql = "select pro.imagen,pro.nombre_Producto, det.cantidad, pro.precio_venta, det.subtotal from pedido p inner join detalle_pedido det on p.Id_Pedido = det.id_pedido inner join producto pro on pro.Id_Producto = det.Id_Producto where p.id_pedido = ?";
         dbutils = new DBUtils();
         try {
@@ -118,7 +119,7 @@ public class PedidoDAOImpl implements PedidoDAO{
             pst.setInt(1, id);
             rs = pst.executeQuery();
             while (rs.next()) {                
-                PedidoDetPedProd model = new PedidoDetPedProd();
+                PedidoDTO model = new PedidoDTO();
                 model.setImagen(ControladorGeneral.bytesToImage(rs.getBytes("pro.imagen")));
                 model.setNombre_Producto(rs.getString("pro.nombre_Producto"));
                 model.setCantidadOrden(rs.getInt("det.cantidad"));
@@ -136,5 +137,42 @@ public class PedidoDAOImpl implements PedidoDAO{
             }
         }
         return listData;
+    }
+
+    @Override
+    public List<PedidoDTO> searchPedidosStateAndNamePc() {
+        List<PedidoDTO> data = new ArrayList<>();
+        PropertiesServer propertiesServer = new PropertiesServer();
+        String sql = "select pro.imagen,pro.nombre_Producto, det.cantidad, pro.precio_venta, det.subtotal from pedido p \n" +
+                    "inner join detalle_pedido det on p.Id_Pedido = det.id_pedido \n" +
+                    "inner join producto pro on pro.Id_Producto = det.Id_Producto \n" +
+                    "inner join pc_cliente pc on pc.Id_Pc = p.Id_Pc\n" +
+                    "where p.estado = ? and pc.nombre_PC = ?";
+        dbutils = new DBUtils();
+        try {
+            cnx = dbutils.getConnection();
+            pst = cnx.prepareStatement(sql);
+            pst.setString(1, "Abierto");
+            pst.setString(2, propertiesServer.getPropertiesValueNamePc());
+            rs = pst.executeQuery();
+            while (rs.next()) {                
+                PedidoDTO model = new PedidoDTO();
+                model.setImagen(ControladorGeneral.bytesToImage(rs.getBytes("pro.imagen")));
+                model.setNombre_Producto(rs.getString("pro.nombre_Producto"));
+                model.setCantidadOrden(rs.getInt("det.cantidad"));
+                model.setPrecioProducto(rs.getDouble("pro.precio_venta"));
+                model.setSubtotalPedido(rs.getDouble("det.subtotal"));
+                data.add(model);
+            }
+        } catch (SQLException ex) {
+            dbutils.procesarExcepcion(ex);
+        } finally {
+            try {
+                dbutils.closeConnection(cnx, pst, rs);
+            } catch (SQLException ex) {
+                Logger.getLogger(PedidoDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return data;
     }
 }

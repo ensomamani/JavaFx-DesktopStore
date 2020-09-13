@@ -7,7 +7,7 @@ package InterfaceDAO;
 
 import java.util.List;
 import model.Pedido;
-import model.PedidoDetPedProd;
+import DTO.PedidoDTO;
 
 /**
  *
@@ -16,5 +16,6 @@ import model.PedidoDetPedProd;
 public interface PedidoDAO extends CRUD<Pedido>{
     
     public int getNewId();
-    public List<PedidoDetPedProd> searchPedidosForId(int id);
+    public List<PedidoDTO> searchPedidosForId(int id);
+    public List<PedidoDTO> searchPedidosStateAndNamePc();
 }
