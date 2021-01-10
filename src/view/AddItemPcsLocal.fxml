@@ -9,7 +9,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<JFXButton fx:id="btnPc" contentDisplay="BOTTOM" prefHeight="61.0" prefWidth="51.0" styleClass="btn-pc-local" stylesheets="@../styles/AddItemPcsLocal.css" textFill="WHITE" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<JFXButton fx:id="btnPc" contentDisplay="BOTTOM" onMouseClicked="#onMouseClickedBtnPc" prefHeight="61.0" prefWidth="51.0" styleClass="btn-pc-local" stylesheets="@../styles/AddItemPcsLocal.css" textFill="WHITE" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.AddItemPcsLocalController">
    <font>
       <Font name="Roboto Bold" size="16.0" />
    </font>

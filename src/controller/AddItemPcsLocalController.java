@@ -14,6 +14,7 @@ import model.PcCliente;
 import DAO.pcClienteDao;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import java.sql.SQLException;
+import javafx.scene.input.MouseEvent;
 
 /**
  * FXML Controller class
@@ -37,6 +38,11 @@ public class AddItemPcsLocalController implements Initializable {
     }    
     public void setNamePcs(PcCliente pc) throws SQLException {
         btnPc.setText(pc.getNombre_pc());
+    }
+
+    @FXML
+    private void onMouseClickedBtnPc(MouseEvent event) {
+        System.out.println("hola mundo");
     }
 
     

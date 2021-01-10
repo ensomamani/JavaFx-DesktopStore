@@ -221,7 +221,6 @@ public class PcsLocalController implements Initializable {
         new ZoomIn(PCsLocal).play();
         PCsLocal.toFront();
         new BounceIn(lblMainName).play();
-        System.out.println("hola mundo");
         btnPcsLocal.getStyleClass().add("btn-submenu-sidebar-active");
     }
 

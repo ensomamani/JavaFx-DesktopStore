@@ -29,7 +29,7 @@ public class Principal extends Application {
         PropertiesServer configServer = new PropertiesServer();
         String namePc = configServer.getPropertiesValueNamePc();
         if (!namePc.isEmpty()) {
-            initWindow("VentanaCliente.fxml", primaryStage, StageStyle.UNDECORATED);
+            initWindow("PcsLocal.fxml", primaryStage, StageStyle.UNDECORATED);
         } else {
             initWindow("VentanaClienteConectar.fxml", primaryStage, StageStyle.DECORATED);
 
